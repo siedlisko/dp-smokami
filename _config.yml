@@ -1,7 +1,7 @@
 title: Dom Pod Smokami
 email: kontakt@podsmokami.pl
 description: "Apartamenty z widokami na Tatry, sauna, codzienne świeże bułeczki."
-baseurl: "" # Pozostaw puste, jeśli strona jest w głównej domenie
+baseurl: "/dp-smokami" # Pozostaw puste, jeśli strona jest w głównej domenie
 url: "https://greenchangingplanet.github.io/dp-smokami/"
 markdown: kramdown
 theme: minima # Jekyll wymaga zdefiniowania motywu, ale my użyjemy własnego układu
