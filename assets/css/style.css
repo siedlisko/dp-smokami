@@ -1,0 +1,707 @@
+/* ==========================================================================
+   1. ZMIENNE I USTAWIENIA GLOBALNE (Reset & Variables)
+   ========================================================================== */
+:root {
+  --color-primary: #1e1e1e;       /* Głęboka czerń/antracyt */
+  --color-accent: #c5a880;        /* Eleganckie złoto / ciepły beż */
+  --color-accent-hover: #b3956d;  /* Ciemniejsze złoto po najechaniu */
+  --color-text-dark: #333333;     /* Kolor tekstu głównego */
+  --color-text-light: #ffffff;    /* Biały tekst */
+  --color-bg-light: #fafaf8;      /* Ciepłe, bardzo jasne tło */
+  --color-bg-card: #ffffff;       /* Tło kart */
+  --color-border: #e6e6e2;        /* Subtelne ramki i linie podziału */
+  
+  --font-title: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+/* ==========================================================================
+   2. UKŁAD STRONY I ELEMENTY WSPÓLNE (Layout & Typography)
+   ========================================================================== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-title);
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin: 0.75rem auto 0;
+}
+
+/* Przyciski */
+.btn-slide {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-accent);
+  color: var(--color-text-light);
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.btn-slide:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. NAWIGACJA (Header & Menu)
+   ========================================================================== */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: var(--transition-smooth);
+}
+
+/* Klasa dodawana przez JS po przewinięciu strony w dół */
+.site-header.scrolled {
+  position: fixed;
+  background-color: rgba(30, 30, 30, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.site-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.site-header.scrolled .site-header-inner {
+  padding: 1rem 5%;
+}
+
+.brand .logo {
+  height: 60px;
+  width: auto;
+  transition: var(--transition-smooth);
+}
+
+.site-header.scrolled .brand .logo {
+  height: 45px;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.site-nav a {
+  font-family: var(--font-title);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-light);
+  letter-spacing: 1px;
+}
+
+.site-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Hamburger (Mobile Menu Toggle) */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-text-light);
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.hamburger::before,
+.hamburger::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-text-light);
+  transition: var(--transition-fast);
+}
+
+.hamburger::before { top: -8px; left: 0; }
+.hamburger::after { bottom: -8px; left: 0; }
+
+/* ==========================================================================
+   4. SEKCJA GŁÓWNA (Hero Section)
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  color: var(--color-text-light);
+  max-width: 850px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-family: var(--font-title);
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-lead {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+/* ==========================================================================
+   5. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
+   ========================================================================== */
+.apartments-section,
+.amenities-section {
+  padding: 6rem 0;
+}
+
+.swiper {
+  width: 100%;
+  padding-bottom: 4rem !important; /* Przestrzeń na kropki nawigacji */
+}
+
+/* Slajdy Apartamentów */
+.apartment-slide {
+  position: relative;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem;
+  color: var(--color-text-light);
+  overflow: hidden;
+}
+
+.slide-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 0.6s ease;
+}
+
+.apartment-slide:hover .slide-bg {
+  transform: scale(1.05);
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+  z-index: 2;
+}
+
+.slide-content {
+  position: relative;
+  z-index: 3;
+  max-width: 500px;
+}
+
+.slide-content h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.apt-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  font-family: var(--font-title);
+  text-transform: uppercase;
+}
+
+.slide-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+/* Slajdy Udogodnień */
+.amenity-slide {
+  background-color: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.amenity-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.amenity-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.amenity-content h3 {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.amenity-content p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Custom Swiper Navigation Style */
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-accent) !important;
+  background-color: rgba(30, 30, 30, 0.8);
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50%;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.25rem !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--color-accent) !important;
+}
+
+/* ==========================================================================
+   6. PARALAKSA I ŚWIETNA LOKALIZACJA
+   ========================================================================== */
+.location-section {
+  position: relative;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.location-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%; /* Większa wysokość dla płynniejszego efektu paralaksy */
+  object-fit: cover;
+  z-index: 1;
+}
+
+.location-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 2;
+}
+
+.location-content {
+  position: relative;
+  z-index: 3;
+  color: var(--color-text-light);
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.location-title {
+  font-family: var(--font-title);
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+}
+
+.location-info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.location-info p {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   7. OPINIE GOŚCI (Reviews Section)
+   ========================================================================== */
+.reviews-section {
+  padding: 6rem 0;
+  background-color: var(--color-bg-light);
+}
+
+.reviews-header {
+  text-align: center;
+  font-family: var(--font-title);
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-top: -2rem;
+  margin-bottom: 3.5rem;
+  font-size: 1.1rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.review-card {
+  background-color: var(--color-bg-card);
+  padding: 2.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--color-text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.review-author {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.review-rating {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   8. POZNAJ NAS BLIŻEJ (Navigation links Section)
+   ========================================================================== */
+.info-links-section {
+  padding: 5rem 0;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+
+.info-links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.info-link {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.info-link:hover .info-link-num {
+  background-color: var(--color-text-light);
+  color: var(--color-primary);
+}
+
+.info-link-num {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--color-text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.info-link-text {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   9. SEKCJA MAPY (Map Section)
+   ========================================================================== */
+.map-section {
+  padding: 6rem 0 0 0; /* Bez dolnego marginesu – styka się ze stopką */
+}
+
+.map-container {
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+  line-height: 0; /* Zapobiega lukom pod iframe */
+}
+
+/* ==========================================================================
+   10. STOPKA (Footer)
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 5rem 0 2rem 0;
+  font-size: 0.9rem;
+  border-top: 2px solid var(--color-accent);
+}
+
+.footer-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.footer-section h3 {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-section a:hover {
+  color: var(--color-accent);
+  padding-left: 5px;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-links a:hover {
+  color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.footer-bottom small {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ==========================================================================
+   11. RZETELNY RESPONSIVE DESIGN (Media Queries)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+  .hero-content h1 {
+    font-size: 2.75rem;
+  }
+  .location-title {
+    font-size: 2rem;
+  }
+  .location-info {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Nawigacja mobilna */
+  .nav-toggle {
+    display: block; /* Pokazuje hamburger */
+  }
+  
+  .site-nav {
+    display: none; /* Domyślnie schowane */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-primary);
+    padding: 2rem 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+  
+  /* Klasa dodawana przez prosty skrypt JS w main.js po kliknięciu hamburgera */
+  .site-nav.active {
+    display: block;
+  }
+  
+  .site-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* Bohater (Hero) i sekcje */
+  .hero-content h1 {
+    font-size: 2.25rem;
+  }
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .apartment-slide {
+    height: 480px;
+    padding: 2rem;
+  }
+  
+  .location-section {
+    height: auto;
+    padding: 4rem 0;
+  }
+  
+  .location-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
