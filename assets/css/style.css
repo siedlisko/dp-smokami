@@ -768,26 +768,6 @@ a {
   border: 0 !important;
 }
 
-/* ==========================================================================
-   Ostateczne, bezwzględne ukrycie tekstowego tytułu witryny na całej stronie
-   ========================================================================== */
-.site-title, 
-.site-header .site-title,
-.site-brand,
-.site-header span,
-header a.site-title,
-.site-header-inner > a:not(.brand) {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  width: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  position: absolute !important;
-  pointer-events: none !important;
-}
-
 /* Styl dla wielkiego logo wyświetlanego na środku ekranu głównego (Hero) */
 .hero-logo-wrapper {
   margin-bottom: 2.5rem; /* Odstęp między logiem a napisem TWÓJ DOM W GÓRACH */
