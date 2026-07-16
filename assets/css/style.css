@@ -112,6 +112,7 @@ a {
   z-index: 1000;
   background: transparent;
   transition: var(--transition-smooth);
+  overflow: visible !important; /* Gwarantuje, że duże logo nie zostanie ucięte */
 }
 
 /* Klasa dodawana przez JS po przewinięciu strony w dół */
@@ -125,14 +126,14 @@ a {
   display: flex;
   justify-content: space-between; /* Rozsuwa elementy na boki */
   align-items: center;
-  padding: 1.5rem 5%; /* Oryginalny, wyjściowy odstęp */
+  padding: 4rem 5%; /* Zwiększony padding (z 1.5rem), żeby wielkie logo miało miejsce i nie było ucięte */
   max-width: 1400px;
   margin: 0 auto;
   position: relative; /* Baza do idealnego wycentrowania logo względem całego paska */
 }
 
 .site-header.scrolled .site-header-inner {
-  padding: 1rem 5%; /* Oryginalny odstęp po przewinięciu */
+  padding: 1rem 5%; /* Mniejszy padding po przewinięciu strony */
 }
 
 /* Wypozycjonowanie logo dokładnie na środku nagłówka */
