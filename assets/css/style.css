@@ -102,17 +102,22 @@ a {
 }
 
 /* ==========================================================================
-   3. NAWIGACJA (Header & Menu) - Stabilny Nagłówek z Centrowanym Logo
+   3. NAWIGACJA (Header & Menu) - Blokada Zmian Kolorów i Tła
    ========================================================================== */
-.site-header {
-  position: fixed; /* Przypięty na stałe od samego początku */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: none !important;
+
+/* STAŁE TŁO DLA NAGŁÓWKA - niezależnie od tego, czy strona jest przewinięta, czy nie */
+.site-header,
+.site-header.scrolled {
+  position: fixed !important; /* Zawsze przyklejony do góry */
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  box-shadow: none !important; /* Brak ostrego cienia */
+  backdrop-filter: none !important; /* Usunięcie jakiegokolwiek efektu blur */
+  -webkit-backdrop-filter: none !important;
   
-  /* Stałe tło z delikatną mgłą od samego początku */
+  /* Stała, delikatna ciemna mgiełka dopasowana do tła #1A202C */
   background: linear-gradient(
     to bottom,
     rgba(26, 32, 44, 0.45) 0%,   /* Subtelne ciemne przyciemnienie u góry */
@@ -120,123 +125,125 @@ a {
     rgba(26, 32, 44, 0) 100%      /* Całkowita przezroczystość */
   ) !important;
   
-  transition: var(--transition-smooth);
+  transition: var(--transition-smooth) !important;
 }
 
-.site-header-inner {
-  display: flex;
-  justify-content: flex-end; /* Przyciski menu domyślnie wyrównane do prawej */
-  align-items: center;
-  padding: 0.6rem 5% 1rem 5% !important; /* Wąski, elegancki pasek */
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative; /* Baza dla absolutnego pozycjonowania logo */
+/* STAŁA STRUKTURA WEWNĘTRZNA - brak zmian wysokości paska */
+.site-header-inner,
+.site-header.scrolled .site-header-inner {
+  display: flex !important;
+  justify-content: flex-end !important; /* Przyciski menu zawsze po prawej */
+  align-items: center !important;
+  padding: 0.6rem 5% 1rem 5% !important; /* Stały, wąski pasek */
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  position: relative !important;
 }
 
 /* ==========================================================================
-   MAŁE LOGO (Wycentrowane, ukryte na starcie, pojawia się po skrolowaniu)
+   KONTROLA LOGO (Jedyne, co reaguje na skrolowanie!)
    ========================================================================== */
 .brand {
   position: absolute !important;
   left: 50% !important;
   top: 50% !important;
-  transform: translate(-50%, -50%) !important; /* Idealne centrowanie w pionie i poziomie */
-  z-index: 1010;
-  display: flex;
-  align-items: center;
+  transform: translate(-50%, -50%) !important; /* Idealne centrowanie */
+  z-index: 1010 !important;
+  display: flex !important;
+  align-items: center !important;
   
-  /* Na starcie logo jest całkowicie niewidoczne */
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  /* Na starcie logo jest ukryte */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
 }
 
 .brand img.logo {
-  height: 40px !important; /* Smukłe logo */
+  height: 40px !important; /* Stała, smukła wysokość */
   width: auto !important;
-  display: block;
+  display: block !important;
 }
 
-/* Po przewinięciu strony (klasa .scrolled): płynnie ujawniamy wycentrowane logo */
+/* Płynne pokazanie logo po przewinięciu strony */
 .site-header.scrolled .brand {
   opacity: 1 !important;
   visibility: visible !important;
 }
 
 /* ==========================================================================
-   MENU I PRZYCISKI (Całkowicie nieruchome, zawsze po prawej)
+   MENU I LINKI - Całkowicie zamrożone i jasne
    ========================================================================== */
-.site-nav {
-  /* Usunęliśmy margin-left: auto, ponieważ flex-end w rodzicu dba o prawą stronę */
+.site-nav,
+.site-header.scrolled .site-nav {
+  margin-left: auto !important;
 }
 
 .site-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
+  display: flex !important;
+  list-style: none !important;
+  gap: 2rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.site-nav a {
-  font-family: var(--font-title);
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: #F7FAFC !important; /* Zawsze jasny kolor */
-  letter-spacing: 1px;
-  transition: var(--transition-smooth);
+/* Te selektory upewniają się, że żaden inny styl nie zmieni koloru linków na ciemny */
+.site-nav a,
+.site-header.scrolled .site-nav a,
+.site-header.scrolled .site-nav ul li a {
+  font-family: var(--font-title) !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  color: #F7FAFC !important; /* Zawsze jasny grafit/biel */
+  letter-spacing: 1px !important;
+  transition: var(--transition-smooth) !important;
+  background: transparent !important;
 }
 
-/* Podświetlenie na złoty akcent po najechaniu */
-.site-nav a:hover {
+/* Złoty akcent po najechaniu myszką - zawsze działa tak samo */
+.site-nav a:hover,
+.site-header.scrolled .site-nav a:hover {
   color: var(--color-accent) !important; 
 }
 
-/* Mobilny hamburger (jeśli jest używany) - trzymamy po prawej stronie */
-.nav-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  z-index: 1020;
+/* Mobilny hamburger (jeśli występuje) - blokujemy jasny kolor */
+.nav-toggle,
+.site-header.scrolled .nav-toggle {
+  display: none !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0.5rem !important;
+  z-index: 1020 !important;
 }
 
 .hamburger,
 .hamburger::before,
-.hamburger::after {
+.hamburger::after,
+.site-header.scrolled .hamburger,
+.site-header.scrolled .hamburger::before,
+.site-header.scrolled .hamburger::after {
   background-color: #F7FAFC !important;
 }
 
 .hamburger {
-  display: block;
-  width: 25px;
-  height: 2px;
-  position: relative;
-  transition: var(--transition-fast);
+  display: block !important;
+  width: 25px !important;
+  height: 2px !important;
+  position: relative !important;
+  transition: var(--transition-fast) !important;
 }
 
 .hamburger::before,
 .hamburger::after {
-  content: '';
-  position: absolute;
-  width: 25px;
-  height: 2px;
-  transition: var(--transition-fast);
+  content: '' !important;
+  position: absolute !important;
+  width: 25px !important;
+  height: 2px !important;
+  transition: var(--transition-fast) !important;
 }
 
-.hamburger::before { top: -8px; left: 0; }
-.hamburger::after { bottom: -8px; left: 0; }
-
-/* Usunięcie jakichkolwiek innych ruchów czy zmian wysokości przy skrolowaniu */
-.site-header.scrolled,
-.site-header.scrolled .site-header-inner,
-.site-header.scrolled .site-nav a {
-  background: inherit !important;
-  padding: inherit !important;
-  color: inherit !important;
-  backdrop-filter: none !important;
-}
+.hamburger::before { top: -8px !important; left: 0 !important; }
+.hamburger::after { bottom: -8px !important; left: 0 !important; }
 
 /* ==========================================================================
    4. SEKCJA GŁÓWNA (Hero Section)
