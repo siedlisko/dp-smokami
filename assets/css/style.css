@@ -127,13 +127,15 @@ a {
   /* Gradient: od góry biały (z lekką przezroczystością) do pełnej przezroczystości na dole paska */
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.95) 0%,   /* Na samej górze: prawie pełna biel dla czytelności */
+    rgba(255, 255, 255, 0.95) 0%,/* Na samej górze: prawie pełna biel dla czytelności */
+   rgba(255, 255, 255, 0.85) 25%,
     rgba(255, 255, 255, 0.7) 50%,    /* W środku: lekko przezroczysty */
+   rgba(255, 255, 255, 0.5) 75%,
     rgba(255, 255, 255, 0) 100%     /* Na samym dole paska: całkowicie znika */
   ) !important;
   
   /* Efekt rozmycia tła (blur) działa teraz tylko tam, gdzie tło jest widoczne */
-  backdrop-filter: blur(8px); 
+  backdrop-filter: blur(5px); 
 }
 
 .site-header-inner {
