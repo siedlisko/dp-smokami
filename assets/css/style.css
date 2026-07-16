@@ -100,81 +100,40 @@ a {
   background-color: var(--color-accent-hover);
   transform: translateY(-2px);
 }
+
 /* ==========================================================================
-   3. NAWIGACJA (Header & Menu)
+   3. NAWIGACJA (Header & Menu) - Czysty, Stały Nagłówek (Ciemny Motyw)
    ========================================================================== */
 .site-header {
-  position: absolute;
+  position: fixed; /* Przypięty na stałe od samego początku */
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: transparent;
-  transition: var(--transition-smooth);
-}
-
-/* KIEDY STRONA JEST NA SAMEJ GÓRZE: ukrywamy logo na pasku, bo duże logo jest w sekcji Hero */
-.site-header:not(.scrolled) .brand {
-  display: none !important;
-  opacity: 0;
-}
-
-/* Pasek menu jako delikatna mgła po przewinięciu */
-.site-header.scrolled {
-  position: fixed;
-  box-shadow: none !important; /* Całkowity brak cienia, żeby zachować lekkość */
+  box-shadow: none !important; /* Brak ostrego cienia */
   
-  /* Ultra-delikatny gradient: zaczyna się od subtelnej mgły, kończy zaraz za menu */
+  /* Ultra-delikatna mgła dopasowana do tła #1A202C, bez efektu blur */
   background: linear-gradient(
     to bottom,
-    rgba(26, 32, 44, 0.4) 0%,     /* Delikatna ciemna mgła dopasowana do tła #1A202C */
-    rgba(26, 32, 44, 0.15) 50%,   /* Szybkie zanikanie */
-    rgba(26, 32, 44, 0) 100%      /* Całkowite rozpuszczenie na wysokości dolnej granicy menu */
+    rgba(26, 32, 44, 0.45) 0%,   /* Subtelne ciemne przyciemnienie u góry */
+    rgba(26, 32, 44, 0.15) 60%,   /* Szybkie zanikanie zaraz pod menu */
+    rgba(26, 32, 44, 0) 100%      /* Całkowita przezroczystość */
   ) !important;
   
-  /* Efekt rozmycia szkła (blur) - to on tworzy efekt "mgły" nad zdjęciem tła */
-  backdrop-filter: blur(6px) !important; 
-  -webkit-backdrop-filter: blur(6px) !important;
-}
-
-/* Dopasowanie marginesów, żeby gradient kończył się idealnie pod menu */
-.site-header.scrolled .site-header-inner {
-  padding: 0.6rem 5% 1.2rem 5% !important; /* Bardzo wąski pasek, gradient ucina się szybko */
+  transition: var(--transition-smooth);
 }
 
 .site-header-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 5%;
+  padding: 1rem 5% 1.5rem 5% !important; /* Wąski pasek, by gradient szybko się kończył */
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
 }
 
-.site-header.scrolled .site-header-inner {
-  padding: 0.8rem 5%;
-}
-
-/* Małe logo po przewinięciu – idealnie wycentrowane */
-.site-header.scrolled .brand {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 1010;
-  display: block !important;
-  opacity: 1 !important;
-}
-
-.site-header.scrolled .brand .logo {
-  height: 45px !important;
-  width: auto !important;
-  display: block !important;
-  margin: 0 auto;
-}
-
-/* Linki menu */
+/* Linki menu - zawsze białe i niezmienne */
 .site-nav {
   margin-left: auto;
 }
@@ -189,24 +148,37 @@ a {
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--color-text-light);
+  color: #F7FAFC !important; /* Twoja nowa, jasna biel z motywu globalnego */
   letter-spacing: 1px;
   transition: var(--transition-smooth);
 }
 
+/* Podświetlenie linku po najechaniu myszką na złoty akcent */
 .site-nav a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent) !important; 
 }
 
-/* Kolor linków po przewinięciu */
+/* Usunięcie zbędnych reguł dla stanu ".scrolled" - teraz wszystko jest jednolite */
+.site-header.scrolled {
+  background: linear-gradient(
+    to bottom,
+    rgba(26, 32, 44, 0.45) 0%,
+    rgba(26, 32, 44, 0.15) 60%,
+    rgba(26, 32, 44, 0) 100%
+  ) !important;
+  backdrop-filter: none !important; /* Usunięcie efektu blur */
+  -webkit-backdrop-filter: none !important;
+}
+
 .site-header.scrolled .site-nav a {
-  color: #333333;
-}
-.site-header.scrolled .site-nav a:hover {
-  color: var(--color-accent);
+  color: #F7FAFC !important; /* Linki pozostają jasne również po przewinięciu */
 }
 
-/* Mobilny hamburger */
+.site-header.scrolled .site-nav a:hover {
+  color: var(--color-accent) !important;
+}
+
+/* Mobilny hamburger - też dostosowany do jasnego tekstu */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -216,19 +188,18 @@ a {
   z-index: 1020;
 }
 
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  background-color: #F7FAFC !important; /* Jasne kreski hamburgera */
+}
+
 .hamburger {
   display: block;
   width: 25px;
   height: 2px;
-  background-color: var(--color-text-light);
   position: relative;
   transition: var(--transition-fast);
-}
-
-.site-header.scrolled .hamburger,
-.site-header.scrolled .hamburger::before,
-.site-header.scrolled .hamburger::after {
-  background-color: #333333;
 }
 
 .hamburger::before,
@@ -237,7 +208,6 @@ a {
   position: absolute;
   width: 25px;
   height: 2px;
-  background-color: var(--color-text-light);
   transition: var(--transition-fast);
 }
 
