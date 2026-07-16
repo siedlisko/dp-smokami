@@ -100,7 +100,6 @@ a {
   background-color: var(--color-accent-hover);
   transform: translateY(-2px);
 }
-
 /* ==========================================================================
    3. NAWIGACJA (Header & Menu)
    ========================================================================== */
@@ -114,21 +113,18 @@ a {
   transition: var(--transition-smooth);
 }
 
-/* KIEDY STRONA JEST NA SAMEJ GÓRZE: ukrywamy problematyczne elementy z paska */
-.site-header:not(.scrolled) .brand,
-.site-header:not(.scrolled) .site-title,
-.site-header:not(.scrolled) span,
-.site-header:not(.scrolled) .site-brand {
+/* KIEDY STRONA JEST NA SAMEJ GÓRZE: ukrywamy logo na pasku, bo duże logo jest w sekcji Hero */
+.site-header:not(.scrolled) .brand {
   display: none !important;
   opacity: 0;
 }
 
-/* PO PRZEWINIĘCIU STRONY W DÓŁ: wysuwa się elegancki, czysty biały pasek nawigacji */
+/* PO PRZEWINIĘCIU STRONY W DÓŁ: wysuwa się elegancki, półprzezroczysty biały pasek */
 .site-header.scrolled {
   position: fixed;
-  background-color: rgba(255, 255, 255, 0.7); /* Eleganckie, półprzezroczyste białe tło */
+  background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px); /* Modny efekt rozmycia tła za paskiem */
+  backdrop-filter: blur(10px);
 }
 
 .site-header-inner {
@@ -145,7 +141,7 @@ a {
   padding: 0.8rem 5%;
 }
 
-/* Logo po przewinięciu – idealnie wycentrowane i bezpieczne */
+/* Małe logo po przewinięciu – idealnie wycentrowane */
 .site-header.scrolled .brand {
   position: absolute !important;
   left: 50% !important;
@@ -156,15 +152,14 @@ a {
   opacity: 1 !important;
 }
 
-.site-header.scrolled .brand .logo,
-.site-header.scrolled img {
-  height: 45px !important; /* Zgrabny, mniejszy rozmiar w pasku */
+.site-header.scrolled .brand .logo {
+  height: 45px !important;
   width: auto !important;
   display: block !important;
   margin: 0 auto;
 }
 
-/* Wyrównanie menu do prawej strony */
+/* Linki menu */
 .site-nav {
   margin-left: auto;
 }
@@ -179,7 +174,7 @@ a {
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--color-text-light); /* Jasne linki na tle sekcji Hero */
+  color: var(--color-text-light);
   letter-spacing: 1px;
   transition: var(--transition-smooth);
 }
@@ -188,7 +183,7 @@ a {
   color: var(--color-accent);
 }
 
-/* Zmiana koloru linków na ciemny po przewinięciu, by były czytelne na białym pasku */
+/* Kolor linków po przewinięciu */
 .site-header.scrolled .site-nav a {
   color: #333333;
 }
@@ -196,7 +191,7 @@ a {
   color: var(--color-accent);
 }
 
-/* Hamburger dla wersji mobilnej */
+/* Mobilny hamburger */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -215,7 +210,6 @@ a {
   transition: var(--transition-fast);
 }
 
-/* Ciemny hamburger po przewinięciu strony */
 .site-header.scrolled .hamburger,
 .site-header.scrolled .hamburger::before,
 .site-header.scrolled .hamburger::after {
