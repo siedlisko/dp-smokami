@@ -112,52 +112,68 @@ a {
   z-index: 1000;
   background: transparent;
   transition: var(--transition-smooth);
-  overflow: visible !important; /* Gwarantuje, że duże logo nie zostanie ucięte */
+  overflow: visible !important; /* Blokuje jakiekolwiek ucinanie elementów */
+  min-height: 220px; /* Gwarantuje ogromną przestrzeń w pionie na starcie dla dużego logo */
+}
+
+/* Ukrycie automatycznego napisu/tytułu, który wstrzykuje motyw Jekylla */
+.site-header .site-title,
+.site-header span,
+.site-header .site-brand {
+  display: none !important;
 }
 
 /* Klasa dodawana przez JS po przewinięciu strony w dół */
 .site-header.scrolled {
   position: fixed;
+  min-height: auto; /* Po przewinięciu pasek wraca do kompaktowych rozmiarów */
   background-color: rgba(255, 255, 255, 0.5); /* Białe, półprzezroczyste tło */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .site-header-inner {
   display: flex;
-  justify-content: space-between; /* Rozsuwa elementy na boki */
+  justify-content: space-between;
   align-items: center;
-  padding: 4rem 5%; /* Zwiększony padding (z 1.5rem), żeby wielkie logo miało miejsce i nie było ucięte */
+  padding: 2rem 5%;
   max-width: 1400px;
   margin: 0 auto;
-  position: relative; /* Baza do idealnego wycentrowania logo względem całego paska */
+  position: relative;
+  overflow: visible !important;
 }
 
 .site-header.scrolled .site-header-inner {
-  padding: 1rem 5%; /* Mniejszy padding po przewinięciu strony */
+  padding: 1rem 5%;
 }
 
 /* Wypozycjonowanie logo dokładnie na środku nagłówka */
-.brand {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1010; /* Trzyma logo zawsze na wierzchu */
+.brand, 
+.site-header a[href*="index.html"],
+.site-header .site-home {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1010;
+  display: block !important; /* Upewniamy się, że sam link z logo jest widoczny */
 }
 
-.brand .logo {
-  height: 180px; /* Logo powiększone 3x na początku strony */
-  width: auto;
+.brand .logo,
+.site-header img {
+  height: 180px !important; /* Sztywna wysokość 3x na starcie strony */
+  width: auto !important;
   transition: var(--transition-smooth);
-  display: block;
+  display: block !important;
   margin: 0 auto;
+  max-height: none !important;
 }
 
-.site-header.scrolled .brand .logo {
-  height: 45px; /* Po przewinięciu wraca do oryginalnego, mniejszego rozmiaru */
+.site-header.scrolled .brand .logo,
+.site-header.scrolled img {
+  height: 45px !important; /* Po przewinięciu zgrabny, mniejszy rozmiar */
 }
 
-/* Przesunięcie menu na prawą stronę, żeby nie nachodziło na logo */
+/* Przesunięcie menu na prawą stronę */
 .site-nav {
   margin-left: auto;
 }
@@ -181,7 +197,7 @@ a {
   color: var(--color-accent);
 }
 
-/* Zmiana koloru linków na ciemny po przewinięciu (dla czytelności na białym tle) */
+/* Zmiana koloru linków na ciemny po przewinięciu */
 .site-header.scrolled .site-nav a {
   color: #333333;
 }
@@ -196,7 +212,7 @@ a {
   border: none;
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 1020; /* Trzyma przycisk nad innymi elementami na telefonie */
+  z-index: 1020;
 }
 
 .hamburger {
