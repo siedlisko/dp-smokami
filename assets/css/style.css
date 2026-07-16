@@ -2,20 +2,22 @@
    1. ZMIENNE I USTAWIENIA GLOBALNE (Reset & Variables)
    ========================================================================== */
 :root {
-  --color-primary: #1e1e1e;       /* Głęboka czerń/antracyt */
-  --color-accent: #c5a880;        /* Eleganckie złoto / ciepły beż */
-  --color-accent-hover: #b3956d;  /* Ciemniejsze złoto po najechaniu */
-  --color-text-dark: #333333;     /* Kolor tekstu głównego */
-  --color-text-light: #ffffff;    /* Biały tekst */
-  --color-bg-light: #fafaf8;      /* Ciepłe, bardzo jasne tło */
-  --color-bg-card: #ffffff;       /* Tło kart */
-  --color-border: #e6e6e2;        /* Subtelne ramki i linie podziału */
+  /* Kolory tła i tekstu */
+  --color-bg: #1A202C;           /* Twój nowy, głęboki grafit */
+  --color-text: #F7FAFC;         /* Bardzo jasny, miękki biały */
+  --color-text-muted: #A0AEC0;   /* Przygaszony szary dla opisów */
   
-  --font-title: 'Montserrat', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Kolory akcentów */
+  --color-accent: #D69E2E;       /* Ciepłe złoto dla hoverów i guzików */
+  --color-accent-hover: #319795; /* Szmaragdowy teal na dodatkowe wyróżnienia */
   
-  --transition-fast: 0.2s ease;
-  --transition-smooth: 0.3s ease-in-out;
+  /* Punkty responsywności (podobnie jak na stronie, która Ci się podobała) */
+  --bs-breakpoint-xs: 0;
+  --bs-breakpoint-sm: 576px;
+  --bs-breakpoint-md: 768px;
+  --bs-breakpoint-lg: 992px;
+  --bs-breakpoint-xl: 1200px;
+  --bs-breakpoint-xxl: 1400px;
 }
 
 * {
@@ -31,10 +33,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg-light);
-  color: var(--color-text-dark);
-  line-height: 3.0;
-  overflow-x: hidden;
+  background-color: var(--color-bg) !important; /* Twój nowy, ciemny motyw #1A202C */
+  color: var(--color-text) !important;         /* Jasny tekst #F7FAFC */
+  line-height: 1.6; /* Warto dodać dla lepszej czytelności tekstów */
 }
 
 img {
