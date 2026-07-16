@@ -673,6 +673,19 @@ a {
 }
 
 @media (max-width: 768px) {
+  /* Pozycjonowanie elementów w nagłówku mobilnym */
+  .site-header-inner {
+    justify-content: flex-end; /* Przesuwa przycisk menu na prawą stronę */
+  }
+
+  .brand {
+    /* Logo pozostaje idealnie na środku ekranu na telefonach */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
   /* Nawigacja mobilna */
   .nav-toggle {
     display: block; /* Pokazuje hamburger */
@@ -724,6 +737,7 @@ a {
   }
 }
 
+/* Ukrywanie tekstów nagłówka dla SEO (dostępność) */
 .visually-hidden {
   position: absolute !important;
   width: 1px !important;
