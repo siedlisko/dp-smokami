@@ -112,7 +112,7 @@ a {
   z-index: 1000;
   box-shadow: none !important; /* Brak ostrego cienia */
   
-  /* Ultra-delikatna mgła dopasowana do tła #1A202C, bez efektu blur */
+  /* Ultra-delikatna mgła dopasowana do tła #1A202C */
   background: linear-gradient(
     to bottom,
     rgba(26, 32, 44, 0.45) 0%,   /* Subtelne ciemne przyciemnienie u góry */
@@ -127,13 +127,39 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 5% 1.5rem 5% !important; /* Wąski pasek, by gradient szybko się kończył */
+  padding: 0.6rem 5% 1rem 5% !important; /* Wąski pasek dla lekkości */
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
 }
 
-/* Linki menu - zawsze białe i niezmienne */
+/* ==========================================================================
+   KONTROLA MAŁEGO LOGO (Ukryte na starcie, pokazane po przewinięciu)
+   ========================================================================== */
+.brand {
+  display: flex;
+  align-items: center;
+  /* Na samej górze strony: ukrywamy małe logo i dajemy mu płynne przejście */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.brand img.logo {
+  height: 40px !important; /* Smukła wysokość */
+  width: auto !important;
+  display: block;
+}
+
+/* Kiedy strona zostanie przewinięta w dół (klasa .scrolled): płynnie pokazujemy logo */
+.site-header.scrolled .brand {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ==========================================================================
+   MENU I LINKI (Zawsze jasne i stałe)
+   ========================================================================== */
 .site-nav {
   margin-left: auto;
 }
@@ -141,44 +167,24 @@ a {
 .site-nav ul {
   display: flex;
   list-style: none;
-  gap: 2.5rem;
+  gap: 2rem;
 }
 
 .site-nav a {
   font-family: var(--font-title);
   font-weight: 600;
   font-size: 0.9rem;
-  color: #F7FAFC !important; /* Twoja nowa, jasna biel z motywu globalnego */
+  color: #F7FAFC !important; /* Jasna biel */
   letter-spacing: 1px;
   transition: var(--transition-smooth);
 }
 
-/* Podświetlenie linku po najechaniu myszką na złoty akcent */
+/* Podświetlenie linku na złoty akcent po najechaniu */
 .site-nav a:hover {
   color: var(--color-accent) !important; 
 }
 
-/* Usunięcie zbędnych reguł dla stanu ".scrolled" - teraz wszystko jest jednolite */
-.site-header.scrolled {
-  background: linear-gradient(
-    to bottom,
-    rgba(26, 32, 44, 0.45) 0%,
-    rgba(26, 32, 44, 0.15) 60%,
-    rgba(26, 32, 44, 0) 100%
-  ) !important;
-  backdrop-filter: none !important; /* Usunięcie efektu blur */
-  -webkit-backdrop-filter: none !important;
-}
-
-.site-header.scrolled .site-nav a {
-  color: #F7FAFC !important; /* Linki pozostają jasne również po przewinięciu */
-}
-
-.site-header.scrolled .site-nav a:hover {
-  color: var(--color-accent) !important;
-}
-
-/* Mobilny hamburger - też dostosowany do jasnego tekstu */
+/* Mobilny hamburger - też jasny */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -213,6 +219,16 @@ a {
 
 .hamburger::before { top: -8px; left: 0; }
 .hamburger::after { bottom: -8px; left: 0; }
+
+/* Usunięcie innych zbędnych zmian przy przewijaniu dla stanu .scrolled */
+.site-header.scrolled,
+.site-header.scrolled .site-header-inner,
+.site-header.scrolled .site-nav a {
+  background: inherit !important;
+  padding: inherit !important;
+  color: inherit !important;
+  backdrop-filter: none !important;
+}
 
 /* ==========================================================================
    4. SEKCJA GŁÓWNA (Hero Section)
