@@ -171,7 +171,7 @@ a {
 }
 
 .brand img.logo {
-  height: 40px !important; /* Stała, smukła wysokość */
+  height: 60px !important; /* Stała, smukła wysokość */
   width: auto !important;
   display: block !important;
 }
