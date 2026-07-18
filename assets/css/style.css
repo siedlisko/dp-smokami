@@ -456,30 +456,35 @@ a {
 }
 
 /* ==========================================================================
-   LIFTING I NAPRAWA GUZIKÓW SLIDERA (4x większe strzałki, brak tła)
+   GIGANTYCZNE STRZAŁKI SLIDERA (2x większe od poprzednich = 8rem!)
    ========================================================================== */
 
-/* 1. Reset kontenerów guzików i wymuszenie ich klikalności */
+/* 1. Fizyczne kontenery na bokach ekranu - ogromne strefy kliknięcia */
 .carousel-control-prev,
 .carousel-control-next,
 .slider-arrow,
 .swiper-button-next,
 .swiper-button-prev {
-  z-index: 1020 !important; /* Wypychamy nad mgiełkę nagłówka */
-  background: transparent !important; /* Całkowite usunięcie tła */
-  background-image: none !important;
+  position: absolute !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18% !important; /* Jeszcze szersza strefa, żeby łatwo było trafić myszką */
+  background: transparent !important;
   border: none !important;
-  opacity: 0.75 !important; /* Lekka przezroczystość na starcie dla elegancji */
+  opacity: 0.6 !important; /* Delikatne na starcie, by nie zasłaniały zdjęć */
+  z-index: 1020 !important;
   cursor: pointer !important;
-  pointer-events: auto !important; /* Wymuszenie reakcji na kliknięcie */
-  width: 80px !important; /* Większy obszar do klikania */
-  height: 80px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important; /* Idealne centrowanie w pionie */
-  transition: all 0.3s ease !important;
+  pointer-events: auto !important; /* Wymuszenie klikalności przez przeglądarkę */
+  transition: opacity 0.3s ease !important;
 }
 
-/* Płynne podświetlenie całego elementu po najechaniu */
+.carousel-control-prev, .slider-arrow-left, .swiper-button-prev { left: 0 !important; }
+.carousel-control-next, .slider-arrow-right, .swiper-button-next { right: 0 !important; }
+
+/* Mocne podświetlenie całego boku po najechaniu myszką */
 .carousel-control-prev:hover,
 .carousel-control-next:hover,
 .slider-arrow:hover,
@@ -488,28 +493,44 @@ a {
   opacity: 1 !important;
 }
 
-/* 2. Czterokrotne powiększenie samych ikon strzałek i zmiana koloru */
+/* 2. POTĘŻNE STRZAŁKI - 8rem (2x większe od poprzednich 4rem) */
 .carousel-control-prev-icon,
 .carousel-control-next-icon,
 .slider-arrow i,
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  width: 4rem !important;  /* 4x większe niż standardowe ~1rem */
-  height: 4rem !important;
-  font-size: 4rem !important; /* Dla strzałek opartych na ikonach czcionkowych */
-  background-size: 100% 100% !important;
-  color: #F7FAFC !important; /* Jasna biel z naszego ciemnego motywu */
-  transition: color 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 8rem !important;  /* Dokładnie dwukrotność poprzednich 4rem */
+  height: 8rem !important;
+  font-size: 8rem !important; /* Dla ikon czcionkowych */
+  line-height: 1 !important;
+  background-image: none !important; /* Usuwamy fabryczne małe obrazki tła */
+  color: #F7FAFC !important; /* Jasna biel */
+  transition: color 0.3s ease, transform 0.3s ease !important;
 }
 
-/* 3. Złoty akcent na same strzałki po najechaniu myszką */
+/* 3. Wymuszenie czystych znaków strzałek, jeśli fabryczne grafiki SVG zniknęły lub się popsuły */
+.carousel-control-prev-icon::before, .swiper-button-prev::after {
+  content: '‹' !important; /* Wielki, czysty znak lewej strzałki */
+  font-family: Arial, sans-serif !important;
+}
+
+.carousel-control-next-icon::before, .swiper-button-next::after {
+  content: '›' !important; /* Wielki, czysty znak prawej strzałki */
+  font-family: Arial, sans-serif !important;
+}
+
+/* 4. Złoty, lśniący hover, gdy najeżdżasz bezpośrednio na gigantyczną strzałkę */
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon,
 .slider-arrow:hover i,
 .swiper-button-next:hover::after,
 .swiper-button-prev:hover::after {
-  color: var(--color-accent) !important; /* Złoty hover pasujący do menu */
-  filter: drop-shadow(0 0 8px rgba(214, 158, 46, 0.4)); /* Delikatna, złota poświata */
+  color: var(--color-accent) !important;
+  transform: scale(1.1); /* Delikatne powiększenie przy najechaniu dla efektu wow */
+  filter: drop-shadow(0 0 12px rgba(214, 158, 46, 0.5));
 }
 
 /* ==========================================================================
