@@ -538,6 +538,25 @@ a {
 }
 
 /* ==========================================================================
+   ZWĘŻENIE I CENTROWANIE TEKSTU W HERO (Odsłonięcie strefy kliku strzałek)
+   ========================================================================== */
+.hero-content {
+  max-width: 800px !important; /* Blokada szerokości, by tekst nie rozlewał się na boki */
+  margin: 0 auto !important;   /* Idealne wycentrowanie bloku na środku */
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  position: relative !important;
+  z-index: 1010 !important;    /* Tekst siedzi bezpiecznie pod warstwą strzałek (1020) */
+  text-align: center !important; /* Wycentrowanie samych linijek tekstu */
+}
+
+/* Opcjonalnie: jeśli opis ma dedykowaną klasę, upewniamy się, że też nie ucieka */
+.hero-content .hero-lead {
+  max-width: 650px !important;
+  margin: 1rem auto 0 auto !important;
+}
+
+/* ==========================================================================
    6. PARALAKSA I ŚWIETNA LOKALIZACJA
    ========================================================================== */
 .location-section {
