@@ -456,35 +456,39 @@ a {
 }
 
 /* ==========================================================================
-   GIGANTYCZNE STRZAŁKI SLIDERA (2x większe od poprzednich = 8rem!)
+   PERFEKCYJNE WYCENTROWANIE I NAPRAWA DIZALANIA GIGANTYCZNYCH STRZAŁEK
    ========================================================================== */
 
-/* 1. Fizyczne kontenery na bokach ekranu - ogromne strefy kliknięcia */
+/* 1. Ręczne wymuszenie pozycji i strefy klikania na środku sekcji Hero */
 .carousel-control-prev,
 .carousel-control-next,
 .slider-arrow,
 .swiper-button-next,
 .swiper-button-prev {
   position: absolute !important;
-  top: 0 !important;
-  bottom: 0 !important;
+  top: 50% !important; /* Przesunięcie o połowę wysokości sekcji w dół */
+  transform: translateY(-50%) !important; /* Idealne wycentrowanie w pionie */
+  bottom: auto !important; /* Kasujemy uciekanie do góry/dołu */
+  
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 18% !important; /* Jeszcze szersza strefa, żeby łatwo było trafić myszką */
+  
+  width: 100px !important;  /* Stała, szeroka i bezpieczna strefa kliku */
+  height: 120px !important; /* Wysoki obszar, żeby łatwo trafić palcem/myszką */
   background: transparent !important;
   border: none !important;
-  opacity: 0.6 !important; /* Delikatne na starcie, by nie zasłaniały zdjęć */
+  opacity: 0.6 !important;
   z-index: 1020 !important;
   cursor: pointer !important;
-  pointer-events: auto !important; /* Wymuszenie klikalności przez przeglądarkę */
+  pointer-events: auto !important; /* Wymuszenie reakcji na kliknięcie */
   transition: opacity 0.3s ease !important;
 }
 
-.carousel-control-prev, .slider-arrow-left, .swiper-button-prev { left: 0 !important; }
-.carousel-control-next, .slider-arrow-right, .swiper-button-next { right: 0 !important; }
+/* Dokładne przyklejenie do lewej i prawej krawędzi ekranu */
+.carousel-control-prev, .slider-arrow-left, .swiper-button-prev { left: 2% !important; }
+.carousel-control-next, .slider-arrow-right, .swiper-button-next { right: 2% !important; }
 
-/* Mocne podświetlenie całego boku po najechaniu myszką */
 .carousel-control-prev:hover,
 .carousel-control-next:hover,
 .slider-arrow:hover,
@@ -493,7 +497,7 @@ a {
   opacity: 1 !important;
 }
 
-/* 2. POTĘŻNE STRZAŁKI - 8rem (2x większe od poprzednich 4rem) */
+/* 2. Utrzymanie Twojej idealnej wielkości (8rem) */
 .carousel-control-prev-icon,
 .carousel-control-next-icon,
 .slider-arrow i,
@@ -502,34 +506,34 @@ a {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 8rem !important;  /* Dokładnie dwukrotność poprzednich 4rem */
+  width: 8rem !important;
   height: 8rem !important;
-  font-size: 8rem !important; /* Dla ikon czcionkowych */
+  font-size: 8rem !important;
   line-height: 1 !important;
-  background-image: none !important; /* Usuwamy fabryczne małe obrazki tła */
-  color: #F7FAFC !important; /* Jasna biel */
+  background-image: none !important;
+  color: #F7FAFC !important;
   transition: color 0.3s ease, transform 0.3s ease !important;
 }
 
-/* 3. Wymuszenie czystych znaków strzałek, jeśli fabryczne grafiki SVG zniknęły lub się popsuły */
+/* 3. Wymuszenie znaków strzałek na wypadek uszkodzenia ikon fabrycznych */
 .carousel-control-prev-icon::before, .swiper-button-prev::after {
-  content: '‹' !important; /* Wielki, czysty znak lewej strzałki */
+  content: '‹' !important;
   font-family: Arial, sans-serif !important;
 }
 
 .carousel-control-next-icon::before, .swiper-button-next::after {
-  content: '›' !important; /* Wielki, czysty znak prawej strzałki */
+  content: '›' !important;
   font-family: Arial, sans-serif !important;
 }
 
-/* 4. Złoty, lśniący hover, gdy najeżdżasz bezpośrednio na gigantyczną strzałkę */
+/* 4. Złoty hover i lekkie powiększenie */
 .carousel-control-prev:hover .carousel-control-prev-icon,
 .carousel-control-next:hover .carousel-control-next-icon,
 .slider-arrow:hover i,
 .swiper-button-next:hover::after,
 .swiper-button-prev:hover::after {
   color: var(--color-accent) !important;
-  transform: scale(1.1); /* Delikatne powiększenie przy najechaniu dla efektu wow */
+  transform: scale(1.1);
   filter: drop-shadow(0 0 12px rgba(214, 158, 46, 0.5));
 }
 
