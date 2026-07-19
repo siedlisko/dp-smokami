@@ -923,3 +923,70 @@ a {
   padding-right: 12% !important;
   box-sizing: border-box !important;
 }
+
+/* ==========================================================================
+   BLOK 1: Wycentrowanie tekstu w sekcji slajdów apartamentów
+   ========================================================================== */
+.carousel-caption, 
+.hero-content, 
+.slider-content-inner {
+  max-width: 700px !important;    
+  margin-left: auto !important;   
+  margin-right: auto !important;  
+  text-align: center !important;  
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* ==========================================================================
+   BLOK 2: PODZIAŁ 50/50 TYLKO DLA SEKCJI UDOGODNIEŃ (Tekst lewo, Zdjęcie prawo)
+   ========================================================================== */
+.swiper-slide.amenity-slide {
+  display: flex !important;
+  flex-direction: row-reverse !important; 
+  align-items: center !important;         
+  justify-content: space-between !important;
+  background-color: #ffffff !important;   
+  width: 100% !important;
+}
+
+.amenity-slide .amenity-content {
+  flex: 0 0 45% !important;
+  width: 45% !important;
+  padding: 50px !important;               
+  box-sizing: border-box !important;
+  text-align: left !important;            
+}
+
+.amenity-slide .amenity-content h3 {
+  margin-bottom: 15px !important;
+}
+
+.amenity-slide .amenity-content p {
+  margin-bottom: 25px !important;
+  color: #555555 !important;              
+}
+
+.amenity-slide .amenity-img {
+  flex: 0 0 50% !important;
+  width: 50% !important;
+  height: 100% !important;
+  min-height: 450px !important;           
+  object-fit: cover !important;           
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .swiper-slide.amenity-slide {
+    flex-direction: column !important;    
+  }
+  .amenity-slide .amenity-content,
+  .amenity-slide .amenity-img {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    padding: 20px !important;
+  }
+  .amenity-slide .amenity-img {
+    min-height: 250px !important;
+  }
+}
