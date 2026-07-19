@@ -46,4 +46,46 @@ document.addEventListener('DOMContentLoaded', () => {
       },
     });
   }
+// ==========================================================================
+  // EXTRA: RĘCZNE PODPIĘCIE STRZAŁEK APARTAMENTÓW
+  // ==========================================================================
+  
+  // Szukamy lewej strzałki apartamentów
+  const btnPrev = document.querySelector('.carousel-control-prev, .slider-arrow-left, .swiper-button-prev:not(.swiper-amenities *)');
+  // Szukamy prawej strzałki apartamentów
+  const btnNext = document.querySelector('.carousel-control-next, .slider-arrow-right, .swiper-button-next:not(.swiper-amenities *)');
+
+  // Funkcja symulująca przejście do poprzedniego slajdu
+  if (btnPrev) {
+    btnPrev.addEventListener('click', (e) => {
+      // Jeśli to Bootstrap Carousel:
+      const carouselEl = document.querySelector('.carousel');
+      if (carouselEl && typeof bootstrap !== 'undefined') {
+        const c = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl);
+        c.prev();
+      }
+      // Jeśli to Swiper (główny slider):
+      const mainSwiperEl = document.querySelector('.hero-slider');
+      if (mainSwiperEl && mainSwiperEl.swiper) {
+        mainSwiperEl.swiper.slidePrev();
+      }
+    });
+  }
+
+  // Funkcja symulująca przejście do następnego slajdu
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+      // Jeśli to Bootstrap Carousel:
+      const carouselEl = document.querySelector('.carousel');
+      if (carouselEl && typeof bootstrap !== 'undefined') {
+        const c = bootstrap.Carousel.getInstance(carouselEl) || new bootstrap.Carousel(carouselEl);
+        c.next();
+      }
+      // Jeśli to Swiper (główny slider):
+      const mainSwiperEl = document.querySelector('.hero-slider');
+      if (mainSwiperEl && mainSwiperEl.swiper) {
+        mainSwiperEl.swiper.slideNext();
+      }
+    });
+  }
 });
