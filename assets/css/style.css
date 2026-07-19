@@ -1095,3 +1095,105 @@ a {
   justify-content: flex-start !important; /* Detale też zaczną się od lewej pod nagłówkiem */
   gap: 20px !important;
 }
+
+/* ==========================================================================
+   NOWE ZMIANY I TUNING WIZUALNY
+   ========================================================================== */
+
+/* --- 1. WYŻSZE LOGO W HERO --- */
+.hero-content {
+  padding-top: 40px !important; /* Podciągamy zawartość wyżej */
+}
+.hero-logo-wrapper {
+  margin-top: 0 !important;
+  margin-bottom: 15px !important; /* Zmniejszamy dystans pod logo */
+}
+
+/* --- 2. PRZYCIEMNIENIE TŁA W APARTAMENTACH --- */
+.apartment-slide .slide-overlay {
+  background-color: rgba(0, 0, 0, 0.55) !important; /* Zwiększamy krycie (np. z 0.3 na 0.55) dla lepszej czytelności tekstu */
+  position: absolute !important;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2 !important;
+}
+
+/* --- 3. PEŁNA WYSOKOŚĆ I POSZERZENIE TŁA LOKALIZACJI --- */
+.location-section {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: 100px 0 !important; /* Duży wewnętrzny margines, żeby sekcja była wysoka */
+  min-height: 650px !important; /* Wymuszenie minimalnej wysokości */
+}
+.location-bg {
+  width: 110% !important; /* Lekkie poszerzenie (zapobiega białym szparom przy paralaksie) */
+  left: -5% !important;
+  height: 120% !important; /* Obrazek wystaje ponad sekcję, by pokazać pełną wysokość */
+  object-fit: cover !important;
+}
+
+/* --- 4. TUNING UDOGODNIEŃ (Jasny tekst i wąski przycisk) --- */
+.amenity-slide .amenity-content p {
+  color: var(--color-text-light, #F7FAFC) !important; /* Zmiana ciemnego #555 na jasny/biały */
+}
+.amenity-slide .amenity-content .btn {
+  display: inline-block !important;
+  width: auto !important; /* Przycisk nie rozciąga się na 100% */
+  padding: 10px 25px !important; /* Wąski, dopasowany do tekstu w środku */
+}
+
+/* --- 5. OPINIE GOŚCI (Ikona cytatu i wyrównanie autora) --- */
+/* Dodanie eleganckiego cudzysłowu nad opinią */
+.testimonial-text::before {
+  content: '“' !important;
+  display: block !important;
+  font-size: 4rem !important;
+  line-height: 1 !important;
+  color: var(--color-accent, #d69e2e) !important;
+  text-align: center !important;
+  margin-bottom: 10px !important;
+  font-family: Georgia, serif !important;
+}
+/* Centrowanie autora i oceny bezpośrednio pod tekstem */
+.testimonial-author,
+.testimonial-rating {
+  text-align: center !important;
+  margin: 5px auto 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* --- 6. SEKCJA POZNAJ NAS BLIŻEJ (Układ 50/50: Linki po lewej, Obrazek po prawej) --- */
+.about-us-section .container,
+.meet-us-section .container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 30px !important;
+}
+/* Lewa strona (Tekst/Linki) */
+.about-us-left {
+  flex: 0 0 48% !important;
+  width: 48% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important; /* Wyrównanie linków do lewej krawędzi */
+}
+/* Prawa strona (Obrazek placeholder) */
+.about-us-right {
+  flex: 0 0 48% !important;
+  width: 48% !important;
+}
+.about-us-right img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  border-radius: 4px !important;
+}
+/* Responsywność dla telefonów - na małych ekranach układ zjedzie jeden pod drugi */
+@media (max-width: 768px) {
+  .about-us-left, .about-us-right {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+  }
+}
