@@ -992,28 +992,42 @@ a {
 }
 
 /* ==========================================================================
-   POPRAWKA CENTROWANIA APARTAMENTÓW (Bez uciekania w prawo)
+   PANCERNE CENTROWANIE SRODKA W SLIDERZE APARTAMENTÓW
    ========================================================================== */
+
+/* Wymuszenie na każdym slajdzie, by jego zawartość była centrowana w poziomie */
+.hero-slider .swiper-slide,
+.hero .carousel-item,
+.hero .swiper-slide {
+  display: flex !important;
+  justify-content: center !important; /* Centrowanie w poziomie */
+  align-items: center !important;     /* Centrowanie w pionie */
+  text-align: center !important;
+}
+
+/* Sam blok z tekstem – ma stać na środku i nie uciekać do lewej */
 .hero-content,
 .carousel-caption,
 .slider-content-inner {
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: 0 !important;  /* Kasujemy stare przesunięcie w prawo */
-  padding-right: 0 !important;
-  width: 90% !important;        /* Bezpieczna szerokość na ekranie */
-  max-width: 750px !important;  /* Tekst nie rozleje się na całą stronę */
-  text-align: center !important;
-  z-index: 1010 !important;
+  position: relative !important;      /* Rezygnujemy z absolute na rzecz stabilnego relative */
+  left: auto !important;
+  right: auto !important;
+  margin: 0 auto !important;          /* Automatyczne marginesy wyśrodkują blok */
+  float: none !important;
+  width: 100% !important;
+  max-width: 720px !important;        /* Szerokość optymalna do czytania */
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  box-sizing: border-box !important;
 }
 
-/* Wymuszenie centrowania elementów wewnątrz tekstu (np. nagłówków i przycisków) */
-.hero-content *,
-.carousel-caption * {
+/* Upewniamy się, że napisy wewnątrz też słuchają środka */
+.hero-content h1, 
+.hero-content p, 
+.hero-content .btn-slide,
+.carousel-caption h1,
+.carousel-caption p {
+  text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  text-align: center !important;
 }
