@@ -992,28 +992,28 @@ a {
 }
 
 /* ==========================================================================
-   OSTATECZNE WYCENTROWANIE TEKSTU W APARTAMENTACH (Brak ucieczki do lewej)
+   POPRAWKA CENTROWANIA APARTAMENTÓW (Bez uciekania w prawo)
    ========================================================================== */
-.carousel-caption, 
-.hero-slider .hero-content,
-.hero .hero-content {
-  left: 50% !important;           /* Przesuwamy punkt startowy na środek ekranu */
-  right: auto !important;
-  transform: translateX(-50%) !important; /* Idealnie centrujemy cały blok tekstu */
-  width: 100% !important;
-  max-width: 750px !important;    /* Ograniczona szerokość, żeby tekst dobrze wyglądał */
-  margin: 0 auto !important;
-  text-align: center !important;  /* Środkowanie linijek tekstu wewnątrz bloku */
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; /* Środkowanie elementów wewnątrz flexboxa (np. przycisków) */
-  justify-content: center !important;
+.hero-content,
+.carousel-caption,
+.slider-content-inner {
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;  /* Kasujemy stare przesunięcie w prawo */
+  padding-right: 0 !important;
+  width: 90% !important;        /* Bezpieczna szerokość na ekranie */
+  max-width: 750px !important;  /* Tekst nie rozleje się na całą stronę */
+  text-align: center !important;
+  z-index: 1010 !important;
 }
 
-/* Upewniamy się, że kontenery wewnątrz slidera apartamentów też nie wymuszają lewej strony */
-.hero-slider .swiper-slide,
-.hero-slider .carousel-item {
-  display: flex !important;
-  justify-content: center !important; /* Wymuszenie środka dla całego slajdu */
-  align-items: center !important;
+/* Wymuszenie centrowania elementów wewnątrz tekstu (np. nagłówków i przycisków) */
+.hero-content *,
+.carousel-caption * {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
 }
