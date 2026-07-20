@@ -456,66 +456,52 @@ a {
 }
 
 /* ==========================================================================
-   6. PARALAKSA I ŚWIETNA LOKALIZACJA
+   6. PARALAKSA I ŚWIETNA LOKALIZACJA (OCZYSZCZONE Z KONFLIKTÓW)
    ========================================================================== */
-.location-section {
-  position: relative;
-  height: 450px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
 
-.location-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 110%; /* Większa wysokość dla płynniejszego efektu paralaksy */
-  object-fit: cover;
-  z-index: 1;
-}
+/* Usunęliśmy stąd .location-section i .location-bg, bo ich nowe, 
+   pancerne wersje bez czarnych marginesów są już na samym dole pliku */
 
 .location-overlay {
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.55);
-  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.55) !important; /* Przyciemnienie tła */
+  z-index: 2 !important;
 }
 
 .location-content {
-  position: relative;
-  z-index: 3;
-  color: var(--color-text-light);
-  text-align: center;
-  max-width: 800px;
-  padding: 0 20px;
+  position: relative !important;
+  z-index: 3 !important;
+  color: var(--color-text-light) !important;
+  text-align: center !important;
+  max-width: 800px !important;
+  padding: 0 20px !important;
+  margin: 0 auto !important;
 }
 
 .location-title {
-  font-family: var(--font-title);
-  font-size: 2.5rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  margin-bottom: 2rem;
+  font-family: var(--font-title) !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
+  margin-bottom: 2rem !important;
 }
 
 .location-info {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2.5rem;
+  display: flex !important;
+  justify-content: center !important;
+  flex-wrap: wrap !important;
+  gap: 2.5rem !important;
 }
 
 .location-info p {
-  font-family: var(--font-title);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 1px;
+  font-family: var(--font-title) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
 }
 
 /* ==========================================================================
