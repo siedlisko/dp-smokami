@@ -1093,20 +1093,30 @@ a {
   z-index: 2 !important;
 }
 
-/* --- 3. PEŁNA WYSOKOŚĆ I POSZERZENIE TŁA LOKALIZACJI --- */
+/* ==========================================================================
+   3. PEŁNA SZEROKOŚĆ, WYSOKOŚĆ I RESPNSYWNOŚĆ SEKCJI LOKALIZACJA (STYKIEM DO GÓRY)
+   ========================================================================== */
 .location-section {
   position: relative !important;
   overflow: hidden !important;
-  padding: 100px 0 !important; /* Duży wewnętrzny margines, żeby sekcja była wysoka */
-  min-height: 650px !important; /* Wymuszenie minimalnej wysokości */
-}
-.location-bg {
-  width: 110% !important; /* Lekkie poszerzenie (zapobiega białym szparom przy paralaksie) */
-  left: -5% !important;
-  height: 120% !important; /* Obrazek wystaje ponad sekcję, by pokazać pełną wysokość */
-  object-fit: cover !important;
+  padding: 120px 0 !important;
+  min-height: 600px !important;
+  width: 100% !important;
+  margin-top: 0 !important;       /* Wymuszenie braku marginesu od poprzedniej sekcji */
+  padding-top: 120px !important;
+  background-color: transparent !important;
 }
 
+/* Styl tła dla komputerów (PC) */
+.location-bg {
+  position: absolute !important;
+  top: 0 !important;              /* Zdjęcie zaczyna się równo z górną krawędzią sekcji */
+  left: -5% !important;
+  width: 110% !important;
+  height: 130% !important;        /* Wysokość wciąż ma zapas na dół do ruchu paralaksy */
+  object-fit: cover !important;
+  z-index: 1 !important;
+}
 /* --- 4. TUNING UDOGODNIEŃ (Jasny tekst i wąski przycisk) --- */
 .amenity-slide .amenity-content p {
   color: var(--color-text-light, #F7FAFC) !important; /* Zmiana ciemnego #555 na jasny/biały */
