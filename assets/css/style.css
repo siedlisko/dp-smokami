@@ -1094,38 +1094,103 @@ a {
 }
 
 /* ==========================================================================
-   3. PEŁNA SZEROKOŚĆ, WYSOKOŚĆ I ZMNIEJSZONY MARGINES SEKCJI LOKALIZACJA
+   3. SEKCJA LOKALIZACJA (PEŁNA SZEROKOŚĆ, NAKŁADKA I TREŚĆ NA GÓRZE)
    ========================================================================== */
 .location-section {
   position: relative !important;
   overflow: hidden !important;
   width: 100% !important;
-  
-  /* Zmniejszamy przestrzeń: 40px od góry (ponad połowę mniej niż 120px), 100px od dołu */
-  padding: 40px 0 100px 0 !important; 
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding: 40px 20px 100px 20px !important; /* 40px od góry, 100px od dołu */
   margin-top: 0 !important;
   margin-bottom: 0 !important;
-  
-  min-height: 500px !important; 
-  background: none !important; /* Całkowite wyczyszczenie jakiegokolwiek tła */
+  min-height: 500px !important;
+  background: none !important;
 }
 
-/* Styl tła dla komputerów (PC) - bez przesunięć generujących szpary */
+/* Obrazek tła dopasowany dokładnie do wymiarów sekcji */
 .location-bg {
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: 120% !important; /* Zapas na delikatną paralaksę bez ucinania */
+  height: 100% !important;
   object-fit: cover !important;
+  object-position: center !important;
   z-index: 1 !important;
 }
 
-/* Upewniamy się, że poprzednia sekcja nie pcha nas w dół */
+/* Lekka nakładka przyciemniająca tło */
+.location-overlay {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  z-index: 2 !important;
+}
+
+/* Treść (tytuł + podpunkty) wyciągnięta na górę */
+.location-content {
+  position: relative !important;
+  z-index: 3 !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  text-align: center !important;
+  color: #FFFFFF !important;
+}
+
+.location-title {
+  font-family: var(--font-title, inherit) !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 2px !important;
+  margin-bottom: 25px !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
+}
+
+.location-info {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  gap: 30px !important;
+}
+
+.location-info p {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  margin: 0 !important;
+  color: #F7FAFC !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6) !important;
+}
+
+/* Zerowanie marginesu styku z poprzednią sekcją */
 .location-section, 
 .location-section + section,
 .about-us-section + .location-section {
   margin-top: 0 !important;
+}
+
+/* Układ dla telefonów (podpunkty pionowo) */
+@media (max-width: 768px) {
+  .location-section {
+    padding: 30px 15px 80px 15px !important;
+  }
+  .location-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 20px !important;
+  }
+  .location-info {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
 }
 
 /* --- 5. OPINIE GOŚCI (Ikona cytatu i wyrównanie autora) --- */
