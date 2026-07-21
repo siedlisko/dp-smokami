@@ -1110,7 +1110,7 @@ a {
   /* OBRAZEK TŁA + INTEGRALNE PRZYCIEMNIENIE (0.45 = 45% czerni) */
   background-image: 
     linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
-    url('assets/img/location-bg.png') !important; /* <-- TUTAJ PODMIEŃ NAZWĘ PLIKU */
+    url('../img/location-bg.png') !important; /* <-- TUTAJ PODMIEŃ NAZWĘ PLIKU */
   
   background-size: cover !important;       /* Wypełnia 100% szerokości sekcji */
   background-position: center top !important; /* Kadruje do góry i środka */
