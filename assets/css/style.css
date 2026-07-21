@@ -1094,36 +1094,30 @@ a {
 }
 
 /* ==========================================================================
-   3. SEKCJA LOKALIZACJA (PEŁNA SZEROKOŚĆ OBRAZU BEZ UCINANIA BOKÓW)
+   3. SEKCJA LOKALIZACJA (TŁO CSS - PEŁNA SZEROKOŚĆ I ŚWIETNA WIDOCZNOŚĆ)
    ========================================================================== */
 .location-section {
   position: relative !important;
   width: 100% !important;
+  min-height: 550px !important; /* Daje odpowiednią wysokość na PC */
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  padding: 40px 20px !important;
+  justify-content: flex-start !important; /* Tekst zostaje na samej górze */
+  padding: 50px 20px !important;
   margin: 0 !important;
-  overflow: hidden !important;
-}
 
-/* Obrazek dopasowany do PEŁNEJ SZEROKOŚCI strony (widoczny w całości) */
-.location-bg {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important; /* POKAZUJE CAŁĄ SZEROKOŚĆ OBRAZU BEZ UCINANIA BOKÓW */
-  object-position: top center !important;
-  z-index: 1 !important;
+  /* OBRAZEK TŁA + INTEGRALNE PRZYCIEMNIENIE (0.45 = 45% czerni) */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+    url('assets/img/location-bg.png') !important; /* <-- TUTAJ PODMIEŃ NAZWĘ PLIKU */
   
-  /* Przyciemnienie nałożone bezpośrednio na obrazek (zero czarnych marginesów u góry) */
-  filter: brightness(0.60) !important; 
+  background-size: cover !important;       /* Wypełnia 100% szerokości sekcji */
+  background-position: center top !important; /* Kadruje do góry i środka */
+  background-repeat: no-repeat !important;
 }
 
-/* Treść idealnie przylega do górnej krawędzi obrazu */
+/* Treść na górze */
 .location-content {
   position: relative !important;
   z-index: 2 !important;
@@ -1140,7 +1134,7 @@ a {
   letter-spacing: 2px !important;
   margin-bottom: 20px !important;
   color: #FFFFFF !important;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
 }
 
 .location-info {
@@ -1157,21 +1151,23 @@ a {
   letter-spacing: 1px !important;
   margin: 0 !important;
   color: #F7FAFC !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* Dopasowanie na telefony */
+/* Dostosowanie na telefony */
 @media (max-width: 768px) {
   .location-section {
-    padding: 25px 15px !important;
+    min-height: 400px !important; /* Na telefonie sekcja jest ciut niższa */
+    padding: 35px 15px !important;
+    background-position: center center !important;
   }
   .location-title {
-    font-size: 1.5rem !important;
+    font-size: 1.6rem !important;
     margin-bottom: 15px !important;
   }
   .location-info {
     flex-direction: column !important;
-    gap: 10px !important;
+    gap: 12px !important;
   }
 }
 
