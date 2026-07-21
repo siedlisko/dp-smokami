@@ -196,6 +196,7 @@ a {
   gap: 2rem !important;
   margin: 0 !important;
   padding: 0 !important;
+  margin-top: 15px !important;
 }
 
 /* Te selektory upewniają się, że żaden inny styl nie zmieni koloru linków na ciemny */
@@ -204,7 +205,7 @@ a {
 .site-header.scrolled .site-nav ul li a {
   font-family: var(--font-title) !important;
   font-weight: 600 !important;
-  font-size: 0.9rem !important;
+  font-size: 1.1rem !important;
   color: #F7FAFC !important; /* Zawsze jasny grafit/biel */
   letter-spacing: 1px !important;
   transition: var(--transition-smooth) !important;
