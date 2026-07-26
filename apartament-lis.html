@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apartament LIS – Dom pod Smokami</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="apartment.css">
+</head>
+<body>
+
+  <!-- SEKACJA HERO -->
+  <section class="apartment-hero" style="background-image: url('images/lis-main.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="subtitle">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
+      <h1>LIS</h1>
+    </div>
+  </section>
+
+  <!-- NAGŁÓWEK I PODSTAWOWE INFORMACJE -->
+  <section class="apartment-intro container">
+    <div class="intro-header">
+      <h2>LIS</h2>
+      <p class="tagline">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
+    </div>
+    
+    <p class="description">
+      Przestronny apartament z dwiema sypialniami i dużym tarasem. Duży salon z aneksem kuchennym. Łazienka z prysznicem.
+    </p>
+
+    <div class="quick-facts">
+      <div class="fact-item">
+        <strong>Wielkość:</strong> 35 m²
+      </div>
+      <div class="fact-item">
+        <strong>Liczba osób:</strong> 4
+      </div>
+      <div class="fact-item">
+        <strong>Widok:</strong> Wysokie Tatry, las
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIA Z MINIATURKAMI -->
+  <section class="apartment-gallery container">
+    <div class="slider-wrapper">
+      <!-- Główny slajd -->
+      <div class="main-slide">
+        <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        
+        <img id="current-slide-img" src="images/lis-1.jpg" alt="Apartament Lis - Zdjęcie 1">
+        
+        <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- Pasek miniaturek -->
+      <div class="thumbnails-grid">
+        <img class="thumb active" src="images/lis-1.jpg" onclick="setSlide(0)" alt="Miniatura 1">
+        <img class="thumb" src="images/lis-2.jpg" onclick="setSlide(1)" alt="Miniatura 2">
+        <img class="thumb" src="images/lis-3.jpg" onclick="setSlide(2)" alt="Miniatura 3">
+        <img class="thumb" src="images/lis-4.jpg" onclick="setSlide(3)" alt="Miniatura 4">
+        <img class="thumb" src="images/lis-5.jpg" onclick="setSlide(4)" alt="Miniatura 5">
+        <img class="thumb" src="images/lis-6.jpg" onclick="setSlide(5)" alt="Miniatura 6">
+        <img class="thumb" src="images/lis-7.jpg" onclick="setSlide(6)" alt="Miniatura 7">
+        <img class="thumb" src="images/lis-8.jpg" onclick="setSlide(8)" alt="Miniatura 8">
+        <img class="thumb" src="images/lis-9.jpg" onclick="setSlide(8)" alt="Miniatura 9">
+      </div>
+    </div>
+  </section>
+
+  <!-- WYPOSAŻENIE / SZCZEGÓŁY (DWIE KOLUMNY) -->
+  <section class="apartment-details container">
+    <div class="details-grid">
+      
+      <!-- Lewa kolumna -->
+      <div class="details-col">
+        <h3>W apartamencie znajdziesz m.in.:</h3>
+        <ul class="check-list">
+          <li>Aneks kuchenny z płytą, lodówką, czajnikiem i podstawowym wyposażeniem</li>
+          <li>Prywatną łazienkę z prysznicem, wc, bidetem i ręcznikami</li>
+          <li>Telewizor, dostęp do Wi‑Fi oraz miejsce do pracy lub odpoczynku</li>
+          <li>Widok na góry, na Wysokie Tatry Bielskie</li>
+          <li>Wygodne łóżka zapewniające komfortowy sen</li>
+        </ul>
+      </div>
+
+      <!-- Prawa kolumna -->
+      <div class="details-col">
+        <h3>Poza tym, zapewniamy gościom:</h3>
+        <ul class="check-list">
+          <li>Codziennie rano świeże bułeczki</li>
+          <li>Możliwość korzystania z ogrodu, miejsca na grilla, ognisko oraz bezpłatnego parkingu</li>
+          <li>Możliwość korzystania z sauny w oddzielnym, drewnianym budynku</li>
+          <li>Możliwość przyjazdu z pupilem</li>
+        </ul>
+        
+        <div class="booking-box">
+          <a href="tel:+48123456789" class="btn-primary">Zadzwoń i zarezerwuj</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKRYPT OBSŁUGI SLIDEREM -->
+  <script>
+    const images = [
+      'images/lis-1.jpg',
+      'images/lis-2.jpg',
+      'images/lis-3.jpg',
+      'images/lis-4.jpg',
+      'images/lis-5.jpg',
+      'images/lis-6.jpg',
+      'images/lis-7.jpg',
+      'images/lis-8.jpg',
+      'images/lis-9.jpg'
+    ];
+    let currentIndex = 0;
+
+    function updateSlider() {
+      const imgElem = document.getElementById('current-slide-img');
+      const thumbs = document.querySelectorAll('.thumb');
+      
+      imgElem.src = images[currentIndex];
+      
+      thumbs.forEach((thumb, idx) => {
+        if (idx === currentIndex) {
+          thumb.classList.add('active');
+        } else {
+          thumb.classList.remove('active');
+        }
+      });
+    }
+
+    function changeSlide(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      updateSlider();
+    }
+
+    function setSlide(index) {
+      currentIndex = index;
+      updateSlider();
+    }
+  </script>
+
+</body>
+</html>
