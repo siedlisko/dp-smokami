@@ -1,3 +1,29 @@
+/* ==========================================================================
+   PLIK: apartment.css (SCALONY)
+   ========================================================================== */
+
+/* --- BAZOWE ZMIENNE I ZASADY (Gwarancja spójności ze style.css) --- */
+:root {
+  --cream: #fdfbf7;
+  --dark: #2b2b2b;
+  --accent: #a38f78;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--dark);
+  background-color: var(--cream);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
 /* --- HERO SEKCYJNA --- */
 .apartment-hero {
   position: relative;
@@ -24,7 +50,7 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  color: var(--cream, #fdfbf7); /* Jasny, jednolity kolor */
+  color: var(--cream, #fdfbf7);
   padding: 0 20px;
 }
 
@@ -43,49 +69,59 @@
   opacity: 0.95;
 }
 
-/* --- NAGŁÓWEK APARTAMENTU --- */
+/* --- NAGŁÓWEK I OPIS APARTAMENTU (LEWA POŁOWA) --- */
 .apartment-intro {
   padding-top: 50px;
   padding-bottom: 30px;
-  max-width: 900px;
+  max-width: 900px; /* Szerokość idealnie dopasowana do slidera poniżej */
   margin: 0 auto;
 }
 
-.intro-header h2 {
+/* Siatka dzieląca sekcję na połowy */
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% lewa, 50% prawa */
+  gap: 40px;
+  align-items: start;
+}
+
+/* Zawijanie całej treści do lewej kolumny */
+.intro-left .intro-header h2 {
   font-size: 2.2rem;
   margin-bottom: 5px;
 }
 
-.intro-header .tagline {
+.intro-left .tagline {
   font-size: 0.95rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #777;
+  margin-bottom: 20px;
+}
+
+.intro-left .description {
+  font-size: 1.15rem;
+  line-height: 1.7;
   margin-bottom: 25px;
 }
 
-.apartment-intro .description {
-  font-size: 1.15rem;
-  line-height: 1.7;
-  margin-bottom: 30px;
-}
-
-.quick-facts {
+/* Szybkie fakty zmieszczone pionowo w lewej połówce */
+.intro-left .quick-facts {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px 40px;
-  padding: 20px 0;
-  border-top: 1px solid rgba(0,0,0,0.08);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .fact-item {
   font-size: 1rem;
 }
 
-/* --- GALERIA Z MINIATURKAMI (ZWARCIE) --- */
+/* --- GALERIA Z MINIATURKAMI --- */
 .apartment-gallery {
-  max-width: 900px; /* Zwężona, zwarta szerokość */
+  max-width: 900px;
   margin: 0 auto 50px auto;
 }
 
@@ -156,7 +192,7 @@
 
 .thumb.active {
   opacity: 1;
-  outline: 2px solid var(--accent, #a38f78); /* Lub Twój akcent kolorystyczny */
+  outline: 2px solid var(--accent, #a38f78);
 }
 
 /* --- LEWA / PRAWA KOLUMNA (SZCZEGÓŁY) --- */
@@ -174,7 +210,7 @@
 .details-col h3 {
   font-size: 1.25rem;
   margin-bottom: 20px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 10px;
 }
 
@@ -224,8 +260,16 @@
 /* --- RESPONSYWNOŚĆ (MOBILE) --- */
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 2.5rem; }
+  
+  .intro-grid { 
+    grid-template-columns: 1fr; /* Na telefonie tekst wraca na pełną szerokość */
+  }
+  .intro-right { 
+    display: none; 
+  }
+
   .details-grid { grid-template-columns: 1fr; gap: 30px; }
   .main-slide { height: 320px; }
   .thumbnails-grid { grid-template-columns: repeat(5, 1fr); }
-  .thumb:nth-child(n+6) { display: none; } /* Ukrywa resztę na bardzo małych ekranach lub można włączyć przewijanie */
+  .thumb:nth-child(n+6) { display: none; }
 }
