@@ -947,61 +947,51 @@ a {
 }
 
 /* ==========================================================================
-   1. DOPASOWANIE SEKCJI UDOGODNIEŃ (Ściśnięcie zawartości i tło strony)
+   1. SEKCJA UDOGODNIEŃ (UKŁAD, PRZEZROCZYSTE TŁO, JASNY TEKST I PRZYCISKI)
    ========================================================================== */
 
-/* Zmiana tła całego slajdu na przezroczyste, by pokazać kolor strony */
-.swiper-slide.amenity-slide {
-  background-color: transparent !important; /* Usunięcie bieli, pokazuje kolor strony */
-  background: transparent !important;
-  justify-content: center !important;       /* Przyciąganie zawartości do środka */
-  gap: 40px !important;                     /* Odstęp między tekstem a zdjęciem */
-}
-
-/* Ściśnięcie samego bloku tekstu */
-.amenity-slide .amenity-content {
-  flex: 0 0 35% !important;                 /* Zmniejszamy z 45% do 35% (zwężenie) */
-  width: 35% !important;
-  padding: 20px !important;                 /* Mniejszy padding wewnętrzny */
-}
-
-/* Ściśnięcie zdjęcia */
-.amenity-slide .amenity-img {
-  flex: 0 0 40% !important;                 /* Zmniejszamy z 50% do 40% (zwężenie) */
-  width: 40% !important;
-  min-height: 400px !important;
-  border-radius: 4px !important;            /* Opcjonalnie: delikatne zaokrąglenie krawędzi zdjęcia */
-}
-
-/* Upewniamy się, że cała sekcja ma kolor tła taki jak strona */
+/* Sekcja nadrzędna */
 .amenities-section {
-  background-color: var(--color-bg, #F7FAFC) !important; /* Wpisz swój kolor strony, np. #f4f4f4 jeśli jest inny */
+  background-color: var(--color-bg, #F7FAFC) !important;
+  position: relative !important;
 }
 
-/* ==========================================================================
-   1. DOPASOWANIE SEKCJI UDOGODNIEŃ (Ściśnięcie zawartości i przezroczyste tło)
-   ========================================================================== */
+/* Tło slajdu i układ (tekst + zdjęcie w jednym wierszu) */
 .swiper-slide.amenity-slide {
   display: flex !important;
   flex-direction: row-reverse !important;
   align-items: center !important;
+  justify-content: center !important;
   background-color: transparent !important;
   background: transparent !important;
-  justify-content: center !important;
   gap: 40px !important;
   width: 100% !important;
 }
 
+/* Ściśnięty blok tekstu + ROZJAŚNIENIE TEKSTÓW */
 .amenity-slide .amenity-content {
   flex: 0 0 35% !important;
   width: 35% !important;
   padding: 20px !important;
   text-align: left !important;
+  color: #FFFFFF !important; /* Rozjaśnienie całego tekstu */
 }
 
-.amenity-slide .amenity-content h3 { margin-bottom: 15px !important; }
-.amenity-slide .amenity-content p { margin-bottom: 25px !important; color: #555555 !important; }
+.amenity-slide .amenity-content h3 {
+  margin-bottom: 15px !important;
+  color: #FFFFFF !important; /* Rozjaśnienie nagłówka h3 */
+  font-size: 1.5rem !important;
+}
 
+.amenity-slide .amenity-content p {
+  margin-bottom: 25px !important;
+  color: #F7FAFC !important; /* Jasna biel/szarość zamiast ciemnego #555555 */
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important; /* Cień poprawiający czytelność */
+}
+
+/* Ściśnięte zdjęcie slajdu */
 .amenity-slide .amenity-img {
   flex: 0 0 40% !important;
   width: 40% !important;
@@ -1012,14 +1002,41 @@ a {
   border-radius: 4px !important;
 }
 
-.amenities-section {
-  background-color: var(--color-bg, #F7FAFC) !important;
+/* ZMNIEJSZENIE PRZYCISKÓW SLAJDERA (SWIPER) DO ROZMIARU WRÓŻNIENIA/TEKSTU */
+.amenities-section .swiper-button-prev,
+.amenities-section .swiper-button-next {
+  width: 28px !important;
+  height: 28px !important;
+  color: #FFFFFF !important; /* Kolor strzałki */
 }
 
+.amenities-section .swiper-button-prev::after,
+.amenities-section .swiper-button-next::after {
+  font-size: 1rem !important; /* Rozmiar ikony strzałki równej zwykłemu tekstowi */
+  font-weight: bold !important;
+}
+
+/* Kropki nawigacyjne pod slajderem (jeśli są używane) */
+.amenities-section .swiper-pagination-bullet {
+  width: 8px !important;
+  height: 8px !important;
+  background: #FFFFFF !important;
+}
+
+/* Responsywność dla urządzeń mobilnych */
 @media (max-width: 768px) {
-  .swiper-slide.amenity-slide { flex-direction: column !important; }
-  .amenity-slide .amenity-content, .amenity-slide .amenity-img { flex: 0 0 100% !important; width: 100% !important; padding: 20px !important; }
-  .amenity-slide .amenity-img { min-height: 250px !important; }
+  .swiper-slide.amenity-slide {
+    flex-direction: column !important;
+  }
+  .amenity-slide .amenity-content,
+  .amenity-slide .amenity-img {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    padding: 20px !important;
+  }
+  .amenity-slide .amenity-img {
+    min-height: 250px !important;
+  }
 }
 
 /* ==========================================================================
