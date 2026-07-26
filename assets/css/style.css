@@ -1112,14 +1112,12 @@ a {
 }
 
 /* ==========================================================================
-   3. SEKCJA LOKALIZACJA (100% PEŁNY OBRAZEK BEZ UCINANIA GÓRY I DOŁU)
+   3. SEKCJA LOKALIZACJA (PEŁNY OBRAZ + PIONOWE PODPUNKTY Z PINEZKAMI)
    ========================================================================== */
 .location-section {
   position: relative !important;
   width: 100% !important;
-  
-  /* POKAZUJE 100% CAŁEGO OBRAZKA (BEZ UCINANIA GÓRY I DOŁU) */
-  background-size: contain !important; 
+  background-size: contain !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;
 
@@ -1136,13 +1134,11 @@ a {
   margin: 0 !important;
 }
 
-/* Wymuszenie proporcji dla PC: sekcja idealnie dostosowuje wysokość do szerokości */
+/* Wymuszenie proporcji dla PC: sekcja dostosowuje wysokość do szerokości obrazu */
 @media (min-width: 769px) {
   .location-section {
-    /* Pozwala obrazkowi rozwinąć całą swoją wysokość */
-    min-height: auto !important; 
-    /* Domyślne proporcje szerokości do wysokości obrazu tła (np. 16/9 lub 21/9) */
-    aspect-ratio: 16 / 9 !important; 
+    min-height: auto !important;
+    aspect-ratio: 16 / 9 !important;
   }
 }
 
@@ -1152,8 +1148,10 @@ a {
   z-index: 2 !important;
   width: 100% !important;
   max-width: 900px !important;
-  text-align: center !important;
   color: #FFFFFF !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 
 .location-title {
@@ -1161,42 +1159,64 @@ a {
   font-size: 2.2rem !important;
   font-weight: 700 !important;
   letter-spacing: 2px !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 30px !important;
   color: #FFFFFF !important;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+  text-align: center !important;
 }
 
+/* Układ pionowy podpunktów: wyrównanie do lewej strony */
 .location-info {
   display: flex !important;
+  flex-direction: column !important; 
+  align-items: flex-start !important;
   justify-content: center !important;
-  align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 30px !important;
+  gap: 16px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
 }
 
+/* Styl pojedynczego podpunktu */
 .location-info p {
-  font-size: 1rem !important;
+  font-size: 1.1rem !important;
   font-weight: 600 !important;
   letter-spacing: 1px !important;
   margin: 0 !important;
   color: #F7FAFC !important;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  text-align: left !important;
+  
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+/* Pinezka Google Maps w kolorze tekstu (#F7FAFC) */
+.location-info p::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+  background-color: #F7FAFC !important;
+  
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>") no-repeat center / contain !important;
+  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>") no-repeat center / contain !important;
 }
 
 /* Dostosowanie na telefony */
 @media (max-width: 768px) {
   .location-section {
-    background-size: cover !important; /* Na telefonie cover działa lepiej, żeby tekst miał miejsce */
+    background-size: cover !important;
     min-height: 420px !important;
     padding: 35px 15px !important;
   }
   .location-title {
     font-size: 1.6rem !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 20px !important;
   }
-  .location-info {
-    flex-direction: column !important;
-    gap: 12px !important;
+  .location-info p {
+    font-size: 0.95rem !important;
   }
 }
 /* --- 5. OPINIE GOŚCI (Ikona cytatu i wyrównanie autora) --- */
