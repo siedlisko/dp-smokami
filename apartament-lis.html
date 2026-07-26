@@ -1,193 +1,146 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apartament LIS – Dom pod Smokami</title>
-  
-  <!-- Podpięcie styli -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/apartment.css">
-</head>
-<body>
+---
+layout: default
+title: Apartament LIS – Dom pod Smokami
+---
 
-  <!-- NAWIGACJA / HEADER -->
-  <header class="site-header">
-    <div class="nav-container container">
-      <a href="index.html" class="logo">DOM POD SMOKAMI</a>
-      <nav class="main-nav">
-        <ul>
-          <li><a href="index.html">Strona Główna</a></li>
-          <li><a href="index.html#apartamenty">Apartamenty</a></li>
-          <li><a href="index.html#kontakt">Kontakt</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<!-- SEKACJA HERO -->
+<section class="apartment-hero" style="background-image: url('images/lis-main.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>LIS</h1>
+    <p class="subtitle">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
+  </div>
+</section>
 
-  <main>
-    <!-- SEKACJA HERO -->
-    <section class="apartment-hero" style="background-image: url('images/lis-main.jpg');">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1>LIS</h1>
-        <p class="subtitle">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
+<!-- NAGŁÓWEK I PODSTAWOWE INFORMACJE -->
+<section class="apartment-intro container">
+  <div class="intro-grid">
+    
+    <!-- LEWA POŁOWA (TREŚĆ) -->
+    <div class="intro-left">
+      <div class="intro-header">
+        <h2>LIS</h2>
+        <p class="tagline">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
       </div>
-    </section>
-
-    <!-- NAGŁÓWEK I PODSTAWOWE INFORMACJE -->
-    <section class="apartment-intro container">
-      <div class="intro-grid">
-        
-        <!-- LEWA POŁOWA (TREŚĆ) -->
-        <div class="intro-left">
-          <div class="intro-header">
-            <h2>LIS</h2>
-            <p class="tagline">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
-          </div>
-          
-          <p class="description">
-            Przestronny apartament z dwiema sypialniami i dużym tarasem. Duży salon z aneksem kuchennym. Łazienka z prysznicem.
-          </p>
-
-          <div class="quick-facts">
-            <div class="fact-item"><strong>Wielkość:</strong> 35 m²</div>
-            <div class="fact-item"><strong>Liczba osób:</strong> 4</div>
-            <div class="fact-item"><strong>Widok:</strong> Wysokie Tatry, las</div>
-          </div>
-        </div>
-
-        <!-- PRAWA POŁOWA (PUSTA DLA ZACHOWANIA UKŁADU 50%) -->
-        <div class="intro-right"></div>
-
-      </div>
-    </section>
-
-    <!-- GALERIA Z MINIATURKAMI -->
-    <section class="apartment-gallery container">
-      <div class="slider-wrapper">
-        
-        <!-- GŁÓWNE ZDJĘCIE -->
-        <div class="main-slide">
-          <img id="current-slide-img" src="images/lis-1.jpg" alt="Apartament Lis - Zdjęcie 1">
-        </div>
-
-        <!-- STRZAŁKI STERUJĄCE POD ZDJĘCIEM -->
-        <div class="slider-controls">
-          <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
-
-        <!-- PASEK MINIATUR -->
-        <div class="thumbnails-grid">
-          <img class="thumb active" src="images/lis-1.jpg" onclick="setSlide(0)" alt="Miniatura 1">
-          <img class="thumb" src="images/lis-2.jpg" onclick="setSlide(1)" alt="Miniatura 2">
-          <img class="thumb" src="images/lis-3.jpg" onclick="setSlide(2)" alt="Miniatura 3">
-          <img class="thumb" src="images/lis-4.jpg" onclick="setSlide(3)" alt="Miniatura 4">
-          <img class="thumb" src="images/lis-5.jpg" onclick="setSlide(4)" alt="Miniatura 5">
-          <img class="thumb" src="images/lis-6.jpg" onclick="setSlide(5)" alt="Miniatura 6">
-          <img class="thumb" src="images/lis-7.jpg" onclick="setSlide(6)" alt="Miniatura 7">
-          <img class="thumb" src="images/lis-8.jpg" onclick="setSlide(7)" alt="Miniatura 8">
-          <img class="thumb" src="images/lis-9.jpg" onclick="setSlide(8)" alt="Miniatura 9">
-        </div>
-      </div>
-    </section>
-
-    <!-- WYPOSAŻENIE / SZCZEGÓŁY -->
-    <section class="apartment-details container">
-      <div class="details-grid">
-        
-        <div class="details-col">
-          <h3>W apartamencie znajdziesz m.in.:</h3>
-          <ul class="check-list">
-            <li>Aneks kuchenny z płytą, lodówką, czajnikiem i podstawowym wyposażeniem</li>
-            <li>Prywatną łazienkę z prysznicem, wc, bidetem i ręcznikami</li>
-            <li>Telewizor, dostęp do Wi‑Fi oraz miejsce do pracy lub odpoczynku</li>
-            <li>Widok na góry, na Wysokie Tatry Bielskie</li>
-            <li>Wygodne łóżka zapewniające komfortowy sen</li>
-          </ul>
-        </div>
-
-        <div class="details-col">
-          <h3>Poza tym, zapewniamy gościom:</h3>
-          <ul class="check-list">
-            <li>Codziennie rano świeże bułeczki</li>
-            <li>Możliwość korzystania z ogrodu, miejsca na grilla, ognisko oraz bezpłatnego parkingu</li>
-            <li>Możliwość korzystania z sauny w oddzielnym, drewnianym budynku</li>
-            <li>Możliwość przyjazdu z pupilem</li>
-          </ul>
-          
-          <div class="booking-box">
-            <a href="tel:+48123456789" class="btn-primary">Zadzwoń i zarezerwuj</a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  </main>
-
-  <!-- STOPKA / FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <h3>ŚLEDŹ NAS</h3>
-      <div class="social-links">
-        <a href="https://www.facebook.com/dompodsmokami" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-        <a href="https://www.instagram.com/dompodsmokami" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-          </svg>
-        </a>
-      </div>
-      <p>&copy; Dom pod Smokami</p>
-    </div>
-  </footer>
-
-  <!-- SKRYPT SLIDERA -->
-  <script>
-    const images = [
-      'images/lis-1.jpg',
-      'images/lis-2.jpg',
-      'images/lis-3.jpg',
-      'images/lis-4.jpg',
-      'images/lis-5.jpg',
-      'images/lis-6.jpg',
-      'images/lis-7.jpg',
-      'images/lis-8.jpg',
-      'images/lis-9.jpg'
-    ];
-    let currentIndex = 0;
-
-    function updateSlider() {
-      const imgElem = document.getElementById('current-slide-img');
-      const thumbs = document.querySelectorAll('.thumb');
       
-      imgElem.src = images[currentIndex];
+      <p class="description">
+        Przestronny apartament z dwiema sypialniami i dużym tarasem. Duży salon z aneksem kuchennym. Łazienka z prysznicem.
+      </p>
+
+      <div class="quick-facts">
+        <div class="fact-item"><strong>Wielkość:</strong> 35 m²</div>
+        <div class="fact-item"><strong>Liczba osób:</strong> 4</div>
+        <div class="fact-item"><strong>Widok:</strong> Wysokie Tatry, las</div>
+      </div>
+    </div>
+
+    <!-- PRAWA POŁOWA (PUSTA DLA ZACHOWANIA UKŁADU 50%) -->
+    <div class="intro-right"></div>
+
+  </div>
+</section>
+
+<!-- GALERIA Z MINIATURKAMI -->
+<section class="apartment-gallery container">
+  <div class="slider-wrapper">
+    
+    <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI W DOLNYCH ROGACH -->
+    <div class="main-slide">
+      <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
       
-      thumbs.forEach((thumb, idx) => {
-        if (idx === currentIndex) {
-          thumb.classList.add('active');
-        } else {
-          thumb.classList.remove('active');
-        }
-      });
-    }
+      <img id="current-slide-img" src="images/lis-1.jpg" alt="Apartament Lis - Zdjęcie 1">
 
-    function changeSlide(direction) {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
-      updateSlider();
-    }
+      <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
 
-    function setSlide(index) {
-      currentIndex = index;
-      updateSlider();
-    }
-  </script>
+    <!-- PASEK MINIATUR -->
+    <div class="thumbnails-grid">
+      <img class="thumb active" src="images/lis-1.jpg" onclick="setSlide(0)" alt="Miniatura 1">
+      <img class="thumb" src="images/lis-2.jpg" onclick="setSlide(1)" alt="Miniatura 2">
+      <img class="thumb" src="images/lis-3.jpg" onclick="setSlide(2)" alt="Miniatura 3">
+      <img class="thumb" src="images/lis-4.jpg" onclick="setSlide(3)" alt="Miniatura 4">
+      <img class="thumb" src="images/lis-5.jpg" onclick="setSlide(4)" alt="Miniatura 5">
+      <img class="thumb" src="images/lis-6.jpg" onclick="setSlide(5)" alt="Miniatura 6">
+      <img class="thumb" src="images/lis-7.jpg" onclick="setSlide(6)" alt="Miniatura 7">
+      <img class="thumb" src="images/lis-8.jpg" onclick="setSlide(7)" alt="Miniatura 8">
+      <img class="thumb" src="images/lis-9.jpg" onclick="setSlide(8)" alt="Miniatura 9">
+    </div>
+  </div>
+</section>
 
-</body>
-</html>
+<!-- WYPOSAŻENIE / SZCZEGÓŁY -->
+<section class="apartment-details container">
+  <div class="details-grid">
+    
+    <div class="details-col">
+      <h3>W apartamencie znajdziesz m.in.:</h3>
+      <ul class="check-list">
+        <li>Aneks kuchenny z płytą, lodówką, czajnikiem i podstawowym wyposażeniem</li>
+        <li>Prywatną łazienkę z prysznicem, wc, bidetem i ręcznikami</li>
+        <li>Telewizor, dostęp do Wi‑Fi oraz miejsce do pracy lub odpoczynku</li>
+        <li>Widok na góry, na Wysokie Tatry Bielskie</li>
+        <li>Wygodne łóżka zapewniające komfortowy sen</li>
+      </ul>
+    </div>
+
+    <div class="details-col">
+      <h3>Poza tym, zapewniamy gościom:</h3>
+      <ul class="check-list">
+        <li>Codziennie rano świeże bułeczki</li>
+        <li>Możliwość korzystania z ogrodu, miejsca na grilla, ognisko oraz bezpłatnego parkingu</li>
+        <li>Możliwość korzystania z sauny w oddzielnym, drewnianym budynku</li>
+        <li>Możliwość przyjazdu z pupilem</li>
+      </ul>
+      
+      <div class="booking-box">
+        <a href="tel:+48123456789" class="btn-primary">Zadzwoń i zarezerwuj</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKRYPT SLIDERA -->
+<script>
+  const images = [
+    'images/lis-1.jpg',
+    'images/lis-2.jpg',
+    'images/lis-3.jpg',
+    'images/lis-4.jpg',
+    'images/lis-5.jpg',
+    'images/lis-6.jpg',
+    'images/lis-7.jpg',
+    'images/lis-8.jpg',
+    'images/lis-9.jpg'
+  ];
+  let currentIndex = 0;
+
+  function updateSlider() {
+    const imgElem = document.getElementById('current-slide-img');
+    const thumbs = document.querySelectorAll('.thumb');
+    
+    imgElem.src = images[currentIndex];
+    
+    thumbs.forEach((thumb, idx) => {
+      if (idx === currentIndex) {
+        thumb.classList.add('active');
+      } else {
+        thumb.classList.remove('active');
+      }
+    });
+  }
+
+  function changeSlide(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length;
+    updateSlider();
+  }
+
+  function setSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+</script>
