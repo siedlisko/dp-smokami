@@ -41,37 +41,41 @@ custom_css: assets/css/apartment.css
   </div>
 </section>
 
-<!-- GALERIA Z MINIATURKAMI -->
-<section class="apartment-gallery container">
-  <div class="slider-wrapper">
-    
-    <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI W DOLNYCH ROGACH -->
-    <div class="main-slide">
-      <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      
-      <img id="current-slide-img" src="assets/img/ap-lis-main.jpg" alt="Apartament Lis - Zdjęcie 1">
+<!-- ... -->
+    <!-- GALERIA Z MINIATURKAMI -->
+    <section class="apartment-gallery container">
+      <div class="slider-wrapper">
+        
+        <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI W DOLNYCH ROGACH -->
+        <div class="main-slide">
+          <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          
+          <!-- WAŻNE: Tu ładujemy pierwsze DUŻE zdjęcie z listy -->
+          {% assign first_image = page.gallery_images | first %}
+          <img id="current-slide-img" src="{{ first_image.large | relative_url }}" alt="{{ first_image.alt }}">
 
-      <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
+          <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
 
-    <!-- PASEK MINIATUR -->
-    <div class="thumbnails-grid">
-      <img class="thumb active" src="images/lis-1.jpg" onclick="setSlide(0)" alt="Miniatura 1">
-      <img class="thumb" src="images/lis-2.jpg" onclick="setSlide(1)" alt="Miniatura 2">
-      <img class="thumb" src="images/lis-3.jpg" onclick="setSlide(2)" alt="Miniatura 3">
-      <img class="thumb" src="images/lis-4.jpg" onclick="setSlide(3)" alt="Miniatura 4">
-      <img class="thumb" src="images/lis-5.jpg" onclick="setSlide(4)" alt="Miniatura 5">
-      <img class="thumb" src="images/lis-6.jpg" onclick="setSlide(5)" alt="Miniatura 6">
-      <img class="thumb" src="images/lis-7.jpg" onclick="setSlide(6)" alt="Miniatura 7">
-      <img class="thumb" src="images/lis-8.jpg" onclick="setSlide(7)" alt="Miniatura 8">
-      <img class="thumb" src="images/lis-9.jpg" onclick="setSlide(8)" alt="Miniatura 9">
-    </div>
-  </div>
-</section>
+        <!-- PASEK MINIATUR -->
+        <div class="thumbnails-grid">
+          <!-- Pętla generuje miniatury, ale przechowuje link do dużego zdjęcia -->
+          {% for img_obj in page.gallery_images %}
+          <img 
+            class="thumb {% if forloop.first %}active{% endif %}" 
+            src="{{ img_obj.thumb | relative_url }}" 
+            onclick="setSlide({{ forloop.index0 }})" 
+            alt="{{ img_obj.alt }}"
+            data-large-src="{{ img_obj.large | relative_url }}"> <!-- Magiczna sztuczka: przechowujemy duży URL w data-atrybucie -->
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+<!-- ... -->
 
 <!-- WYPOSAŻENIE / SZCZEGÓŁY -->
 <section class="apartment-details container">
