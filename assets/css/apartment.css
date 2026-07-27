@@ -73,7 +73,7 @@ body {
 /* --- HERO SEKCYJNA --- */
 .apartment-hero {
   position: relative;
-  height: 115vh;
+  height: 100vh;
   min-height: 380px;
   background-size: 100%;
   background-position: center;
