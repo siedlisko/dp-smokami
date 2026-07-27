@@ -116,7 +116,7 @@ body {
   opacity: 0.95;
 }
 
-/* --- NAGŁÓWEK I OPIS APARTAMENTU (LEWA POŁOWA) --- */
+/* --- NAGŁÓWEK I OPIS APARTAMENTU (PEŁNA SZEROKOŚĆ) --- */
 .apartment-intro {
   padding-top: 50px;
   padding-bottom: 30px;
@@ -126,7 +126,7 @@ body {
 
 .intro-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* ZMIANA: 1 kolumna zamiast 1fr 1fr */
   gap: 40px;
   align-items: start;
 }
