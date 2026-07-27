@@ -10,7 +10,7 @@ gallery:
     thumb: "assets/img/thumb/lis-2-thumb.jpg"
     alt: "Salon z sypialnia"
   - large: "assets/img/large/lis-3.jpg"
-    thumb: "assets/img/thumb//lis-3-thumb.jpg"
+    thumb: "assets/img/thumb/lis-3-thumb.jpg"
     alt: "Sypialnia wejscie"
 ---
 
@@ -49,9 +49,7 @@ gallery:
     <div class="intro-right"></div>
 
   </div>
-</section>
-
-<!-- GALERIA Z MINIATURKAMI -->
+</section><!-- GALERIA Z MINIATURKAMI -->
 <section class="apartment-gallery container">
   <div class="slider-wrapper">
     
@@ -125,11 +123,9 @@ gallery:
 
     if (!thumbs.length || !mainImg) return;
 
-    // Obsługa zapętlenia slajdera
     if (currentIndex >= thumbs.length) currentIndex = 0;
     if (currentIndex < 0) currentIndex = thumbs.length - 1;
 
-    // Pobranie ścieżki dużego zdjęcia z aktywnej miniatury
     const selectedThumb = thumbs[currentIndex];
     const largeSrc = selectedThumb.getAttribute('data-large');
     const altText = selectedThumb.getAttribute('alt');
@@ -137,7 +133,6 @@ gallery:
     mainImg.src = largeSrc;
     mainImg.alt = altText;
 
-    // Aktualizacja klasy active
     thumbs.forEach((thumb, index) => {
       if (index === currentIndex) {
         thumb.classList.add('active');
