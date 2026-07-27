@@ -115,18 +115,19 @@ body {
   margin: 0;
   opacity: 0.95;
 }
-
-/* --- NAGŁÓWEK I OPIS APARTAMENTU (PEŁNA SZEROKOŚĆ) --- */
+/* --- NAGŁÓWEK I OPIS APARTAMENTU (LEWA POŁOWA) --- */
 .apartment-intro {
   padding-top: 50px;
   padding-bottom: 30px;
   max-width: 900px;
   margin: 0 auto;
+  padding-left: 0;   /* Upewniamy się, że nie ma wewnętrznego przesunięcia z lewej */
+  padding-right: 0;
 }
 
 .intro-grid {
   display: grid;
-  grid-template-columns: 1fr; /* ZMIANA: 1 kolumna zamiast 1fr 1fr */
+  grid-template-columns: 1fr 1fr; /* Dwie równe kolumny - tekst zawija się na 50% */
   gap: 40px;
   align-items: start;
 }
@@ -163,10 +164,12 @@ body {
   font-size: 1rem;
 }
 
-/* --- GALERIA Z MINIATURKAMI I STRZAŁKAMI W DOLNYCH ROGACH --- */
+/* --- GALERIA APARTAMENTU --- */
 .apartment-gallery {
   max-width: 900px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto;
+  padding-left: 0;   /* Zerujemy padding, by lewa krawędź zdjęcia pokrywała się z tekstem */
+  padding-right: 0;
 }
 
 .main-slide {
