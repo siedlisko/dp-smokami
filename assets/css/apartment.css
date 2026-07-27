@@ -167,7 +167,7 @@ body {
 /* --- GALERIA APARTAMENTU --- */
 .apartment-gallery {
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0 auto 60px auto; /* 60px przerwy od spodu
   padding-left: 0;   /* Zerujemy padding, by lewa krawędź zdjęcia pokrywała się z tekstem */
   padding-right: 0;
 }
