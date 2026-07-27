@@ -111,25 +111,31 @@ custom_css: assets/css/apartment.css
 
 <!-- SKRYPT SLIDERA -->
 <script>
-  const images = [
-    'images/lis-1.jpg',
-    'images/lis-2.jpg',
-    'images/lis-3.jpg',
-    'images/lis-4.jpg',
-    'images/lis-5.jpg',
-    'images/lis-6.jpg',
-    'images/lis-7.jpg',
-    'images/lis-8.jpg',
-    'images/lis-9.jpg'
-  ];
   let currentIndex = 0;
+
+  // Funkcja pobiera wszystkie miniatury, aby mieć dostęp do ich danych
+  function getAllThumbs() {
+    return document.querySelectorAll('.thumb');
+  }
 
   function updateSlider() {
     const imgElem = document.getElementById('current-slide-img');
-    const thumbs = document.querySelectorAll('.thumb');
+    const thumbs = getAllThumbs();
     
-    imgElem.src = images[currentIndex];
+    // Sprawdzamy czy indeks jest poprawny
+    if (currentIndex >= thumbs.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = thumbs.length - 1;
+
+    // Magia: Pobieramy URL dużego zdjęcia z data-atrybutu miniatury
+    const activeThumb = thumbs[currentIndex];
+    const largeSrc = activeThumb.getAttribute('data-large-src');
+    const altText = activeThumb.getAttribute('alt');
     
+    // Podmieniamy główne zdjęcie i alt
+    imgElem.src = largeSrc;
+    imgElem.alt = altText;
+    
+    // Aktualizujemy klasę active na miniaturach
     thumbs.forEach((thumb, idx) => {
       if (idx === currentIndex) {
         thumb.classList.add('active');
@@ -140,7 +146,8 @@ custom_css: assets/css/apartment.css
   }
 
   function changeSlide(direction) {
-    currentIndex = (currentIndex + direction + images.length) % images.length;
+    const thumbs = getAllThumbs();
+    currentIndex = (currentIndex + direction + thumbs.length) % thumbs.length;
     updateSlider();
   }
 
@@ -148,4 +155,7 @@ custom_css: assets/css/apartment.css
     currentIndex = index;
     updateSlider();
   }
+
+  // Opcjonalnie: Zainicjalizuj suwak przy załadowaniu strony
+  // window.onload = updateSlider;
 </script>
