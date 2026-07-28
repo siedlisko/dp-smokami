@@ -316,14 +316,14 @@ a {
 }
 
 /* ==========================================================================
-   SEKCJA O PENSJONACIE (Pełny ekran, treść po lewej stronie)
+   SEKCJA O PENSJONACIE (Pełny ekran, treść po lewej stronie - jasny tekst)
    ========================================================================== */
 
 .about-section {
   width: 100%;
   height: 100vh;
-  min-height: 500px; /* Zabezpieczenie dla bardzo niskich ekranów */
-  background-color: var(--color-bg, #ffffff); /* Domyślne tło strony */
+  min-height: 500px;
+  background-color: var(--color-bg, #1a1a1a); /* Domyślne tło strony */
   display: flex;
   align-items: center; /* Wyśrodkowanie treści w pionie */
   position: relative;
@@ -331,14 +331,14 @@ a {
 
 .about-container {
   width: 100%;
-  max-width: 1200px; /* Lub szerokość dopasowana do reszty Twojego kontenera */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 .about-content {
-  width: 50%; /* Zajmuje dokładnie lewą połowę sekcji */
-  max-width: 550px; /* Zabezpieczenie przed zbyt szerokim tekstem na bardzo dużych monitorach */
+  width: 50%; /* Lewa połowa sekcji */
+  max-width: 550px;
   text-align: left;
 }
 
@@ -346,16 +346,18 @@ a {
   font-family: var(--font-title);
   font-size: 2.2rem;
   font-weight: 700;
-  color: var(--color-primary, #1e1e1e);
+  color: var(--color-text-light, #ffffff); /* Jasny kolor tytułu */
   margin-bottom: 1.5rem;
   line-height: 1.25;
   text-align: left;
+  letter-spacing: 0.5px;
 }
 
 .about-text {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--color-text-dark, #333333);
+  color: var(--color-text-light, #f0f0f0); /* Jasny kolor tekstu */
+  opacity: 0.9; /* Subtelne zmiękczenie bieli */
   margin: 0;
   text-align: left;
 }
@@ -368,7 +370,7 @@ a {
   }
   
   .about-content {
-    width: 100%; /* Na telefonach treść rozciąga się na całą szerokość */
+    width: 100%;
     max-width: 100%;
   }
   
