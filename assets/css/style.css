@@ -314,6 +314,69 @@ a {
   font-weight: 400;
   opacity: 0.95;
 }
+
+/* ==========================================================================
+   SEKCJA O PENSJONACIE (Pełny ekran, treść po lewej stronie)
+   ========================================================================== */
+
+.about-section {
+  width: 100%;
+  height: 100vh;
+  min-height: 500px; /* Zabezpieczenie dla bardzo niskich ekranów */
+  background-color: var(--color-bg, #ffffff); /* Domyślne tło strony */
+  display: flex;
+  align-items: center; /* Wyśrodkowanie treści w pionie */
+  position: relative;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1200px; /* Lub szerokość dopasowana do reszty Twojego kontenera */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-content {
+  width: 50%; /* Zajmuje dokładnie lewą połowę sekcji */
+  max-width: 550px; /* Zabezpieczenie przed zbyt szerokim tekstem na bardzo dużych monitorach */
+  text-align: left;
+}
+
+.about-title {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-primary, #1e1e1e);
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-dark, #333333);
+  margin: 0;
+  text-align: left;
+}
+
+/* Responsywność dla urządzeń mobilnych */
+@media (max-width: 768px) {
+  .about-section {
+    height: auto;
+    padding: 5rem 0;
+  }
+  
+  .about-content {
+    width: 100%; /* Na telefonach treść rozciąga się na całą szerokość */
+    max-width: 100%;
+  }
+  
+  .about-title {
+    font-size: 1.75rem;
+  }
+}
+
 /* ==========================================================================
    5. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
    ========================================================================== */
