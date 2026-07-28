@@ -18,9 +18,17 @@ layout: default
 </section>
 
 <section class="apartments-section" aria-labelledby="apt-title">
-  <h2 id="apt-title" class="section-title">Nasze Apartamenty</h2>
+  
   <div class="swiper swiper-apartments" role="region" aria-label="Galeria apartamentów">
+    
+    <!-- TYTUŁ NAKŁADANY NA GÓRĘ WSZYSTKICH SLAJDÓW -->
+    <div class="slider-title-overlay">
+      <h2 id="apt-title" class="section-title">Nasze Apartamenty</h2>
+    </div>
+
     <div class="swiper-wrapper">
+      
+      <!-- SLAJD: LIS -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap-lis-main.jpg" alt="Apartament Lis" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -35,6 +43,8 @@ layout: default
           <a href="apartamenty.html#lis" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
+      <!-- SLAJD: MYSZ -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap-mysz-main.jpg" alt="Apartament Mysz" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -49,6 +59,8 @@ layout: default
           <a href="apartamenty.html#mysz" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
+      <!-- SLAJD: MUFLON -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap-muflon-main.jpg" alt="Apartament Muflon" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -63,6 +75,8 @@ layout: default
           <a href="apartamenty.html#muflon" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
+      <!-- SLAJD: ŚWISTAK -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap-swistak-main.jpg" alt="Apartament Świstak" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -77,6 +91,8 @@ layout: default
           <a href="apartamenty.html#swistak" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
+      <!-- SLAJD: SOWA -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap-sowa-main.jpg" alt="Apartament Sowa" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -91,6 +107,8 @@ layout: default
           <a href="apartamenty.html#sowa" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
+      <!-- SLAJD: BORSUK -->
       <div class="swiper-slide apartment-slide">
         <img src="assets/img/ap_borsuk_main.jpg" alt="Pokój Borsuk" loading="lazy" class="slide-bg">
         <div class="slide-overlay"></div>
@@ -105,10 +123,14 @@ layout: default
           <a href="apartamenty.html#borsuk" class="btn-slide">Zobacz więcej</a>
         </div>
       </div>
+
     </div>
+
+    <!-- ELEMENTY NAWIGACJI NAŁOŻONE NA ZDJĘCIA -->
     <div class="swiper-button-prev" aria-label="Poprzedni apartament"></div>
     <div class="swiper-button-next" aria-label="Następny apartament"></div>
     <div class="swiper-pagination"></div>
+
   </div>
 </section>
 
