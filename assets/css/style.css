@@ -318,24 +318,40 @@ a {
 /* ==========================================================================
    5. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
    ========================================================================== */
-.apartments-section,
+
+/* Sekcja udogodnień zachowuje standardowe odstępy */
 .amenities-section {
   padding: 6rem 0;
 }
 
-.swiper {
-  width: 100%;
-  padding-bottom: 4rem !important; /* Przestrzeń na kropki nawigacji */
+/* Sekcja apartamentów bez marginesów pionowych */
+.apartments-section {
+  padding: 0;
+  margin: 0;
 }
 
-/* Slajdy Apartamentów */
+/* Główny kontener Swipera dla apartamentów */
+.apartments-section .swiper {
+  width: 100%;
+  padding-bottom: 0 !important; /* Brak dolnego odstępu — kropki będą na zdjęciu */
+  position: relative;
+}
+
+/* Slajdy Udogodnień - kontener Swipera */
+.amenities-section .swiper {
+  width: 100%;
+  padding-bottom: 4rem !important; /* Przestrzeń na kropki nawigacji w udogodnieniach */
+}
+
+/* --- SLAJDY APARTAMENTÓW (HERO OVERLAY) --- */
 .apartment-slide {
   position: relative;
-  height: 550px;
+  height: 70vh; /* Elastyczna wysokość dopasowana do ekranu */
+  min-height: 650px; /* Zwiększona wysokość slajdu */
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 3rem;
+  padding: 4rem 3rem; /* Troszkę więcej miejsca dla treści od krawędzi */
   color: var(--color-text-light);
   overflow: hidden;
 }
@@ -361,19 +377,25 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.1) 100%);
+  /* Łagodne przyciemnienie od spodu oraz od góry pod tytuły */
+  background: linear-gradient(
+    to top, 
+    rgba(0,0,0,0.85) 0%, 
+    rgba(0,0,0,0.3) 50%, 
+    rgba(0,0,0,0.2) 100%
+  );
   z-index: 2;
 }
 
 .slide-content {
   position: relative;
   z-index: 3;
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .slide-content h3 {
   font-family: var(--font-title);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
   letter-spacing: 1px;
@@ -398,7 +420,7 @@ a {
   margin-bottom: 1.5rem;
 }
 
-/* Slajdy Udogodnień */
+/* --- SLAJDY UDOGODNIEŃ --- */
 .amenity-slide {
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -437,7 +459,7 @@ a {
   flex-grow: 1;
 }
 
-/* Custom Swiper Navigation Style */
+/* --- CUSTOM SWIPER NAVIGATION & PAGINATION --- */
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--color-accent) !important;
@@ -445,6 +467,7 @@ a {
   width: 45px !important;
   height: 45px !important;
   border-radius: 50%;
+  z-index: 10;
 }
 
 .swiper-button-next::after,
@@ -452,8 +475,20 @@ a {
   font-size: 1.25rem !important;
 }
 
+/* Kropki nawigacyjne w sliderze apartamentów umieszczone NA zdjęciu */
+.apartments-section .swiper-pagination {
+  bottom: 20px !important;
+  z-index: 10;
+}
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.6) !important;
+  opacity: 1 !important;
+}
+
 .swiper-pagination-bullet-active {
   background: var(--color-accent) !important;
+  transform: scale(1.2);
 }
 
 /* ==========================================================================
