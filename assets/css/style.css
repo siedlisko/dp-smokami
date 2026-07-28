@@ -318,8 +318,10 @@ a {
   font-family: 'Montserrat';
   font-size: 2.15rem;
   line-height: 1.8;
-  font-weight: 400;
-  opacity: 0.95;
+  font-weight: 300;
+  opacity: 0.95; 
+   letter-spacing: 2px; 
+   text-transform: uppercase;
 }
 
 /* ==========================================================================
