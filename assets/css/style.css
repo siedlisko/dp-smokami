@@ -314,36 +314,45 @@ a {
   font-weight: 400;
   opacity: 0.95;
 }
-
 /* ==========================================================================
    5. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
    ========================================================================== */
 
-/* Sekcja udogodnień zachowuje standardowe odstępy */
-.amenities-section {
-  padding: 6rem 0;
-}
+/* --------------------------------------------------------------------------
+   5.1. SLAJDER APARTAMENTÓW (HERO OVERLAY - Pełnowymiarowy)
+   -------------------------------------------------------------------------- */
 
-/* Sekcja apartamentów bez marginesów pionowych */
+/* Kontener sekcji apartamentów - bez domyślnych marginesów */
 .apartments-section {
   padding: 0;
   margin: 0;
 }
 
-/* Główny kontener Swipera dla apartamentów */
 .apartments-section .swiper {
   width: 100%;
-  padding-bottom: 0 !important; /* Brak dolnego odstępu — kropki będą na zdjęciu */
+  padding-bottom: 0 !important; /* Brak dolnego odstępu — kropki na zdjęciu */
   position: relative;
 }
 
-/* Slajdy Udogodnień - kontener Swipera */
-.amenities-section .swiper {
+/* Tytuł "Nasze Apartamenty" nałożony na górną część zdjęcia */
+.slider-title-overlay {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
   width: 100%;
-  padding-bottom: 4rem !important; /* Przestrzeń na kropki nawigacji w udogodnieniach */
+  text-align: center;
+  pointer-events: none; /* Zapewnia brak blokowania kliknięć w slajder */
 }
 
-/* --- SLAJDY APARTAMENTÓW (HERO OVERLAY) --- */
+.slider-title-overlay .section-title {
+  color: var(--color-text-light);
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Pojedynczy slajd apartamentu */
 .apartment-slide {
   position: relative;
   height: 70vh; /* Elastyczna wysokość dopasowana do ekranu */
@@ -351,11 +360,12 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 4rem 3rem; /* Troszkę więcej miejsca dla treści od krawędzi */
+  padding: 4rem 3rem; /* Odstęp treści od krawędzi slajdu */
   color: var(--color-text-light);
   overflow: hidden;
 }
 
+/* Zdjęcie w tle slajdu z efektem zoom przy najechaniu */
 .slide-bg {
   position: absolute;
   top: 0;
@@ -371,22 +381,23 @@ a {
   transform: scale(1.05);
 }
 
+/* Gradientowe przyciemnienie zdjęcia (góra pod tytuł, dół pod treść) */
 .slide-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Łagodne przyciemnienie od spodu oraz od góry pod tytuły */
   background: linear-gradient(
     to top, 
-    rgba(0,0,0,0.85) 0%, 
-    rgba(0,0,0,0.3) 50%, 
-    rgba(0,0,0,0.2) 100%
+    rgba(0, 0, 0, 0.85) 0%, 
+    rgba(0, 0, 0, 0.3) 50%, 
+    rgba(0, 0, 0, 0.4) 100%
   );
   z-index: 2;
 }
 
+/* Treść slajdu (tytuł, detale, opis) w lewym dolnym rogu */
 .slide-content {
   position: relative;
   z-index: 3;
@@ -420,7 +431,43 @@ a {
   margin-bottom: 1.5rem;
 }
 
-/* --- SLAJDY UDOGODNIEŃ --- */
+/* Przycisk "Zobacz więcej" */
+.btn-slide {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 2px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-slide:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+
+/* --------------------------------------------------------------------------
+   5.2. SLAJDER UDOGODNIEŃ (Karty)
+   -------------------------------------------------------------------------- */
+
+/* Sekcja udogodnień - tradycyjny odstęp pionowy */
+.amenities-section {
+  padding: 6rem 0;
+}
+
+.amenities-section .swiper {
+  width: 100%;
+  padding-bottom: 4rem !important; /* Odstęp pod slajderem na kropki nawigacji */
+}
+
+/* Karta pojedynczego udogodnienia */
 .amenity-slide {
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border);
@@ -459,7 +506,12 @@ a {
   flex-grow: 1;
 }
 
-/* --- CUSTOM SWIPER NAVIGATION & PAGINATION --- */
+
+/* --------------------------------------------------------------------------
+   5.3. CUSTOM SWIPER NAVIGATION & PAGINATION (Wspólne style nawigacji)
+   -------------------------------------------------------------------------- */
+
+/* Przycisk Poprzedni / Następny */
 .swiper-button-next,
 .swiper-button-prev {
   color: var(--color-accent) !important;
@@ -475,12 +527,13 @@ a {
   font-size: 1.25rem !important;
 }
 
-/* Kropki nawigacyjne w sliderze apartamentów umieszczone NA zdjęciu */
+/* Kropki nawigacyjne w sliderze apartamentów (nałożone na zdjęcie) */
 .apartments-section .swiper-pagination {
   bottom: 20px !important;
   z-index: 10;
 }
 
+/* Wygląd kropek (pagination bullets) */
 .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.6) !important;
   opacity: 1 !important;
