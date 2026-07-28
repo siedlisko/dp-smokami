@@ -3,15 +3,22 @@
    ========================================================================== */
 :root {
   /* Kolory tła i tekstu */
-  --color-bg: #1A202C;           /* Twój nowy, głęboki grafit */
+  --color-bg: #1A202C;           /* Głęboki grafit */
   --color-text: #F7FAFC;         /* Bardzo jasny, miękki biały */
   --color-text-muted: #A0AEC0;   /* Przygaszony szary dla opisów */
   
   /* Kolory akcentów */
   --color-accent: #D69E2E;       /* Ciepłe złoto dla hoverów i guzików */
   --color-accent-hover: #319795; /* Szmaragdowy teal na dodatkowe wyróżnienia */
-  
-  /* Punkty responsywności (podobnie jak na stronie, która Ci się podobała) */
+
+  /* Czcionki z lokalnego font.css */
+  --font-title: 'Cinzel', Georgia, serif;         /* Czcionka nagłówków (z logo) */
+  --font-body: 'Montserrat', 'Inter', sans-serif; /* Czcionka treści głównej */
+
+  /* Efekty i przejścia */
+  --transition-fast: all 0.3s ease;               /* Płynne animacje dla linków i przycisków */
+
+  /* Punkty responsywności (Breakpoints) */
   --bs-breakpoint-xs: 0;
   --bs-breakpoint-sm: 576px;
   --bs-breakpoint-md: 768px;
@@ -31,22 +38,21 @@ html {
   font-size: 16px;
 }
 
+/* --- ZASADY GŁÓWNE DLA STRONY --- */
 body {
-  /* Bardzo ładny, czytelny i nowoczesny zestaw czcionek bezszeryfowych */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
-  background-color: var(--color-bg) !important; /* Ciemny motyw #1A202C */
-  color: var(--color-text) !important;         /* Jasny tekst #F7FAFC */
+  font-family: var(--font-body) !important;
+  background-color: var(--color-bg) !important;
+  color: var(--color-text) !important;
   line-height: 1.6;
 }
 
-/* Tradycyjna, elegancka czcionka dla wszystkich nagłówków i sekcji Hero */
-h1, h2, h3, h4, h5, h6, .hero-content h1, .hero-content .hero-lead {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif !important;
-}
-
-/* Przywrócenie czcionki dla wszystkich nagłówków na stronie */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-title) !important; /* Wymuszenie czcionki tytułowej */
+/* Nagłówki i stylizacja tekstu wyróżnionego (Cinzel z logo) */
+h1, h2, h3, h4, h5, h6, 
+.hero-content h1, 
+.hero-content .hero-lead,
+.section-title {
+  font-family: var(--font-title) !important;
+  letter-spacing: 1px;
 }
 
 img {
