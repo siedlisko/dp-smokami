@@ -945,7 +945,7 @@ a {
 }
 
 .hero-logo {
-  height: 180px; /* Twoja wymarzona, trzykrotna wielkość */
+  height: 140px; /* Twoja wymarzona, trzykrotna wielkość */
   width: auto;
   filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3)); /* Lekki cień, by logo było super czytelne na każdym tle */
   display: block;
