@@ -938,7 +938,8 @@ a {
 
 /* Styl dla wielkiego logo wyświetlanego na środku ekranu głównego (Hero) */
 .hero-logo-wrapper {
-  margin-bottom: 2.5rem; /* Odstęp między logiem a napisem TWÓJ DOM W GÓRACH */
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem; /* Odstęp między logiem a napisem APARTAMENTY Z DUSZĄ */
   display: flex;
   justify-content: center;
   align-items: center;
