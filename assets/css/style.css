@@ -938,7 +938,7 @@ a {
 
 /* Styl dla wielkiego logo wyświetlanego na środku ekranu głównego (Hero) */
 .hero-logo-wrapper {
-  margin-top: 2.5rem;
+  padding-top: 40px
   margin-bottom: 2.5rem; /* Odstęp między logiem a napisem APARTAMENTY Z DUSZĄ */
   display: flex;
   justify-content: center;
