@@ -634,44 +634,6 @@ a {
 }
 
 /* ==========================================================================
-   6. PARALAKSA I ŚWIETNA LOKALIZACJA (OCZYSZCZONE Z KONFLIKTÓW)
-   ========================================================================== */
-
-/* Usunęliśmy stąd .location-section i .location-bg, bo ich nowe, 
-   pancerne wersje bez czarnych marginesów są już na samym dole pliku */
-
-.location-content {
-  position: relative !important;
-  z-index: 3 !important;
-  color: var(--color-text-light) !important;
-  text-align: center !important;
-  max-width: 800px !important;
-  padding: 0 20px !important;
-  margin: 0 auto !important;
-}
-
-.location-title {
-  font-family: var(--font-title) !important;
-  font-size: 2.5rem !important;
-  letter-spacing: 3px !important;
-  margin-bottom: 2rem !important;
-}
-
-.location-info {
-  display: flex !important;
-  justify-content: center !important;
-  flex-wrap: wrap !important;
-  gap: 2.5rem !important;
-}
-
-.location-info p {
-  font-family: var(--font-title) !important;
-  font-size: 1rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
-}
-
-/* ==========================================================================
    7. OPINIE GOŚCI (Reviews Section)
    ========================================================================== */
 .reviews-section {
