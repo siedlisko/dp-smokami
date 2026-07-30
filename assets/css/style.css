@@ -55,6 +55,10 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: 1px;
 }
 
+h1, h2, h3, h4, h5, h6, .section-title, .hero-title {
+  font-weight: 400 !important;
+}
+
 img {
   max-width: 100%;
   height: auto;
