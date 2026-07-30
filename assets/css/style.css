@@ -541,6 +541,125 @@ a {
   transform: translateY(-2px);
 }
 
+/* ==========================================================================
+SEKCJA LOKALIZACJA (PANCERNE TŁO BEZ CZARNYCH PASEK DÓŁ/GÓRA)
+========================================================================== */
+
+.location-section {
+position: relative !important;
+width: 100% !important;
+box-sizing: border-box !important;
+
+/* Ustawienia tła: COVER wymusza pełne pokrycie całości obszaru sekcji */
+background-image:
+linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+url('../img/location-bg.png') !important;
+background-size: cover !important;
+background-position: center center !important;
+background-repeat: no-repeat !important;
+
+/* Zabezpieczenie przed zapadaniem się marginesów (Margin Collapse) */
+overflow: hidden !important;
+
+display: flex !important;
+flex-direction: column !important;
+align-items: center !important;
+justify-content: center !important;
+
+/* Zamiast aspektu proporcji 16:9 – bezpieczny padding górny i dolny */
+padding: 80px 20px !important;
+margin: 0 !important;
+}
+
+/* Ustawienie wysokości minimalnej dla komputerów */
+@media (min-width: 769px) {
+.location-section {
+min-height: 480px !important;
+aspect-ratio: auto !important; / Usunięto 16/9, które mogło wymuszać czarny pasek */
+}
+}
+
+/* Kontener z treścią */
+.location-content {
+position: relative !important;
+z-index: 2 !important;
+width: 100% !important;
+max-width: 900px !important;
+color: #FFFFFF !important;
+display: flex !important;
+flex-direction: column !important;
+align-items: center !important;
+margin: 0 auto !important;
+}
+
+/* Tytuł sekcji lokalizacji */
+.location-title {
+font-family: var(--font-title, serif) !important;
+font-size: 2.2rem !important;
+font-weight: 400 !important;
+letter-spacing: 2px !important;
+margin-top: 0 !important;
+margin-bottom: 30px !important;
+color: #FFFFFF !important;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+text-align: center !important;
+}
+
+/* Układ pionowy podpunktów */
+.location-info {
+display: flex !important;
+flex-direction: column !important;
+align-items: flex-start !important;
+justify-content: center !important;
+gap: 16px !important;
+width: fit-content !important;
+max-width: 100% !important;
+margin: 0 auto !important;
+}
+
+/* Styl pojedynczego podpunktu */
+.location-info p {
+font-family: var(--font-body, sans-serif) !important;
+font-size: 1.1rem !important;
+font-weight: 400 !important;
+letter-spacing: 1px !important;
+margin: 0 !important;
+color: #F7FAFC !important;
+text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+text-align: left !important;
+
+display: inline-flex !important;
+align-items: center !important;
+gap: 12px !important;
+}
+
+/* Pinezka Google Maps przed każdym podpunktem */
+.location-info p::before {
+content: '' !important;
+display: inline-block !important;
+width: 20px !important;
+height: 20px !important;
+flex-shrink: 0 !important;
+background-color: #F7FAFC !important;
+
+-webkit-mask: url("data:image/svg+xml;utf8,") no-repeat center / contain !important;
+mask: url("data:image/svg+xml;utf8,") no-repeat center / contain !important;
+}
+
+/* Dostosowanie na telefony */
+@media (max-width: 768px) {
+.location-section {
+min-height: 400px !important;
+padding: 50px 15px !important;
+}
+.location-title {
+font-size: 1.6rem !important;
+margin-bottom: 20px !important;
+}
+.location-info p {
+font-size: 0.95rem !important;
+}
+}
 
 /* --------------------------------------------------------------------------
    5.2. SLAJDER UDOGODNIEŃ (Karty)
@@ -1250,114 +1369,6 @@ a {
   z-index: 2 !important;
 }
 
-/* ==========================================================================
-   3. SEKCJA LOKALIZACJA (PEŁNY OBRAZ + PIONOWE PODPUNKTY Z PINEZKAMI)
-   ========================================================================== */
-.location-section {
-  position: relative !important;
-  width: 100% !important;
-  background-size: contain !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-
-  /* INTEGRALNE PRZYCIEMNIENIE (0.45 = 45% czerni) */
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
-    url('../img/location-bg.png') !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  padding: 50px 20px !important;
-  margin: 0 !important;
-}
-
-/* Wymuszenie proporcji dla PC: sekcja dostosowuje wysokość do szerokości obrazu */
-@media (min-width: 769px) {
-  .location-section {
-    min-height: auto !important;
-    aspect-ratio: 16 / 9 !important;
-  }
-}
-
-/* Treść na górze */
-.location-content {
-  position: relative !important;
-  z-index: 2 !important;
-  width: 100% !important;
-  max-width: 900px !important;
-  color: #FFFFFF !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-}
-
-.location-title {
-  font-family: var(--font-title, inherit) !important;
-  font-size: 2.2rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 2px !important;
-  margin-bottom: 30px !important;
-  color: #FFFFFF !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
-  text-align: center !important;
-}
-
-/* Układ pionowy podpunktów: wyrównanie do lewej strony */
-.location-info {
-  display: flex !important;
-  flex-direction: column !important; 
-  align-items: flex-start !important;
-  justify-content: center !important;
-  gap: 16px !important;
-  width: fit-content !important;
-  max-width: 100% !important;
-}
-
-/* Styl pojedynczego podpunktu */
-.location-info p {
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 1px !important;
-  margin: 0 !important;
-  color: #F7FAFC !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
-  text-align: left !important;
-  
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-}
-
-/* Pinezka Google Maps w kolorze tekstu (#F7FAFC) */
-.location-info p::before {
-  content: '' !important;
-  display: inline-block !important;
-  width: 20px !important;
-  height: 20px !important;
-  flex-shrink: 0 !important;
-  background-color: #F7FAFC !important;
-  
-  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>") no-repeat center / contain !important;
-  mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>") no-repeat center / contain !important;
-}
-
-/* Dostosowanie na telefony */
-@media (max-width: 768px) {
-  .location-section {
-    background-size: cover !important;
-    min-height: 420px !important;
-    padding: 35px 15px !important;
-  }
-  .location-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 20px !important;
-  }
-  .location-info p {
-    font-size: 0.95rem !important;
-  }
-}
 /* --- 5. OPINIE GOŚCI (Ikona cytatu i wyrównanie autora) --- */
 /* Dodanie eleganckiego cudzysłowu nad opinią */
 .testimonial-text::before {
