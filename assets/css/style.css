@@ -569,7 +569,8 @@ padding: 80px 20px !important;
 margin: 0 !important;
 
 /* Oryginalna wysokość zdjęcia dla komputerów */
-min-height: 1939px !important;
+min-height: 100vh !important;
+aspect-ratio: 16 / 9
 }
 
 /* Kontener z treścią */
