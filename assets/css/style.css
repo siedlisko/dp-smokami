@@ -542,23 +542,22 @@ a {
 }
 
 /* ==========================================================================
-SEKCJA LOKALIZACJA (PANCERNE TŁO BEZ CZARNYCH PASEK DÓŁ/GÓRA)
+SEKCJA LOKALIZACJA (PEŁNA WYSOKOŚĆ OBRAZU 1939PX BEZ PASÓW)
 ========================================================================== */
-
 .location-section {
 position: relative !important;
 width: 100% !important;
 box-sizing: border-box !important;
 
-/* Ustawienia tła: COVER wymusza pełne pokrycie całości obszaru sekcji */
+/* Ustawienia tła: zdjęcie wypełnia całą sekcję */
 background-image:
 linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
 url('../img/location-bg.png') !important;
 background-size: cover !important;
-background-position: center center !important;
+background-position: center top !important;
 background-repeat: no-repeat !important;
 
-/* Zabezpieczenie przed zapadaniem się marginesów (Margin Collapse) */
+/* Zabezpieczenie przed zapadaniem się marginesów */
 overflow: hidden !important;
 
 display: flex !important;
@@ -566,17 +565,11 @@ flex-direction: column !important;
 align-items: center !important;
 justify-content: center !important;
 
-/* Zamiast aspektu proporcji 16:9 – bezpieczny padding górny i dolny */
 padding: 80px 20px !important;
 margin: 0 !important;
-}
 
-/* Ustawienie wysokości minimalnej dla komputerów */
-@media (min-width: 769px) {
-.location-section {
-min-height: 480px !important;
-aspect-ratio: auto !important; / Usunięto 16/9, które mogło wymuszać czarny pasek */
-}
+/* Oryginalna wysokość zdjęcia dla komputerów */
+min-height: 1939px !important;
 }
 
 /* Kontener z treścią */
@@ -646,10 +639,10 @@ background-color: #F7FAFC !important;
 mask: url("data:image/svg+xml;utf8,") no-repeat center / contain !important;
 }
 
-/* Dostosowanie na telefony */
+/* Dostosowanie na telefony (zmniejszenie wysokosci, by na telefonach nie trzeba było przewijać w nieskończoność) */
 @media (max-width: 768px) {
 .location-section {
-min-height: 400px !important;
+min-height: 600px !important;
 padding: 50px 15px !important;
 }
 .location-title {
