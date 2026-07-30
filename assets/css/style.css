@@ -323,6 +323,9 @@ a {
   opacity: 0.95; 
   letter-spacing: 2px;
   max-width: 33.33vw;
+  margin-left: auto;    /* Wyśrodkowanie bloku w poziomie */
+  margin-right: auto;   /* Wyśrodkowanie bloku w poziomie */
+  text-align: center;   /* Wyśrodkowanie samego tekstu wewnątrz bloku */
 }
 
 /* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% */
