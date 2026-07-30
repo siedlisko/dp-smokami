@@ -321,8 +321,15 @@ a {
   line-height: 1.8;
   font-weight: 300;
   opacity: 0.95; 
-  letter-spacing: 2px; 
+  letter-spacing: 2px;
+  max-width: 33.33vw;
+}
 
+/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% */
+@media (max-width: 768px) {
+  .hero-lead {
+    max-width: 100%;
+  }
 }
 
 /* ==========================================================================
