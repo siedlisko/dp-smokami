@@ -883,6 +883,9 @@ font-size: 0.95rem !important;
   line-height: 0; /* Zapobiega lukom pod iframe */
 }
 
+iframe { width: 100% !important; border: 0; 
+}
+
 /* ==========================================================================
    10. STOPKA (Footer)
    ========================================================================== */
