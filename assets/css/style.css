@@ -214,7 +214,7 @@ a {
 .site-header.scrolled .site-nav a,
 .site-header.scrolled .site-nav ul li a {
   font-family: var(--font-title) !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
   font-size: 1.1rem !important;
   color: #F7FAFC !important; /* Zawsze jasny grafit/biel */
   letter-spacing: 1px !important;
