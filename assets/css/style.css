@@ -888,8 +888,12 @@ font-size: 0.95rem !important;
 iframe {
   box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
   line-height: 0; /* Zapobiega lukom pod iframe */
-  width: 100% !important;
-  max-width: 100% !important;
+  width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
   display: block !important;
   border: 0 !important;
 }
