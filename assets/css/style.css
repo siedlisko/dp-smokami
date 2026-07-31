@@ -372,9 +372,12 @@ a {
   color: var(--color-text-light, #ffffff); /* Jasny kolor tytułu */
   margin-bottom: 1.5rem;
   line-height: 1.25;
-  text-align: left !important;
+  text-align: left;
   letter-spacing: 0.5px;
 }
+
+.about-content .section-title {
+  text-align: left !important;
 
 .about-text {
   font-size: 1.05rem;
