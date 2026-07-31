@@ -768,7 +768,12 @@ font-size: 0.95rem !important;
    ========================================================================== */
 .reviews-section {
   padding: 6rem 0;
-  background-color: var(--color-bg-light);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+    url('../img/twój-obrazek.jpg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 }
 
 .reviews-header {
@@ -878,12 +883,15 @@ font-size: 0.95rem !important;
   padding: 6rem 0 0 0; /* Bez dolnego marginesu – styka się ze stopką */
 }
 
-.map-container {
+/* Wymuszenie 100% szerokości dla mapy oraz jej kontenera */
+.map-container, 
+iframe {
   box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
   line-height: 0; /* Zapobiega lukom pod iframe */
-}
-
-iframe { width: 100% !important; border: 0; 
+  width: 100% !important;
+  max-width: 100% !important;
+  display: block !important;
+  border: 0 !important;
 }
 
 /* ==========================================================================
