@@ -373,7 +373,7 @@ a {
   color: var(--color-text-light, #ffffff); /* Jasny kolor tytułu */
   margin-bottom: 1.5rem;
   line-height: 1.25;
-  text-align: left;
+  text-align: left !important;
   letter-spacing: 0.5px;
 }
 
