@@ -583,6 +583,8 @@ display: flex !important;
 flex-direction: column !important;
 align-items: center !important;
 margin: 0 auto !important;
+   /* Przesunięcie całej treści nieco w górę od geometrycznego środka */
+transform: translateY(-40px) !important;
 }
 
 /* Tytuł sekcji lokalizacji */
