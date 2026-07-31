@@ -95,7 +95,7 @@ a {
 .section-title::after {
   content: '';
   display: block;
-  width: 60px;
+  width: 120px;
   height: 3px;
   background-color: var(--color-accent);
   margin: 0.75rem auto 0;
