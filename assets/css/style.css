@@ -384,12 +384,12 @@ a {
 /* Złota kreseczka wyrównana do lewej */
 .about-title::after,
 .about-section h2::after {
-  content: '' !important;
-  display: block !important;
-  width: 120px !important;
-  height: 2px !important;
-  background-color: #c5a059 !important;
-  margin: 12px auto 0 0 !important; /* margines z lewej = 0 */
+	content: '';
+	display: block;
+	width: 120px;
+	height: 3px;
+	background-color: var(--color-accent);
+	margin: 0.75rem auto 0;
 }
 
 .about-text {
