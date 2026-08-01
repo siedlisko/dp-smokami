@@ -853,8 +853,8 @@ font-size: 0.95rem !important;
 }
 
 /* Złota kreseczka wyrównana do lewej */
-.about-title::after,
-.about-section h2::after {
+.info-links-section .section-title::after,
+.info-links-section h2::after {
 	content: '';
 	display: block;
 	width: 120px;
