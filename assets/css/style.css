@@ -389,7 +389,8 @@ a {
 	width: 120px;
 	height: 3px;
 	background-color: var(--color-accent);
-	margin: 12px auto 0;
+	margin-left: 0 !important;
+  	margin-right: auto !important;
 }
 
 .about-text {
@@ -850,6 +851,19 @@ font-size: 0.95rem !important;
   background-color: var(--color-primary);
   color: var(--color-text-light);
 }
+
+/* Złota kreseczka wyrównana do lewej */
+.about-title::after,
+.about-section h2::after {
+	content: '';
+	display: block;
+	width: 120px;
+	height: 3px;
+	background-color: var(--color-accent);
+	margin-left: 0 !important;
+  	margin-right: auto !important;
+}
+
 
 .info-links {
   display: flex;
