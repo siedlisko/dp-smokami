@@ -1,4 +1,4 @@
-
+---
 layout: default
 title: Galeria zdjęć – Dom pod Smokami
 ---
@@ -7,41 +7,105 @@ title: Galeria zdjęć – Dom pod Smokami
   :root {
     --color-gold: #c5a059;
     --color-bg-dark: #121212;
+    --color-card-bg: #181818;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
   }
 
-  /* Wyśrodkowany tytuł główny galerii ze złotą kreseczką */
+  /* Główny kontener całej podstrony */
+  .gallery-page {
+    background-color: var(--color-bg-dark) !important;
+    color: var(--color-text-main) !important;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  /* Sekcja nagłówkowa galerii */
+  .gallery-hero {
+    background-color: var(--color-card-bg);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
   .gallery-main-title {
     text-align: center !important;
     position: relative;
-    display: block;
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    margin: 0;
   }
 
+  /* Złota kreseczka na środku pod głównym tytułem */
   .gallery-main-title::after {
     content: '' !important;
     display: block !important;
     width: 140px !important;
     height: 2px !important;
     background-color: var(--color-gold) !important;
-    margin: 14px auto 0 auto !important;
+    margin: 16px auto 0 auto !important;
   }
 
-  /* Wyśrodkowane podtytuły sekcji ze złotą kreseczką na środku */
+  .gallery-hero-desc {
+    margin: 20px auto 0 auto;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 650px;
+    line-height: 1.6;
+  }
+
+  /* Kontener na sekcje z kafelkami */
+  .gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+  }
+
+  .gallery-section {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  /* Wyśrodkowane tytuły sekcji */
   .gallery-section-title {
     position: relative;
-    display: block;
+    display: inline-block;
     text-align: center !important;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+    margin: 0;
   }
 
+  /* Złota kreseczka na środku pod podtytułami sekcji */
   .gallery-section-title::after {
     content: '' !important;
     display: block !important;
     width: 120px !important;
     height: 2px !important;
     background-color: var(--color-gold) !important;
-    margin: 12px auto 0 auto !important; /* Wymuszenie środkowania kreski */
+    margin: 12px auto 0 auto !important;
   }
 
-  /* Kafelki ze zdjęciami */
+  .gallery-section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-top: 14px;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
   .gallery-item {
     position: relative;
     overflow: hidden;
@@ -49,195 +113,325 @@ title: Galeria zdjęć – Dom pod Smokami
     border-radius: 8px;
     aspect-ratio: 4 / 3;
     background-color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.25);
   }
 
   .gallery-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
     transition: transform 0.4s ease, filter 0.4s ease;
   }
 
   .gallery-item:hover img {
-    transform: scale(1.06);
+    transform: scale(1.08);
     filter: brightness(1.1);
   }
 
+  /* Nakładka tekstowa na miniaturkach po najechaniu */
   .gallery-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    text-align: left;
+    box-sizing: border-box;
   }
 
   .gallery-item:hover .gallery-overlay {
     opacity: 1;
   }
+
+  .gallery-tag {
+    font-size: 0.75rem;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .gallery-caption {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 99999;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  .lightbox-modal.active {
+    display: flex !important;
+  }
+
+  .lightbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .lightbox-counter {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .lightbox-close {
+    background: none;
+    border: none;
+    color: #e5e7eb;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 12px;
+    transition: color 0.2s;
+  }
+
+  .lightbox-close:hover {
+    color: var(--color-gold);
+  }
+
+  .lightbox-body {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 16px auto;
+  }
+
+  .lightbox-img {
+    max-height: 72vh;
+    max-width: 90vw;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  }
+
+  .lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+    z-index: 10;
+  }
+
+  .lightbox-btn:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .lightbox-btn.prev { left: 10px; }
+  .lightbox-btn.next { right: 10px; }
+
+  .lightbox-footer {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .lightbox-title {
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .lightbox-desc {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  @media (max-width: 640px) {
+    .gallery-main-title { font-size: 1.8rem; }
+    .gallery-section-title { font-size: 1.4rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .lightbox-btn { width: 40px; height: 40px; }
+  }
 </style>
 
-<main class="min-h-screen bg-[#121212] text-gray-200">
+<main class="gallery-page">
   
-  <!-- Sekcja Nagłówkowa -->
-  <section class="py-16 sm:py-20 bg-[#181818] text-center border-b border-white/5 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="gallery-main-title text-4xl sm:text-5xl md:text-6xl text-white font-normal tracking-wide">
-        GALERIA ZDJĘĆ
-      </h1>
-      <p class="mt-8 text-gray-400 text-lg sm:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-        Zapraszamy do wirtualnego spaceru po Domu Pod Smokami. Zobacz nasze przytulne wnętrza, wykończenie apartamentów oraz urokliwą okolicę.
-      </p>
-    </div>
+  <!-- Sekcja Baneru Głównego -->
+  <section class="gallery-hero">
+    <h1 class="gallery-main-title">GALERIA ZDJĘĆ</h1>
+    <p class="gallery-hero-desc">
+      Zapraszamy do wirtualnego spaceru po Domu Pod Smokami. Zobacz nasze przytulne wnętrza, wykończenie apartamentów oraz urokliwą okolicę.
+    </p>
   </section>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+  <div class="gallery-container">
 
-    <!-- Sekcja 1: Apartamenty -->
-    <section id="apartamenty" class="scroll-mt-24 text-center">
-      <div class="mb-10 text-center">
-        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
-          Apartamenty i Pokoje
-        </h2>
-        <p class="text-gray-400 text-sm mt-4 font-light">Komfortowe wnętrza przygotowane z dbałością o każdy detal.</p>
-      </div>
+    <!-- Sekcja 1: Apartamenty i Pokoje -->
+    <section class="gallery-section">
+      <h2 class="gallery-section-title">Apartamenty i Pokoje</h2>
+      <p class="gallery-section-subtitle">Komfortowe wnętrza przygotowane z dbałością o każdy detal.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-        
-        <div class="gallery-item group" onclick="openLightbox(0)">
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(0)">
           <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Apartament Słoneczny">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Apartament Słoneczny</span>
-            <p class="text-sm font-medium mt-1">Przestronna sypialnia z łóżkiem małżeńskim</p>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Apartament Słoneczny</span>
+            <div class="gallery-caption">Przestronna sypialnia z łóżkiem małżeńskim</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(1)">
-          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Salon z kominkiem">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Część Dzienna</span>
-            <p class="text-sm font-medium mt-1">Salon wypoczynkowy</p>
+        <div class="gallery-item" onclick="openLightbox(1)">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Część Dzienna">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Część Dzienna</span>
+            <div class="gallery-caption">Salon wypoczynkowy z sofa</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(2)">
+        <div class="gallery-item" onclick="openLightbox(2)">
           <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Łazienka">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Łazienka</span>
-            <p class="text-sm font-medium mt-1">Prysznic z deszczownicą i świeże ręczniki</p>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Łazienka</span>
+            <div class="gallery-caption">Prysznic z deszczownicą</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(3)">
-          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="Aneks kuchenny">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Aneks Kuchenny</span>
-            <p class="text-sm font-medium mt-1">W pełni wyposażona kuchnia</p>
+        <div class="gallery-item" onclick="openLightbox(3)">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="Aneks Kuchenny">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Aneks Kuchenny</span>
+            <div class="gallery-caption">W pełni wyposażona kuchnia</div>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- Sekcja 2: Dom i Ogród -->
-    <section id="otoczenie" class="scroll-mt-24 text-center">
-      <div class="mb-10 text-center">
-        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
-          Dom i Ogród
-        </h2>
-        <p class="text-gray-400 text-sm mt-4 font-light">Malownicze otoczenie, strefa relaksu i widoki na góry.</p>
-      </div>
+    <section class="gallery-section">
+      <h2 class="gallery-section-title">Dom i Ogród</h2>
+      <p class="gallery-section-subtitle">Malownicze otoczenie, strefa relaksu i widoki na góry.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-        
-        <div class="gallery-item group" onclick="openLightbox(4)">
-          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Elewacja w zimie">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Elewacja</span>
-            <p class="text-sm font-medium mt-1">Dom Pod Smokami w zimowej aurze</p>
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(4)">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Elewacja">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Elewacja</span>
+            <div class="gallery-caption">Dom Pod Smokami w zimowej aurze</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(5)">
-          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Taras i ogród">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Taras</span>
-            <p class="text-sm font-medium mt-1">Strefa wypoczynku na świeżym powietrzu</p>
+        <div class="gallery-item" onclick="openLightbox(5)">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Taras">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Taras</span>
+            <div class="gallery-caption">Strefa wypoczynku na świeżym powietrzu</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(6)">
-          <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80" alt="Ognisko">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Strefa Grillowa</span>
-            <p class="text-sm font-medium mt-1">Miejsce na ognisko i spotkania</p>
+        <div class="gallery-item" onclick="openLightbox(6)">
+          <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80" alt="Strefa Grillowa">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Strefa Grillowa</span>
+            <div class="gallery-caption">Miejsce na ognisko i biesiady</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(7)">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Widok z okna">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Okolica</span>
-            <p class="text-sm font-medium mt-1">Panorama gór w zasięgu wzroku</p>
+        <div class="gallery-item" onclick="openLightbox(7)">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Okolica">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Okolica</span>
+            <div class="gallery-caption">Panorama górskich szczytów</div>
           </div>
         </div>
-
       </div>
     </section>
 
     <!-- Sekcja 3: Klimat i Detale -->
-    <section id="detale" class="scroll-mt-24 text-center">
-      <div class="mb-10 text-center">
-        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
-          Klimat i Detale
-        </h2>
-        <p class="text-gray-400 text-sm mt-4 font-light">Drobne akcenty, które tworzą niepowtarzalną atmosferę.</p>
-      </div>
+    <section class="gallery-section">
+      <h2 class="gallery-section-title">Klimat i Detale</h2>
+      <p class="gallery-section-subtitle">Drobne akcenty, które tworzą niepowtarzalną atmosferę.</p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-        
-        <div class="gallery-item group" onclick="openLightbox(8)">
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(8)">
           <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Gościnność">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Gościnność</span>
-            <p class="text-sm font-medium mt-1">Poczęstunek dla naszych gości</p>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Gościnność</span>
+            <div class="gallery-caption">Poczęstunek dla naszych gości</div>
           </div>
         </div>
 
-        <div class="gallery-item group" onclick="openLightbox(9)">
+        <div class="gallery-item" onclick="openLightbox(9)">
           <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Wnętrza">
-          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
-            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Wnętrza</span>
-            <p class="text-sm font-medium mt-1">Kącik do czytania książek</p>
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Wnętrza</span>
+            <div class="gallery-caption">Kącik do czytania z książkami</div>
           </div>
         </div>
-
       </div>
     </section>
 
   </div>
 </main>
 
-<div id="lightboxModal" class="fixed inset-0 z-50 bg-black/95 hidden flex flex-col justify-between p-4 sm:p-8 select-none transition-opacity duration-300">
-  <div class="flex justify-between items-center text-white max-w-6xl w-full mx-auto z-10">
-    <span id="lightboxCounter" class="text-sm text-gray-400 tracking-wider">1 / 10</span>
-    <button onclick="closeLightbox()" class="text-gray-300 hover:text-white p-2 text-3xl leading-none focus:outline-none" aria-label="Zamknij podgląd">
-      &times;
+<div id="lightboxModal" class="lightbox-modal">
+  <div class="lightbox-header">
+    <span id="lightboxCounter" class="lightbox-counter">1 / 10</span>
+    <button onclick="closeLightbox()" class="lightbox-close" aria-label="Zamknij podgląd">&times;</button>
+  </div>
+
+  <div class="lightbox-body">
+    <button onclick="changeImage(-1)" class="lightbox-btn prev" aria-label="Poprzednie zdjęcie">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+
+    <img id="lightboxImage" class="lightbox-img" src="" alt="Podgląd zdjęcia">
+
+    <button onclick="changeImage(1)" class="lightbox-btn next" aria-label="Następne zdjęcie">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
     </button>
   </div>
 
-  <div class="relative flex-grow flex items-center justify-center my-4 max-w-6xl w-full mx-auto overflow-hidden">
-    <button onclick="changeImage(-1)" class="absolute left-2 sm:left-4 z-20 text-white bg-black/50 hover:bg-[#c5a059] p-3 sm:p-4 rounded-full transition-colors focus:outline-none" aria-label="Poprzednie zdjęcie">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-    </button>
-
-    <img id="lightboxImage" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded shadow-2xl transition-all duration-200">
-
-    <button onclick="changeImage(1)" class="absolute right-2 sm:right-4 z-20 text-white bg-black/50 hover:bg-[#c5a059] p-3 sm:p-4 rounded-full transition-colors focus:outline-none" aria-label="Następne zdjęcie">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-    </button>
-  </div>
-
-  <div class="text-center text-white max-w-2xl mx-auto z-10">
-    <h3 id="lightboxTitle" class="text-xl text-[#c5a059] font-serif"></h3>
-    <p id="lightboxDesc" class="text-sm text-gray-300 font-light mt-1"></p>
+  <div class="lightbox-footer">
+    <h3 id="lightboxTitle" class="lightbox-title"></h3>
+    <p id="lightboxDesc" class="lightbox-desc"></p>
   </div>
 </div>
 
@@ -261,13 +455,13 @@ title: Galeria zdjęć – Dom pod Smokami
     currentIndex = index;
     updateLightboxContent();
     const modal = document.getElementById('lightboxModal');
-    modal.classList.remove('hidden');
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     const modal = document.getElementById('lightboxModal');
-    modal.classList.add('hidden');
+    modal.classList.remove('active');
     document.body.style.overflow = '';
   }
 
@@ -286,7 +480,7 @@ title: Galeria zdjęć – Dom pod Smokami
 
   document.addEventListener('keydown', function(e) {
     const modal = document.getElementById('lightboxModal');
-    if (!modal.classList.contains('hidden')) {
+    if (modal.classList.contains('active')) {
       if (e.key === 'Escape') closeLightbox();
       if (e.key === 'ArrowLeft') changeImage(-1);
       if (e.key === 'ArrowRight') changeImage(1);
@@ -294,7 +488,7 @@ title: Galeria zdjęć – Dom pod Smokami
   });
 
   document.getElementById('lightboxModal').addEventListener('click', function(e) {
-    if (e.target === this || e.target.classList.contains('relative')) {
+    if (e.target === this || e.target.classList.contains('lightbox-body')) {
       closeLightbox();
     }
   });
