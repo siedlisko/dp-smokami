@@ -1,0 +1,301 @@
+
+layout: default
+title: Galeria zdjęć – Dom pod Smokami
+---
+
+<style>
+  :root {
+    --color-gold: #c5a059;
+    --color-bg-dark: #121212;
+  }
+
+  /* Wyśrodkowany tytuł główny galerii ze złotą kreseczką */
+  .gallery-main-title {
+    text-align: center !important;
+    position: relative;
+    display: block;
+  }
+
+  .gallery-main-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 140px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 14px auto 0 auto !important;
+  }
+
+  /* Wyśrodkowane podtytuły sekcji ze złotą kreseczką na środku */
+  .gallery-section-title {
+    position: relative;
+    display: block;
+    text-align: center !important;
+  }
+
+  .gallery-section-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 120px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 12px auto 0 auto !important; /* Wymuszenie środkowania kreski */
+  }
+
+  /* Kafelki ze zdjęciami */
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+    background-color: #1a1a1a;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+  }
+
+  .gallery-overlay {
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+</style>
+
+<main class="min-h-screen bg-[#121212] text-gray-200">
+  
+  <!-- Sekcja Nagłówkowa -->
+  <section class="py-16 sm:py-20 bg-[#181818] text-center border-b border-white/5 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="gallery-main-title text-4xl sm:text-5xl md:text-6xl text-white font-normal tracking-wide">
+        GALERIA ZDJĘĆ
+      </h1>
+      <p class="mt-8 text-gray-400 text-lg sm:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+        Zapraszamy do wirtualnego spaceru po Domu Pod Smokami. Zobacz nasze przytulne wnętrza, wykończenie apartamentów oraz urokliwą okolicę.
+      </p>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-20">
+
+    <!-- Sekcja 1: Apartamenty -->
+    <section id="apartamenty" class="scroll-mt-24 text-center">
+      <div class="mb-10 text-center">
+        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
+          Apartamenty i Pokoje
+        </h2>
+        <p class="text-gray-400 text-sm mt-4 font-light">Komfortowe wnętrza przygotowane z dbałością o każdy detal.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        
+        <div class="gallery-item group" onclick="openLightbox(0)">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Apartament Słoneczny">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Apartament Słoneczny</span>
+            <p class="text-sm font-medium mt-1">Przestronna sypialnia z łóżkiem małżeńskim</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(1)">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Salon z kominkiem">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Część Dzienna</span>
+            <p class="text-sm font-medium mt-1">Salon wypoczynkowy</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(2)">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" alt="Łazienka">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Łazienka</span>
+            <p class="text-sm font-medium mt-1">Prysznic z deszczownicą i świeże ręczniki</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(3)">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" alt="Aneks kuchenny">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Aneks Kuchenny</span>
+            <p class="text-sm font-medium mt-1">W pełni wyposażona kuchnia</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sekcja 2: Dom i Ogród -->
+    <section id="otoczenie" class="scroll-mt-24 text-center">
+      <div class="mb-10 text-center">
+        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
+          Dom i Ogród
+        </h2>
+        <p class="text-gray-400 text-sm mt-4 font-light">Malownicze otoczenie, strefa relaksu i widoki na góry.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        
+        <div class="gallery-item group" onclick="openLightbox(4)">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Elewacja w zimie">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Elewacja</span>
+            <p class="text-sm font-medium mt-1">Dom Pod Smokami w zimowej aurze</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(5)">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Taras i ogród">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Taras</span>
+            <p class="text-sm font-medium mt-1">Strefa wypoczynku na świeżym powietrzu</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(6)">
+          <img src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=80" alt="Ognisko">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Strefa Grillowa</span>
+            <p class="text-sm font-medium mt-1">Miejsce na ognisko i spotkania</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(7)">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Widok z okna">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Okolica</span>
+            <p class="text-sm font-medium mt-1">Panorama gór w zasięgu wzroku</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sekcja 3: Klimat i Detale -->
+    <section id="detale" class="scroll-mt-24 text-center">
+      <div class="mb-10 text-center">
+        <h2 class="gallery-section-title text-2xl sm:text-3xl text-white font-normal tracking-wide">
+          Klimat i Detale
+        </h2>
+        <p class="text-gray-400 text-sm mt-4 font-light">Drobne akcenty, które tworzą niepowtarzalną atmosferę.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+        
+        <div class="gallery-item group" onclick="openLightbox(8)">
+          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Gościnność">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Gościnność</span>
+            <p class="text-sm font-medium mt-1">Poczęstunek dla naszych gości</p>
+          </div>
+        </div>
+
+        <div class="gallery-item group" onclick="openLightbox(9)">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Wnętrza">
+          <div class="gallery-overlay absolute inset-0 p-4 flex flex-col justify-end text-left text-white">
+            <span class="text-xs text-[#c5a059] uppercase tracking-widest font-semibold">Wnętrza</span>
+            <p class="text-sm font-medium mt-1">Kącik do czytania książek</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div id="lightboxModal" class="fixed inset-0 z-50 bg-black/95 hidden flex flex-col justify-between p-4 sm:p-8 select-none transition-opacity duration-300">
+  <div class="flex justify-between items-center text-white max-w-6xl w-full mx-auto z-10">
+    <span id="lightboxCounter" class="text-sm text-gray-400 tracking-wider">1 / 10</span>
+    <button onclick="closeLightbox()" class="text-gray-300 hover:text-white p-2 text-3xl leading-none focus:outline-none" aria-label="Zamknij podgląd">
+      &times;
+    </button>
+  </div>
+
+  <div class="relative flex-grow flex items-center justify-center my-4 max-w-6xl w-full mx-auto overflow-hidden">
+    <button onclick="changeImage(-1)" class="absolute left-2 sm:left-4 z-20 text-white bg-black/50 hover:bg-[#c5a059] p-3 sm:p-4 rounded-full transition-colors focus:outline-none" aria-label="Poprzednie zdjęcie">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+
+    <img id="lightboxImage" src="" alt="" class="max-h-[75vh] max-w-full object-contain rounded shadow-2xl transition-all duration-200">
+
+    <button onclick="changeImage(1)" class="absolute right-2 sm:right-4 z-20 text-white bg-black/50 hover:bg-[#c5a059] p-3 sm:p-4 rounded-full transition-colors focus:outline-none" aria-label="Następne zdjęcie">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+
+  <div class="text-center text-white max-w-2xl mx-auto z-10">
+    <h3 id="lightboxTitle" class="text-xl text-[#c5a059] font-serif"></h3>
+    <p id="lightboxDesc" class="text-sm text-gray-300 font-light mt-1"></p>
+  </div>
+</div>
+
+<script>
+  const galleryData = [
+    { src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80", tag: "Apartament Słoneczny", desc: "Przestronna sypialnia z łóżkiem małżeńskim" },
+    { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80", tag: "Część Dzienna", desc: "Salon wypoczynkowy z wygodną sofą" },
+    { src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80", tag: "Łazienka", desc: "Prysznic z deszczownicą i świeże ręczniki" },
+    { src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80", tag: "Aneks Kuchenny", desc: "W pełni wyposażona kuchnia do dyspozycji gości" },
+    { src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80", tag: "Elewacja", desc: "Dom Pod Smokami w zimowej aurze" },
+    { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80", tag: "Taras", desc: "Strefa wypoczynku na świeżym powietrzu z leżakami" },
+    { src: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1600&q=80", tag: "Strefa Grillowa", desc: "Miejsce na ognisko i biesiady pod gwiazdami" },
+    { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80", tag: "Okolica", desc: "Panorama górskich szczytów widoczna z obiektu" },
+    { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80", tag: "Gościnność", desc: "Poczęstunek dla naszych gości" },
+    { src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80", tag: "Wnętrza", desc: "Kącik do czytania z wygodnym fotelem" }
+  ];
+
+  let currentIndex = 0;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    updateLightboxContent();
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  function changeImage(direction) {
+    currentIndex = (currentIndex + direction + galleryData.length) % galleryData.length;
+    updateLightboxContent();
+  }
+
+  function updateLightboxContent() {
+    const data = galleryData[currentIndex];
+    document.getElementById('lightboxImage').src = data.src;
+    document.getElementById('lightboxTitle').innerText = data.tag;
+    document.getElementById('lightboxDesc').innerText = data.desc;
+    document.getElementById('lightboxCounter').innerText = `${currentIndex + 1} / ${galleryData.length}`;
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('lightboxModal');
+    if (!modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+    }
+  });
+
+  document.getElementById('lightboxModal').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('relative')) {
+      closeLightbox();
+    }
+  });
+</script>
