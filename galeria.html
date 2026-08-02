@@ -384,10 +384,10 @@ title: Galeria zdjęć – Dom pod Smokami
       </div>
     </section>
 
-    <!-- Sekcja 3: Sauna -->
+    <!-- Sekcja 3: Klimat i Detale -->
     <section class="gallery-section">
-      <h2 class="gallery-section-title">Sauna</h2>
-      <p class="gallery-section-subtitle">Kameralna sauna w odzielnym budynku.</p>
+      <h2 class="gallery-section-title">Klimat i Detale</h2>
+      <p class="gallery-section-subtitle">Drobne akcenty, które tworzą niepowtarzalną atmosferę.</p>
 
       <div class="gallery-grid">
         <div class="gallery-item" onclick="openLightbox(8)">
@@ -405,23 +405,6 @@ title: Galeria zdjęć – Dom pod Smokami
             <div class="gallery-caption">Kącik do czytania z książkami</div>
           </div>
         </div>
-        
-        <div class="gallery-item" onclick="openLightbox(10)">
-          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Gościnność">
-          <div class="gallery-overlay">
-            <span class="gallery-tag"></span>
-            <div class="gallery-caption"></div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" onclick="openLightbox(11)">
-          <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" alt="Gościnność">
-          <div class="gallery-overlay">
-            <span class="gallery-tag"></span>
-            <div class="gallery-caption"></div>
-          </div>
-        </div>
-        
       </div>
     </section>
 
@@ -430,7 +413,7 @@ title: Galeria zdjęć – Dom pod Smokami
 
 <div id="lightboxModal" class="lightbox-modal">
   <div class="lightbox-header">
-    <span id="lightboxCounter" class="lightbox-counter">1 / 11</span>
+    <span id="lightboxCounter" class="lightbox-counter">1 / 10</span>
     <button onclick="closeLightbox()" class="lightbox-close" aria-label="Zamknij podgląd">&times;</button>
   </div>
 
@@ -453,24 +436,34 @@ title: Galeria zdjęć – Dom pod Smokami
 </div>
 
 <script>
-  const galleryData = [
-    { src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1600&q=80", tag: "Apartament Słoneczny", desc: "Przestronna sypialnia z łóżkiem małżeńskim" },
-    { src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80", tag: "Część Dzienna", desc: "Salon wypoczynkowy z wygodną sofą" },
-    { src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1600&q=80", tag: "Łazienka", desc: "Prysznic z deszczownicą i świeże ręczniki" },
-    { src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1600&q=80", tag: "Aneks Kuchenny", desc: "W pełni wyposażona kuchnia do dyspozycji gości" },
-    { src: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=80", tag: "Elewacja", desc: "Dom Pod Smokami w zimowej aurze" },
-    { src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80", tag: "Taras", desc: "Strefa wypoczynku na świeżym powietrzu z leżakami" },
-    { src: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=1600&q=80", tag: "Strefa Grillowa", desc: "Miejsce na ognisko i biesiady pod gwiazdami" },
-    { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80", tag: "Okolica", desc: "Panorama górskich szczytów widoczna z obiektu" },
-    { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80", tag: "Gościnność", desc: "Poczęstunek dla naszych gości" },
-    { src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80", tag: "Wnętrza", desc: "Kącik do czytania z wygodnym fotelem" }
-    { src: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80", tag: "Gościnność", desc: "Poczęstunek dla naszych gości" },
-    { src: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80", tag: "Wnętrza", desc: "Kącik do czytania z wygodnym fotelem" }
-  ];
-
+  let galleryData = [];
   let currentIndex = 0;
 
+  // Funkcja automatycznie skanująca wszystkie zdjęcia w galerii HTML
+  function initGallery() {
+    const items = document.querySelectorAll('.gallery-item');
+    galleryData = [];
+
+    items.forEach((item, index) => {
+      const img = item.querySelector('img');
+      const tagEl = item.querySelector('.gallery-tag');
+      const descEl = item.querySelector('.gallery-caption');
+
+      const src = item.getAttribute('data-full') || (img ? img.src : '');
+      const tag = tagEl ? tagEl.innerText : '';
+      const desc = descEl ? descEl.innerText : '';
+
+      galleryData.push({ src, tag, desc });
+
+      // Automatyczne przypisanie kliknięcia bez potrzeby wpisywania numerów ręcznie
+      item.onclick = function() {
+        openLightbox(index);
+      };
+    });
+  }
+
   function openLightbox(index) {
+    if (galleryData.length === 0) initGallery();
     currentIndex = index;
     updateLightboxContent();
     const modal = document.getElementById('lightboxModal');
@@ -485,16 +478,23 @@ title: Galeria zdjęć – Dom pod Smokami
   }
 
   function changeImage(direction) {
+    if (galleryData.length === 0) initGallery();
     currentIndex = (currentIndex + direction + galleryData.length) % galleryData.length;
     updateLightboxContent();
   }
 
   function updateLightboxContent() {
     const data = galleryData[currentIndex];
+    if (!data) return;
     document.getElementById('lightboxImage').src = data.src;
     document.getElementById('lightboxTitle').innerText = data.tag;
     document.getElementById('lightboxDesc').innerText = data.desc;
     document.getElementById('lightboxCounter').innerText = `${currentIndex + 1} / ${galleryData.length}`;
+  }
+
+  document.addEventListener('DOMContentLoaded', initGallery);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initGallery();
   }
 
   document.addEventListener('keydown', function(e) {
