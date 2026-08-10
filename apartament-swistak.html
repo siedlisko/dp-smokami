@@ -1,0 +1,180 @@
+---
+layout: default
+title: Apartament SWISTAK – Dom pod Smokami
+custom_css: assets/css/apartment.css
+gallery:
+  - large: "assets/img/large/SWISTAK-1.jpg"
+    thumb: "assets/img/thumbs/lis-1-thumb.jpg"
+    alt: "Salon w apartamencie Lis"
+  - large: "assets/img/large/lis-2.jpg"
+    thumb: "assets/img/thumbs/lis-2-thumb.jpg"
+    alt: "Salon z sypialnia"
+  - large: "assets/img/large/lis-3.jpg"
+    thumb: "assets/img/thumbs/lis-3-thumb.jpg"
+    alt: "Sypialnia wejscie"
+  - large: "assets/img/large/lis-4.jpg"
+    thumb: "assets/img/thumbs/lis-4-thumb.jpg"
+    alt: "Sypialnia"
+  - large: "assets/img/large/lis-5.jpg"
+    thumb: "assets/img/thumbs/lis-5-thumb.jpg"
+    alt: "Salon 2"
+  - large: "assets/img/large/lis-6.jpg"
+    thumb: "assets/img/thumbs/lis-6-thumb.jpg"
+    alt: "Sypialnia 2"
+  - large: "assets/img/large/lis-7.jpg"
+    thumb: "assets/img/thumbs/lis-7-thumb.jpg"
+    alt: "Łazienka"
+  - large: "assets/img/large/lis-8.jpg"
+    thumb: "assets/img/thumbs/lis-8-thumb.jpg"
+    alt: "Widok na taras"
+  - large: "assets/img/large/lis-9.jpg"
+    thumb: "assets/img/thumbs/lis-9-thumb.jpg"
+    alt: "Taras"
+  - large: "assets/img/large/lis-10.jpg"
+    thumb: "assets/img/thumbs/lis-10-thumb.jpg"
+    alt: "Wejscie na taras"
+  - large: "assets/img/large/lis-11.jpg"
+    thumb: "assets/img/thumbs/lis-11-thumb.jpg"
+    alt: "Taras ze smokiem"
+---
+
+<!-- SEKACJA HERO -->
+<section class="apartment-hero" style="background-image: url('assets/img/ap-lis-main.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>ŚwWISTAK</h1>
+    <p class="subtitle">APARTAMENT Z DWIEMA SYPIALNIAMI I TARASEM</p>
+  </div>
+</section>
+
+<!-- NAGŁÓWEK I PODSTAWOWE INFORMACJE -->
+<section class="apartment-intro container">
+  <div class="intro-grid">
+    
+    <!-- LEWA POŁOWA (TREŚĆ ZAWINIĘTA DO 50%) -->
+    <div class="intro-left">
+      <div class="intro-header">
+        <h2>ŚWISTAK</h2>
+        <p class="tagline">APARTAMENT Z DWIEMA SYPIALNIAMI I BALKONEM</p>
+      </div>
+      
+      <p class="description">
+        Przestronny apartament z dwiema sypialniami i balkonem. Duży salon z aneksem kuchennym. Łazienka z prysznicem.
+      </p>
+
+      <div class="quick-facts">
+        <div class="fact-item"><strong>Wielkość:</strong> 35 m²</div>
+        <div class="fact-item"><strong>Liczba osób:</strong> 4</div>
+        <div class="fact-item"><strong>Widok:</strong> Wysokie Tatry, las</div>
+      </div>
+    </div>
+
+    <!-- PRAWA POŁOWA (PUSTA — ZAPEWNIA ZAWINIĘCIE TEKSTU) -->
+    <div class="intro-right"></div>
+
+  </div>
+</section>
+  
+<!-- GALERIA Z MINIATURKAMI -->
+<section class="apartment-gallery container">
+  <div class="slider-wrapper">
+    
+    <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI -->
+    <div class="main-slide">
+      <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Poprzednie zdjęcie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      
+      {% assign first_item = page.gallery | first %}
+      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+
+      <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Następne zdjęcie">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- PASEK MINIATUR -->
+    <div class="thumbnails-grid">
+      {% for item in page.gallery %}
+        <img 
+          class="thumb {% if forloop.first %}active{% endif %}" 
+          src="{{ item.thumb | relative_url }}" 
+          data-large="{{ item.large | relative_url }}"
+          onclick="setSlide({{ forloop.index0 }})" 
+          alt="{{ item.alt }}">
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- WYPOSAŻENIE / SZCZEGÓŁY -->
+<section class="apartment-details container">
+  <div class="details-grid">
+    
+    <div class="details-col">
+      <h3>W apartamencie znajdziesz m.in.:</h3>
+      <ul class="check-list">
+        <li>Aneks kuchenny z płytą, lodówką, czajnikiem i podstawowym wyposażeniem</li>
+        <li>Prywatną łazienkę z prysznicem, wc, bidetem i ręcznikami</li>
+        <li>Telewizor, dostęp do Wi‑Fi oraz miejsce do pracy lub odpoczynku</li>
+        <li>Widok na góry, na Wysokie Tatry Bielskie</li>
+        <li>Wygodne łóżka zapewniające komfortowy sen</li>
+      </ul>
+    </div>
+
+    <div class="details-col">
+      <h3>Poza tym, zapewniamy gościom:</h3>
+      <ul class="check-list">
+        <li>Codziennie rano świeże bułeczki</li>
+        <li>Możliwość korzystania z ogrodu, miejsca na grilla, ognisko oraz bezpłatnego parkingu</li>
+        <li>Możliwość korzystania z sauny w oddzielnym, drewnianym budynku</li>
+        <li>Możliwość przyjazdu z pupilem</li>
+      </ul>
+      
+      <div class="booking-box">
+        <a href="tel:+48123456789" class="btn-slide">Zadzwoń i zarezerwuj</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  let currentIndex = 0;
+
+  function updateSlider() {
+    const thumbs = document.querySelectorAll('.thumb');
+    const mainImg = document.getElementById('current-slide-img');
+
+    if (!thumbs.length || !mainImg) return;
+
+    if (currentIndex >= thumbs.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = thumbs.length - 1;
+
+    const selectedThumb = thumbs[currentIndex];
+    const largeSrc = selectedThumb.getAttribute('data-large');
+    const altText = selectedThumb.getAttribute('alt');
+
+    mainImg.src = largeSrc;
+    mainImg.alt = altText;
+
+    thumbs.forEach((thumb, index) => {
+      if (index === currentIndex) {
+        thumb.classList.add('active');
+      } else {
+        thumb.classList.remove('active');
+      }
+    });
+  }
+
+  function changeSlide(direction) {
+    currentIndex += direction;
+    updateSlider();
+  }
+
+  function setSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+</script>
