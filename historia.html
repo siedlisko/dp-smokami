@@ -24,7 +24,7 @@ title: Historia Pensjonatu – Dom pod Smokami
   .history-hero {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(18, 18, 18, 0.95)), 
-                url('assets/img/histoiria-hero.jpg') center/cover no-repeat;
+                url('{{ site.baseurl }}/assets/img/histoiria-hero.jpg') center/cover no-repeat;
     padding: 100px 20px 80px 20px;
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -57,9 +57,9 @@ title: Historia Pensjonatu – Dom pod Smokami
     font-style: italic;
   }
 
-  /* Kontener główny dla sekcji */
+  /* Zawężony kontener główny dla sekcji */
   .history-container {
-    max-width: 1100px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 60px 20px 20px 20px;
     display: flex;
@@ -94,7 +94,7 @@ title: Historia Pensjonatu – Dom pod Smokami
   /* Sekcja 1: Pełna szerokość (Tekst + Zdjęcie poniżej) */
   .full-width-section {
     text-align: center;
-    max-width: 850px;
+    max-width: 780px;
     margin: 0 auto;
   }
 
@@ -123,12 +123,11 @@ title: Historia Pensjonatu – Dom pod Smokami
 
   .full-width-img-wrapper img {
     width: 100%;
-    max-height: 500px;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
 
-  /* Układ dwukolumnowy (Zdjęcie / Tekst naprzemiennie) */
+  /* Układ dwukolumnowy z zachowaniem naturalnych proporcji */
   .split-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -136,22 +135,16 @@ title: Historia Pensjonatu – Dom pod Smokami
     align-items: center;
   }
 
-  .split-section.reverse {
-    direction: ltr;
-  }
-
   .split-img-wrapper {
     width: 100%;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-    aspect-ratio: 4 / 3;
   }
 
   .split-img-wrapper img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
   }
 
@@ -168,7 +161,7 @@ title: Historia Pensjonatu – Dom pod Smokami
     font-weight: 300;
   }
 
-  /* Wykaz/Lista z kropkami dla Sekcji "Dom z duszą" */
+  /* Wykaz z kropkami dla Sekcji "Dom z duszą" */
   .bullet-list {
     list-style: none;
     padding: 0;
@@ -214,7 +207,7 @@ title: Historia Pensjonatu – Dom pod Smokami
     box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
   }
 
-  /* RWD / Responsywność */
+  /* Responsywność */
   @media (max-width: 868px) {
     .split-section {
       grid-template-columns: 1fr;
@@ -222,7 +215,7 @@ title: Historia Pensjonatu – Dom pod Smokami
     }
 
     .split-section.reverse .split-img-wrapper {
-      order: -1; /* Obrazek zawsze na górze na telefonach */
+      order: -1;
     }
 
     .history-hero-title { font-size: 2rem; }
@@ -247,7 +240,7 @@ title: Historia Pensjonatu – Dom pod Smokami
 
   <div class="history-container">
 
-    <!-- SEKACJA 1: Niezwykła Opowieść (Tytuł + Tekst + Obrazek Poniżej) -->
+    <!-- SEKACJA 1: Niezwykła Opowieść -->
     <section class="full-width-section">
       <div class="section-header">
         <h2 class="section-title">Niezwykła Opowieść</h2>
@@ -263,20 +256,18 @@ title: Historia Pensjonatu – Dom pod Smokami
         </span>
       </div>
       <div class="full-width-img-wrapper">
-        <!-- PODMIENIAJ ADRES ZDJĘCIA PONIŻEJ -->
-        <img src="assets/img/przed_pensjonatem.jpg" alt="Widok na Tatry i Wysoki Wierch">
+        <img src="{{ site.baseurl }}/assets/img/przed_pensjonatem.jpg" alt="Widok na Tatry i Wysoki Wierch">
       </div>
     </section>
 
-    <!-- SEKCJA 2: Od marzenia do rzeczywistości (Tytuł wyśrodkowany na górze, Zdjęcie LEWO, Tekst PRAWO) -->
+    <!-- SEKCJA 2: Od marzenia do rzeczywistości (Zdjęcie LEWO, Tekst PRAWO) -->
     <section>
       <div class="section-header">
         <h2 class="section-title">Od marzenia do rzeczywistości</h2>
       </div>
       <div class="split-section">
         <div class="split-img-wrapper">
-          <!-- PODMIENIAJ ADRES ZDJĘCIA PONIŻEJ -->
-          <img src="assets/img/historia-3.jpg" alt="Budowa i urokliwe wnętrza">
+          <img src="{{ site.baseurl }}/assets/img/historia-3.jpg" alt="Budowa i urokliwe wnętrza">
         </div>
         <div class="split-content">
           <div class="split-text">
@@ -294,7 +285,7 @@ title: Historia Pensjonatu – Dom pod Smokami
       </div>
     </section>
 
-    <!-- SEKCJA 3: Skąd nazwa „Pod Smokami”? (Tytuł wyśrodkowany na górze, Tekst LEWO, Zdjęcie PRAWO) -->
+    <!-- SEKCJA 3: Skąd nazwa „Pod Smokami”? (Tekst LEWO, Zdjęcie PRAWO) -->
     <section>
       <div class="section-header">
         <h2 class="section-title">Skąd nazwa „Pod Smokami”?</h2>
@@ -314,21 +305,19 @@ title: Historia Pensjonatu – Dom pod Smokami
           </div>
         </div>
         <div class="split-img-wrapper">
-          <!-- PODMIENIAJ ADRES ZDJĘCIA PONIŻEJ -->
-          <img src="assets/img/historia-4.jpg" alt="Detale architektoniczne i smoki">
+          <img src="{{ site.baseurl }}/assets/img/historia-4.jpg" alt="Detale architektoniczne i smoki">
         </div>
       </div>
     </section>
 
-    <!-- SEKCJA 4: Dom z duszą (Tytuł wyśrodkowany na górze, Zdjęcie LEWO, Tekst PRAWO) -->
+    <!-- SEKCJA 4: Dom z duszą (Zdjęcie LEWO, Tekst PRAWO) -->
     <section>
       <div class="section-header">
         <h2 class="section-title">Dom z duszą</h2>
       </div>
       <div class="split-section">
         <div class="split-img-wrapper">
-          <!-- PODMIENIAJ ADRES ZDJĘCIA PONIŻEJ -->
-          <img src="assets/img/taras-lesne-doliny-pod-smokami.jpg" alt="Taras z widokiem na góry">
+          <img src="{{ site.baseurl }}/assets/img/taras-lesne-doliny-pod-smokami.jpg" alt="Taras z widokiem na góry">
         </div>
         <div class="split-content">
           <div class="split-text">
@@ -345,7 +334,7 @@ title: Historia Pensjonatu – Dom pod Smokami
       </div>
     </section>
 
-    <!-- SEKCJA 5: Więcej niż pensjonat (Tytuł wyśrodkowany na górze, Tekst LEWO, Zdjęcie PRAWO) -->
+    <!-- SEKCJA 5: Więcej niż pensjonat (Tekst LEWO, Zdjęcie PRAWO) -->
     <section>
       <div class="section-header">
         <h2 class="section-title">Dom Pod Smokami – Więcej niż pensjonat</h2>
@@ -360,8 +349,7 @@ title: Historia Pensjonatu – Dom pod Smokami
           </div>
         </div>
         <div class="split-img-wrapper">
-          <!-- PODMIENIAJ ADRES ZDJĘCIA PONIŻEJ -->
-          <img src="assets/img/histoiria-6.jpg" alt="Odpoczynek i rezerwacja">
+          <img src="{{ site.baseurl }}/assets/img/histoiria-6.jpg" alt="Odpoczynek i rezerwacja">
         </div>
       </div>
     </section>
