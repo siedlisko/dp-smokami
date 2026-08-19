@@ -21,14 +21,28 @@ title: Historia Pensjonatu – Dom pod Smokami
   }
 
   /* Sekcja Hero z obrazem tła */
-  .history-hero {
+ .history-hero {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(18, 18, 18, 0.95)), 
                 url('{{ site.baseurl }}/assets/img/historia-hero.jpg') center/cover no-repeat;
-    padding: 100px 20px 80px 20px;
+    
+    /* Zapewnia pełną wysokość ekranu (dvh działa idealnie też na telefonach) */
+    min-height: 100dvh; 
+    
+    /* Rozciąga sekcję i centruje zawartość w pionie oraz poziomie */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Mniejszy padding chroni treść przy krawędziach na małych ekranach */
+    padding: 20px; 
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  }
+
+    /* Opcjonalnie: zapobiega niechcianemu przewijaniu od wewnętrznych marginesów */
+    box-sizing: border-box; 
+}
 
   .history-hero-title {
     font-size: 2.8rem;
