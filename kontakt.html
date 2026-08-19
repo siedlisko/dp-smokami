@@ -1,285 +1,177 @@
-Conversation with Gemini
+---
+layout: default
+title: Kontakt – Dom pod Smokami
+---
 
-jakim kodem ustawic szerokosc sekcji hero na całosc wysokosci ekranu
-
-Najprostszym i najnowocześniejszym sposobem na ustawienie sekcji hero na pełną wysokość ekranu jest użycie jednostek vh (viewport height) lub dvh (dynamic viewport height) w CSS.
-Kod HTML i CSS
-HTML
-
-<section class="hero">
-  <div class="hero-content">
-    <h1>Twoje Nagłówek</h1>
-    <p>Opis lub przycisk call to action</p>
-  </div>
-</section>
-
-CSS
-
-.hero {
-  /* Zapewnia pełną wysokość ekranu */
-  min-height: 100dvh; 
-  
-  /* Rozciąga sekcję na pełną szerokość */
-  width: 100%; 
-
-  /* Opcjonalnie: wyśrodkowanie zawartości w pionie i poziomie */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-Dlaczego warto użyć 100dvh zamiast 100vh?
-
-    100vh: Ustawia wysokość na 100% widocznego obszaru, ale na urządzeniach mobilnych (np. Safari na iOS, Chrome na Androidzie) nie uwzględnia dynamicznie ukrywającego się paska adresu przeglądarki. Może to powodować niechciane przewijanie strony.
-
-    100dvh (Dynamic Viewport Height): Najlepsze nowoczesne rozwiązanie. Dynamicznie dostosowuje wysokość sekcji do zmieniającej się przestrzeni po schowaniu lub wysunięciu paska przeglądarki mobilnej.
-
-Alternatywa dla Tailwind CSS
-
-Jeśli używasz frameworka Tailwind CSS, wystarczy dodać klasę:
-HTML
-
-<section class="min-h-screen-dynamic w-full flex flex-col items-center justify-center">
-  <!-- Treść -->
-</section>
-
-(LUB standardowe min-h-screen dla klasycznego 100vh)
-
-jest tak, popraw ten frgmet by bylo wysokosc jak ekran:  .history-hero {
-
-    position: relative;
-
-    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(18, 18, 18, 0.95)), 
-
-                url('{{ site.baseurl }}/assets/img/historia-hero.jpg') center/cover no-repeat;
-
-    padding: 100px 20px 80px 20px;
-
-    text-align: center;
-
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
+<style>
+  :root {
+    --color-gold: #c5a059;
+    --color-bg-dark: #121212;
+    --color-card-bg: #181818;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
   }
 
-Oto poprawiony kod CSS. Najlepiej zastąpić sztywny padding elastycznym układem Flexbox z właściwością min-height: 100dvh, dzięki czemu sekcja dopasuje się do ekranu bez wycinania treści:
-CSS
+  .contact-page {
+    background-color: var(--color-bg-dark) !important;
+    color: var(--color-text-main) !important;
+    min-height: 100vh;
+    padding-bottom: 60px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
 
-.history-hero {
+  /* Sekcja Hero z obrazem tła */
+  .contact-hero {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(18, 18, 18, 0.95)), 
-                url('{{ site.baseurl }}/assets/img/historia-hero.jpg') center/cover no-repeat;
-    
-    /* Zapewnia pełną wysokość ekranu (dvh działa idealnie też na telefonach) */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(18, 18, 18, 0.6)), 
+                url('{{ site.baseurl }}/assets/img/kontakt-hero.jpg') center/cover no-repeat;
     min-height: 100dvh; 
-    
-    /* Rozciąga sekcję i centruje zawartość w pionie oraz poziomie */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* Mniejszy padding chroni treść przy krawędziach na małych ekranach */
     padding: 20px; 
     text-align: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-
-    /* Opcjonalnie: zapobiega niechcianemu przewijaniu od wewnętrznych marginesów */
     box-sizing: border-box; 
-}
+  }
 
-Co zostało zmienione?
+  .contact-hero-title {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    margin: 0;
+  }
 
-    min-height: 100dvh – wymusza wysokość równą 100% ekranu. Użycie min-height zamiast zwykłego height gwarantuje, że jeśli treść na telefonie będzie długa, sekcja po prostu się powiększy, zamiast uciąć tekst.
+  .contact-hero-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 140px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 18px auto 0 auto !important;
+  }
 
-    display: flex; justify-content: center; align-items: center; – zastępuje sztywne padding: 100px ... 80px, automatycznie wyśrodkowując cały tekst i przyciski idealnie w połowie wysokości ekranu.
+  /* Kontener główny dla sekcji z informacjami */
+  .contact-container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 20px 20px 20px;
+  }
 
-obraz w tle jest rchoce za ciemny, co tu zmienic? .history-hero {
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
 
-    position: relative;
+  .section-title {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #ffffff !important;
+    margin: 0;
+    text-align: center !important;
+  }
 
-    background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(18, 18, 18, 0.95)), 
+  .section-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 120px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 14px auto 0 auto !important;
+  }
 
-                url('{{ site.baseurl }}/assets/img/historia-hero.jpg') center/cover no-repeat;
+  /* Siatka kart z informacjami kontaktowymi */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
 
-Aby rozjaśnić obraz, musisz zmniejszyć krycie (przezroczystość) w wartościach rgba() w linear-gradient.
+  .contact-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+  }
 
-Obecnie używasz bardzo ciemnych wartości: 0.65 (65% czerni) oraz 0.95 (95% czerni na dole).
+  .contact-card-title {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+  }
 
-Oto poprawiona, rozjaśniona wersja (zredukowana do 0.3 na górze i 0.6 na dole):
-CSS
+  .contact-card p, 
+  .contact-card ul {
+    color: var(--color-text-main);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 8px;
+  }
 
-.history-hero {
-    position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(18, 18, 18, 0.6)), 
-                url('{{ site.baseurl }}/assets/img/historia-hero.jpg') center/cover no-repeat;
+  .contact-card ul {
+    list-style: none;
+    padding: 0;
+  }
 
-    Zwiększenie widoczności zdjęcia: Wartości 0.3 i 0.6 przepuszczą znacznie więcej światła i szczegółów tła.
+  .contact-card a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
 
-    Jeśli obraz nadal jest za ciemny: Zmniejsz wartości jeszcze bardziej, np. do rgba(0, 0, 0, 0.2) i rgba(18, 18, 18, 0.4).
+  .contact-card a:hover {
+    color: var(--color-gold);
+  }
 
-    Jeśli chcesz całkowicie usunąć przyciemnienie: Zastąp cały linear-gradient samym adresem URL zdjęcia: background: url('...') center/cover no-repeat;.
+  .company-details p {
+    margin-bottom: 6px;
+  }
 
-stwórz mi podstrone kontakt w takim stylu jak podstrona historia, i tylko z dwoma sekcjami, pierwsza hero - napis kontakt ze zdjeciem w tle, a kolejna z informacjami kontaktowymi: Jak zarezerwować apartament?
+  /* Responsywność */
+  @media (max-width: 868px) {
+    .contact-hero-title { font-size: 2rem; }
+    .section-title { font-size: 1.6rem; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+</style>
 
+<main class="contact-page">
 
-Zadzwoń lub napisz
-
-tel: +48 602 100 806
-
-email: dompodsmokami@wp.pl
-
-
-Rezerwacje online:
-
-slowhop.com
-
-booking.com
-
-Dane kontaktowe Firmy
-
-Dom Pod Smokami Ryszard Żelazny
-
-Ul. Leśna 41, 34-530, Bukowina Tatrzańska
-
-NIP 9290117435
-
-REGON 97118967500000
-
-Oto gotowa podstrona kontakt.html spójna ze stylem podstrony historia (zachowująca ten sam układ hero z gradientem na tle zdjęcia, ciemny motyw oraz czytelną drugą sekcję z kartami informacyjnymi).
-HTML
-
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kontakt | Dom Pod Smokami</title>
-  <style>
-    /* Podstawowe resetowanie i style ogólne */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #ffffff;
-      line-height: 1.6;
-    }
-
-    /* SEKJA 1: HERO */
-    .contact-hero {
-      position: relative;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(18, 18, 18, 0.6)), 
-                  url('{{ site.baseurl }}/assets/img/kontakt-hero.jpg') center/cover no-repeat;
-      min-height: 60dvh; /* Ustawione na 60dvh, aby od razu było widać początek sekcji z danymi */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .contact-hero h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    /* SEKCJA 2: INFORMACJE KONTAKTOWE */
-    .contact-info-section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
-
-    .contact-info-section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 40px;
-      color: #ffffff;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .contact-card {
-      background: #1a1a1a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 30px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      color: #e0e0e0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 10px;
-    }
-
-    .contact-card p, 
-    .contact-card ul {
-      margin-bottom: 10px;
-    }
-
-    .contact-card ul {
-      list-style: none;
-    }
-
-    .contact-card li {
-      margin-bottom: 8px;
-    }
-
-    .contact-card a {
-      color: #64b5f6;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .contact-card a:hover {
-      text-decoration: underline;
-      color: #90caf9;
-    }
-
-    .company-details p {
-      margin-bottom: 6px;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- SEKCJA 1: HERO -->
+  <!-- Sekcja 1: Hero na Pełną Wysokość Ekranu -->
   <section class="contact-hero">
-    <h1>Kontakt</h1>
+    <h1 class="contact-hero-title">KONTAKT</h1>
   </section>
 
-  <!-- SEKCJA 2: INFORMACJE KONTAKTOWE -->
-  <section class="contact-info-section">
-    <h2>Jak zarezerwować apartament?</h2>
+  <!-- Sekcja 2: Informacje Kontaktowe -->
+  <div class="contact-container">
+    
+    <div class="section-header">
+      <h2 class="section-title">Jak zarezerwować apartament?</h2>
+    </div>
 
     <div class="contact-grid">
       
-      <!-- Karty 1: Bezpośredni kontakt -->
+      <!-- Karta 1: Bezpośredni kontakt -->
       <div class="contact-card">
-        <h3>Zadzwoń lub napisz</h3>
-        <p><strong>Tel:</strong> <a href="tel:+48602100806">+48 602 100 806</a></p>
-        <p><strong>E-mail:</strong> <a href="mailto:dompodsmokami@wp.pl">dompodsmokami@wp.pl</a></p>
+        <h3 class="contact-card-title">Zadzwoń lub napisz</h3>
+        <p><strong>tel:</strong> <a href="tel:+48602100806">+48 602 100 806</a></p>
+        <p><strong>email:</strong> <a href="mailto:dompodsmokami@wp.pl">dompodsmokami@wp.pl</a></p>
       </div>
 
       <!-- Karta 2: Rezerwacje online -->
       <div class="contact-card">
-        <h3>Rezerwacje online</h3>
+        <h3 class="contact-card-title">Rezerwacje online</h3>
         <ul>
           <li><a href="https://slowhop.com" target="_blank" rel="noopener">slowhop.com</a></li>
           <li><a href="https://booking.com" target="_blank" rel="noopener">booking.com</a></li>
@@ -288,7 +180,7 @@ HTML
 
       <!-- Karta 3: Dane firmy -->
       <div class="contact-card company-details">
-        <h3>Dane kontaktowe Firmy</h3>
+        <h3 class="contact-card-title">Dane kontaktowe Firmy</h3>
         <p><strong>Dom Pod Smokami Ryszard Żelazny</strong></p>
         <p>Ul. Leśna 41, 34-530, Bukowina Tatrzańska</p>
         <p><strong>NIP:</strong> 9290117435</p>
@@ -296,7 +188,7 @@ HTML
       </div>
 
     </div>
-  </section>
 
-</body>
-</html>
+  </div>
+
+</main>
