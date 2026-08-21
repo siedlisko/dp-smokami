@@ -89,19 +89,20 @@ title: Kontakt – Dom pod Smokami
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
-    margin-bottom: 60px; /* Odstęp od sekcji z danymi firmy */
+    margin-bottom: 60px;
   }
 
-  /* Wyśrodkowanie kontenera, ale tekst wyrównany do lewej */
+  /* Domyślny układ na komputerze (do lewej) */
   .contact-left-content {
-    width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
   }
 
   .contact-block {
-    display: inline-block;
     text-align: left;
-    max-width: 100%;
+    width: 100%;
   }
 
   .contact-block h3 {
@@ -151,7 +152,6 @@ title: Kontakt – Dom pod Smokami
     display: block;
   }
 
-  /* Podpis pod zdjęciem w sekcji kontakt */
   .contact-img-wrapper figcaption {
     margin-top: 10px;
     font-size: 0.95rem;
@@ -186,11 +186,25 @@ title: Kontakt – Dom pod Smokami
     margin-bottom: 6px;
   }
 
-  /* Responsywność */
+  /* Responsywność MOBILNA */
   @media (max-width: 868px) {
     .contact-split-section {
       grid-template-columns: 1fr;
       gap: 30px;
+    }
+
+    /* Środkowanie całego kontenera na ekranie telefonu */
+    .contact-left-content {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Blok ma szerokość dopasowaną do najdłuższej linii i jest wyśrodkowany, ale sam tekst ma wyrównanie do lewej */
+    .contact-block {
+      display: inline-block;
+      text-align: left;
+      width: auto;
+      max-width: 100%;
     }
 
     .contact-hero-title { font-size: 2rem; }
