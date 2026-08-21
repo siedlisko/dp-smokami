@@ -1592,7 +1592,7 @@ iframe {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 28px;
+  gap: 32px;
   align-items: center;
 }
 
@@ -1683,18 +1683,17 @@ iframe {
 }
 
 /* ==========================================================================
-   WIDOK MOBILNY (Telefony i Tablety)
+   WIDOK MOBILNY (Telefony)
    ========================================================================== */
 @media (max-width: 868px) {
   .brand img.logo {
-    height: 55px !important; /* Przetestowane mniejsze logo na małe ekrany */
+    height: 50px !important;
   }
 
   .mobile-toggle {
     display: flex;
   }
 
-  /* Animacja ikony hamburgera na X */
   .mobile-toggle.active .hamburger-bar:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -1705,10 +1704,9 @@ iframe {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* Pełnoekranowe / Rozwijane menu mobilne */
   .site-nav {
     position: fixed;
-    top: 75px; /* Wysokość nawigacji */
+    top: 70px;
     left: 0;
     width: 100%;
     background-color: #121212;
@@ -1735,7 +1733,6 @@ iframe {
     font-size: 1.05rem;
   }
 
-  /* Rozwijanie Submenu na telefonie */
   .dropdown {
     width: 100%;
   }
@@ -1749,7 +1746,7 @@ iframe {
     margin-top: 8px;
     margin-left: 10px;
     padding: 5px 0;
-    display: none; /* Sterowane przez JS */
+    display: none;
     opacity: 1;
     visibility: visible;
     transform: none;
