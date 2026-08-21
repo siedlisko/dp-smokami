@@ -13,5 +13,32 @@
 
   {% include footer.html %}
 
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const mobileToggle = document.getElementById('mobileToggle');
+    const siteNav = document.getElementById('siteNav');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+
+    // Otwieranie / Zamykanie menu mobilnego (Hamburger)
+    if (mobileToggle && siteNav) {
+      mobileToggle.addEventListener('click', function () {
+        mobileToggle.classList.toggle('active');
+        siteNav.classList.toggle('active');
+      });
+    }
+
+    // Kliknięcie w "Apartamenty" na urządzeniach mobilnych
+    if (dropdownToggle && dropdown) {
+      dropdownToggle.addEventListener('click', function (e) {
+        if (window.innerWidth <= 868) {
+          e.preventDefault(); // Zapobiega natychmiastowemu przejściu, otwiera submenu
+          dropdown.classList.toggle('open');
+        }
+      });
+    }
+  });
+</script>
+  
 </body>
 </html>
