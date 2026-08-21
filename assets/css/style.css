@@ -1544,3 +1544,218 @@ iframe {
     justify-content: center !important;
   }
 }
+
+/* ==========================================================================
+   NAWIGACJA Z ROZWIJANYM MENU (DESKTOP + MOBILE)
+   ========================================================================== */
+
+/* Podstawowe pozycjonowanie logo */
+.brand {
+  position: static !important;
+  transform: none !important;
+  z-index: 1010 !important;
+  display: flex !important;
+  align-items: center !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.brand img.logo {
+  height: 80px !important;
+  width: auto !important;
+  display: block !important;
+}
+
+/* Układ nagłówka */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: rgba(18, 18, 18, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 28px;
+  align-items: center;
+}
+
+.site-nav a {
+  color: #f3f4f6;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.site-nav a:hover {
+  color: #c5a059;
+}
+
+/* Rozwijane submenu - PC (Desktop) */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #181818;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  min-width: 220px;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0 !important;
+  
+  /* Ukrycie domyślne */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.dropdown-menu li a {
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  text-transform: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.dropdown-menu li:last-child a {
+  border-bottom: none;
+}
+
+.dropdown-menu li a:hover {
+  background-color: rgba(197, 160, 89, 0.1);
+  color: #c5a059;
+}
+
+/* Pojawianie się menu po najechaniu myszką (Desktop) */
+@media (min-width: 869px) {
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+/* Przycisk Hamburgera (Ukryty na PC) */
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-bar {
+  width: 26px;
+  height: 2px;
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+/* ==========================================================================
+   WIDOK MOBILNY (Telefony i Tablety)
+   ========================================================================== */
+@media (max-width: 868px) {
+  .brand img.logo {
+    height: 55px !important; /* Przetestowane mniejsze logo na małe ekrany */
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  /* Animacja ikony hamburgera na X */
+  .mobile-toggle.active .hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mobile-toggle.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-toggle.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Pełnoekranowe / Rozwijane menu mobilne */
+  .site-nav {
+    position: fixed;
+    top: 75px; /* Wysokość nawigacji */
+    left: 0;
+    width: 100%;
+    background-color: #121212;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+  }
+
+  .site-nav.active {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .site-nav a {
+    width: 100%;
+    font-size: 1.05rem;
+  }
+
+  /* Rozwijanie Submenu na telefonie */
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    background-color: #181818;
+    border-left: 2px solid #c5a059;
+    margin-top: 8px;
+    margin-left: 10px;
+    padding: 5px 0;
+    display: none; /* Sterowane przez JS */
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .dropdown.open .dropdown-menu {
+    display: flex;
+  }
+}
