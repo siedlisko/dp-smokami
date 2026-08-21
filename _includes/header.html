@@ -6,33 +6,31 @@
       <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white.png" alt="Dom pod Smokami" class="logo">
     </a>
 
-    <!-- Przycisk Hamburger (widoczny tylko na telefonach) -->
+    <!-- Przycisk Hamburger (mobilny) -->
     <button class="mobile-toggle" aria-label="Otwórz menu" id="mobileToggle">
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
       <span class="hamburger-bar"></span>
     </button>
 
-    <!-- Nawigacja główna -->
+    <!-- Nawigacja główna: TYLKO 2 ZAKŁADKI -->
     <nav class="site-nav" id="siteNav">
       <ul>
-        <li><a href="{{ site.baseurl }}/">Strona Główna</a></li>
-        
-        <!-- Rozwijany przycisk APARTAMENTY -->
+        <!-- Zakładka 1: APARTAMENTY (Rozwijana) -->
         <li class="dropdown">
           <a href="{{ site.baseurl }}/#apartamenty" class="dropdown-toggle">
             Apartamenty <span class="arrow">▾</span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="{{ site.baseurl }}/#apartamenty">Wszystkie apartamenty</a></li>
+            <li><a href="{{ site.baseurl }}/#apartamenty">Nasze apartamenty</a></li>
             <li><a href="{{ site.baseurl }}/apartamenty/apartament-1.html">Apartament 1</a></li>
             <li><a href="{{ site.baseurl }}/apartamenty/apartament-2.html">Apartament 2</a></li>
             <li><a href="{{ site.baseurl }}/apartamenty/apartament-3.html">Apartament 3</a></li>
-            <!-- Dodaj kolejne apartamenty wg potrzeb -->
+            <!-- Zmień powyższe linki na właściwe ścieżki do podstron apartamentów -->
           </ul>
         </li>
 
-        <li><a href="{{ site.baseurl }}/historia.html">Historia</a></li>
+        <!-- Zakładka 2: KONTAKT -->
         <li><a href="{{ site.baseurl }}/kontakt.html">Kontakt</a></li>
       </ul>
     </nav>
