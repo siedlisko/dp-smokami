@@ -4,9 +4,14 @@
 :root {
   /* Kolory tła i tekstu */
   --color-bg: #1A202C;           /* Głęboki grafit */
-  --color-text: #F7FAFC;         /* Bardzo jasny, miękki biały */
+  --color-bg-card: #2D3748;      /* Ciemniejsze tło kart */
+  --color-text: #F7FAFC;          /* Bardzo jasny, miękki biały */
+  --color-text-light: #FFFFFF;
+  --color-text-dark: #2D3748;
   --color-text-muted: #A0AEC0;   /* Przygaszony szary dla opisów */
-  
+  --color-primary: #1A202C;
+  --color-border: rgba(255, 255, 255, 0.1);
+
   /* Kolory akcentów */
   --color-accent: #D69E2E;       /* Ciepłe złoto dla hoverów i guzików */
   --color-accent-hover: #319795; /* Szmaragdowy teal na dodatkowe wyróżnienia */
@@ -17,6 +22,7 @@
 
   /* Efekty i przejścia */
   --transition-fast: all 0.3s ease;               /* Płynne animacje dla linków i przycisków */
+  --transition-smooth: all 0.4s ease-in-out;
 
   /* Punkty responsywności (Breakpoints) */
   --bs-breakpoint-xs: 0;
@@ -38,7 +44,6 @@ html {
   font-size: 16px;
 }
 
-/* --- ZASADY GŁÓWNE DLA STRONY --- */
 body {
   font-family: var(--font-body) !important;
   background-color: var(--color-bg) !important;
@@ -46,7 +51,7 @@ body {
   line-height: 1.6;
 }
 
-/* Nagłówki i stylizacja tekstu wyróżnionego (Cinzel z logo) */
+/* Typografia i elementy uniwersalne */
 h1, h2, h3, h4, h5, h6, 
 .hero-content h1, 
 .hero-content .hero-lead,
@@ -69,6 +74,18 @@ a {
   color: inherit;
   text-decoration: none;
   transition: var(--transition-fast);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 /* ==========================================================================
@@ -120,59 +137,50 @@ a {
 
 .btn-slide:hover {
   background-color: var(--color-accent-hover);
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
 /* ==========================================================================
-   3. NAWIGACJA (Header & Menu) - Blokada Zmian Kolorów i Tła
+   3. NAWIGACJA (Header & Menu)
    ========================================================================== */
-
-/* STAŁE TŁO DLA NAGŁÓWKA - niezależnie od tego, czy strona jest przewinięta, czy nie */
 .site-header,
 .site-header.scrolled {
-  position: fixed !important; /* Zawsze przyklejony do góry */
+  position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
   z-index: 1000 !important;
-  box-shadow: none !important; /* Brak ostrego cienia */
-  backdrop-filter: none !important; /* Usunięcie jakiegokolwiek efektu blur */
+  box-shadow: none !important;
+  backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  
-  /* Stała, delikatna ciemna mgiełka dopasowana do tła #1A202C */
   background: linear-gradient(
     to bottom,
-    rgba(26, 32, 44, 0.45) 0%,   /* Subtelne ciemne przyciemnienie u góry */
-    rgba(26, 32, 44, 0.15) 60%,   /* Szybkie zanikanie zaraz pod menu */
-    rgba(26, 32, 44, 0) 100%      /* Całkowita przezroczystość */
+    rgba(26, 32, 44, 0.45) 0%,
+    rgba(26, 32, 44, 0.15) 60%,
+    rgba(26, 32, 44, 0) 100%
   ) !important;
-  
   transition: var(--transition-smooth) !important;
 }
 
-/* STAŁA STRUKTURA WEWNĘTRZNA - brak zmian wysokości paska */
 .site-header-inner,
 .site-header.scrolled .site-header-inner {
   display: flex !important;
-  justify-content: flex-end !important; /* Przyciski menu zawsze po prawej */
+  justify-content: flex-end !important;
   align-items: center !important;
-  padding: 0.6rem 5% 1rem 5% !important; /* Stały, wąski pasek */
+  padding: 0.6rem 5% 1rem 5% !important;
   max-width: 1400px !important;
   margin: 0 auto !important;
   position: relative !important;
 }
 
-/* ==========================================================================
-   STAŁE LOGO PO LEWEJ STRONIE (Niezależne od skrolowania)
-   ========================================================================== */
+/* Logo w nawigacji */
 .brand {
   position: static !important;
   transform: none !important;
   z-index: 1010 !important;
   display: flex !important;
   align-items: center !important;
-  
-  /* Stała widoczność */
   opacity: 1 !important;
   visibility: visible !important;
   transition: none !important;
@@ -184,15 +192,12 @@ a {
   display: block !important;
 }
 
-/* Wyłączenie wpływu skrolowania na klasę .brand */
 .site-header.scrolled .brand {
   opacity: 1 !important;
   visibility: visible !important;
 }
 
-/* ==========================================================================
-   MENU I LINKI - Całkowicie zamrożone i jasne
-   ========================================================================== */
+/* Menu nawigacji */
 .site-nav,
 .site-header.scrolled .site-nav {
   margin-left: auto !important;
@@ -207,26 +212,24 @@ a {
   margin-top: 15px !important;
 }
 
-/* Te selektory upewniają się, że żaden inny styl nie zmieni koloru linków na ciemny */
 .site-nav a,
 .site-header.scrolled .site-nav a,
 .site-header.scrolled .site-nav ul li a {
   font-family: var(--font-title) !important;
   font-weight: 400 !important;
   font-size: 1.1rem !important;
-  color: #F7FAFC !important; /* Zawsze jasny grafit/biel */
+  color: #F7FAFC !important;
   letter-spacing: 1px !important;
   transition: var(--transition-smooth) !important;
   background: transparent !important;
 }
 
-/* Złoty akcent po najechaniu myszką - zawsze działa tak samo */
 .site-nav a:hover,
 .site-header.scrolled .site-nav a:hover {
   color: var(--color-accent) !important; 
 }
 
-/* Mobilny hamburger (jeśli występuje) - blokujemy jasny kolor */
+/* Mobilny przycisk menu */
 .nav-toggle,
 .site-header.scrolled .nav-toggle {
   display: none !important;
@@ -296,7 +299,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.45);
+  background-color: rgba(0, 0, 0, 0.5) !important;
   z-index: 2;
 }
 
@@ -308,13 +311,29 @@ a {
   padding: 0 20px;
 }
 
+.hero-logo-wrapper {
+  padding-top: 40px;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-logo {
+  height: 110px;
+  width: auto;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
+  display: block;
+}
+
 .hero-content h1 {
   font-family: var(--font-title);
-  font-weight: 400 !important; /* Wyłącza domyślne pogrubienie przeglądarki */
+  font-weight: 400 !important;
   font-size: 3.5rem;
   line-height: 1.5;
   letter-spacing: 4px;
   margin-bottom: 1.2rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.6) !important;
 }
 
 .hero-lead {
@@ -325,22 +344,15 @@ a {
   opacity: 0.95; 
   letter-spacing: 2px;
   max-width: 33.33vw;
-  margin-left: auto;    /* Wyśrodkowanie bloku w poziomie */
-  margin-right: auto;   /* Wyśrodkowanie bloku w poziomie */
-  text-align: center;   /* Wyśrodkowanie samego tekstu wewnątrz bloku */
-}
-
-/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% */
-@media (max-width: 768px) {
-  .hero-lead {
-    max-width: 100%;
-  }
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6) !important;
 }
 
 /* ==========================================================================
-   SEKCJA O PENSJONACIE (Pełny ekran, treść po lewej stronie - jasny tekst)
+   5. SEKCJA O PENSJONACIE (About Section)
    ========================================================================== */
-
 .about-section {
   width: 100%;
   height: 100vh;
@@ -379,16 +391,15 @@ a {
   display: block !important;
 }
 
-/* Złota kreseczka wyrównana do lewej */
 .about-title::after,
 .about-section h2::after {
-	content: '';
-	display: block;
-	width: 120px;
-	height: 3px;
-	background-color: var(--color-accent);
-	margin-left: 0 !important;
-  	margin-right: auto !important;
+  content: '';
+  display: block;
+  width: 120px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin-left: 0 !important;
+  margin-right: auto !important;
 }
 
 .about-text {
@@ -400,32 +411,11 @@ a {
   text-align: left !important;
 }
 
-/* Responsywność dla urządzeń mobilnych */
-@media (max-width: 768px) {
-  .about-section {
-    height: auto;
-    padding: 5rem 0;
-  }
-  
-  .about-content {
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .about-title {
-    font-size: 1.75rem;
-  }
-}
-
 /* ==========================================================================
-   5. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
+   6. SLAJDERY APARTAMENTÓW I UDOGODNIEŃ (Swiper Customization)
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   5.1. SLAJDER APARTAMENTÓW (HERO OVERLAY - Pełnowymiarowy)
-   -------------------------------------------------------------------------- */
-
-/* Kontener sekcji apartamentów - bez domyślnych marginesów */
+/* --- 6.1. SLAJDER APARTAMENTÓW --- */
 .apartments-section {
   padding: 0;
   margin: 0;
@@ -433,11 +423,10 @@ a {
 
 .apartments-section .swiper {
   width: 100%;
-  padding-bottom: 0 !important; /* Brak dolnego odstępu — kropki na zdjęciu */
+  padding-bottom: 0 !important;
   position: relative;
 }
 
-/* Tytuł "Nasze Apartamenty" nałożony na górną część zdjęcia */
 .slider-title-overlay {
   position: absolute;
   top: 40px;
@@ -446,7 +435,7 @@ a {
   z-index: 10;
   width: 100%;
   text-align: center;
-  pointer-events: none; /* Zapewnia brak blokowania kliknięć w slajder */
+  pointer-events: none;
 }
 
 .slider-title-overlay .section-title {
@@ -455,20 +444,18 @@ a {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Pojedynczy slajd apartamentu */
 .apartment-slide {
   position: relative;
-  height: 70vh; /* Elastyczna wysokość dopasowana do ekranu */
-  min-height: 650px; /* Zwiększona wysokość slajdu */
+  height: 70vh;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 4rem 3rem; /* Odstęp treści od krawędzi slajdu */
+  padding: 4rem 3rem;
   color: var(--color-text-light);
   overflow: hidden;
 }
 
-/* Zdjęcie w tle slajdu z efektem zoom przy najechaniu */
 .slide-bg {
   position: absolute;
   top: 0;
@@ -484,7 +471,6 @@ a {
   transform: scale(1.05);
 }
 
-/* Gradientowe przyciemnienie zdjęcia (góra pod tytuł, dół pod treść) */
 .slide-overlay {
   position: absolute;
   top: 0;
@@ -500,7 +486,6 @@ a {
   z-index: 2;
 }
 
-/* Treść slajdu (tytuł, detale, opis) w lewym dolnym rogu */
 .slide-content {
   position: relative;
   z-index: 3;
@@ -534,239 +519,135 @@ a {
   margin-bottom: 1.5rem;
 }
 
-/* Przycisk "Zobacz więcej" */
-.btn-slide {
-  display: inline-block;
-  padding: 0.8rem 1.8rem;
-  background-color: var(--color-accent);
-  color: #ffffff;
-  text-decoration: none;
-  font-family: var(--font-title);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 2px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-slide:hover {
-  background-color: #ffffff;
-  color: #000000;
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-SEKCJA LOKALIZACJA (PEŁNY OBRAZ + PTASZKI ZAMIAST PINEZEK)
-========================================================================== */
-.location-section {
-position: relative !important;
-width: 100% !important;
-box-sizing: border-box !important;
-
-/* Tło: przyciemnienie oraz obraz dopasowany bez czarnych pasów */
-background-image:
-linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
-url('../img/location-bg.png') !important;
-background-size: cover !important;
-background-position: center top !important;
-background-repeat: no-repeat !important;
-
-overflow: hidden !important;
-
-display: flex !important;
-flex-direction: column !important;
-align-items: center !important;
-justify-content: center !important;
-
-padding: 80px 20px !important;
-margin: 0 !important;
-
-/* Wysokość dopasowana do ekranu */
-min-height: 100vh !important;
-aspect-ratio: 16 / 9 !important;
-}
-
-/* Kontener z treścią */
-.location-content {
-position: relative !important;
-z-index: 2 !important;
-width: 100% !important;
-max-width: 900px !important;
-color: #FFFFFF !important;
-display: flex !important;
-flex-direction: column !important;
-align-items: center !important;
-margin: 0 auto !important;
-   /* Przesunięcie całej treści nieco w górę od geometrycznego środka */
-transform: translateY(-40px) !important;
-}
-
-/* Tytuł sekcji lokalizacji */
-.location-title {
-font-family: var(--font-title, serif) !important;
-font-size: 2.2rem !important;
-font-weight: 400 !important;
-letter-spacing: 2px !important;
-margin-top: 0 !important;
-margin-bottom: 30px !important;
-color: #FFFFFF !important;
-text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
-text-align: center !important;
-}
-
-/* Układ pionowy podpunktów */
-.location-info {
-display: flex !important;
-flex-direction: column !important;
-align-items: flex-start !important;
-justify-content: center !important;
-gap: 16px !important;
-width: fit-content !important;
-max-width: 100% !important;
-margin: 0 auto !important;
-}
-
-/* Styl pojedynczego podpunktu */
-.location-info p {
-font-family: var(--font-body, sans-serif) !important;
-font-size: 1.1rem !important;
-font-weight: 400 !important;
-letter-spacing: 1px !important;
-margin: 0 !important;
-color: #F7FAFC !important;
-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
-text-align: left !important;
-
-display: inline-flex !important;
-align-items: center !important;
-gap: 12px !important;
-}
-
-/* Ptaszek (Checkmark) w kolorze tekstu (#F7FAFC) przed każdym podpunktem */
-.location-info p::before {
-content: '' !important;
-display: inline-block !important;
-width: 20px !important;
-height: 20px !important;
-flex-shrink: 0 !important;
-background-color: #F7FAFC !important;
-
--webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") no-repeat center / contain !important;
-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") no-repeat center / contain !important;
-}
-
-/* Dostosowanie na telefony */
-@media (max-width: 768px) {
-.location-section {
-min-height: 500px !important;
-aspect-ratio: auto !important;
-padding: 50px 15px !important;
-}
-.location-title {
-font-size: 1.6rem !important;
-margin-bottom: 20px !important;
-}
-.location-info p {
-font-size: 0.95rem !important;
-}
-}
-
-/* Dostosowanie na telefony (zmniejszenie wysokosci, by na telefonach nie trzeba było przewijać w nieskończoność) */
-@media (max-width: 768px) {
-.location-section {
-min-height: 600px !important;
-padding: 50px 15px !important;
-}
-.location-title {
-font-size: 1.6rem !important;
-margin-bottom: 20px !important;
-}
-.location-info p {
-font-size: 0.95rem !important;
-}
-}
-
-/* --------------------------------------------------------------------------
-   5.2. SLAJDER UDOGODNIEŃ (Karty)
-   -------------------------------------------------------------------------- */
-
-/* Sekcja udogodnień - tradycyjny odstęp pionowy */
+/* --- 6.2. SLAJDER UDOGODNIEŃ (Podział 50/50) --- */
 .amenities-section {
   padding: 6rem 0;
 }
 
 .amenities-section .swiper {
   width: 100%;
-  padding-bottom: 4rem !important; /* Odstęp pod slajderem na kropki nawigacji */
+  padding-bottom: 4rem !important;
 }
 
-/* Karta pojedynczego udogodnienia */
-.amenity-slide {
-  background-color: var(--color-bg-card);
+.swiper-slide.amenity-slide {
+  display: flex !important;
+  flex-direction: row-reverse !important; 
+  align-items: center !important;         
+  justify-content: space-between !important;
+  background-color: #ffffff !important;   
+  width: 100% !important;
   border: 1px solid var(--color-border);
+}
+
+.amenity-slide .amenity-content {
+  flex: 0 0 45% !important;
+  width: 45% !important;
+  padding: 50px !important;                
+  box-sizing: border-box !important;
+  text-align: left !important;            
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-.amenity-img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-.amenity-content {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.amenity-content h3 {
+.amenity-slide .amenity-content h3 {
   font-family: var(--font-title);
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: 0.75rem;
+  margin-bottom: 15px !important;
   letter-spacing: 1px;
 }
 
-.amenity-content p {
+.amenity-slide .amenity-content p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--color-text-dark);
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
+  margin-bottom: 25px !important;
+  color: #555555 !important;              
 }
 
+.amenity-slide .amenity-img {
+  flex: 0 0 50% !important;
+  width: 50% !important;
+  height: 100% !important;
+  min-height: 450px !important;           
+  object-fit: cover;
+}
 
-/* --------------------------------------------------------------------------
-   5.3. CUSTOM SWIPER NAVIGATION & PAGINATION (Wspólne style nawigacji)
-   -------------------------------------------------------------------------- */
+/* --- 6.3. NAWIGACJA & STRZAŁKI SLAJDERA --- */
+.carousel-control-prev,
+.swiper-button-prev,
+.slider-arrow-left {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  left: 5% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: 100px !important;
+  height: 100px !important;
+  z-index: 1090 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
-/* Przycisk Poprzedni / Następny */
+.carousel-control-next,
 .swiper-button-next,
-.swiper-button-prev {
-  color: var(--color-accent) !important;
-  background-color: rgba(30, 30, 30, 0.8);
-  width: 45px !important;
-  height: 45px !important;
-  border-radius: 50%;
-  z-index: 10;
+.slider-arrow-right {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  right: 5% !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 100px !important;
+  height: 100px !important;
+  z-index: 1090 !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
+.carousel-control-prev-icon,
+.carousel-control-next-icon,
+.swiper-button-prev::after,
 .swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 1.25rem !important;
+.slider-arrow i {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 8rem !important;
+  height: 8rem !important;
+  font-size: 8rem !important;
+  line-height: 1 !important;
+  color: #F7FAFC !important;
+  background-image: none !important;
 }
 
-/* Kropki nawigacyjne w sliderze apartamentów (nałożone na zdjęcie) */
+.carousel-control-prev-icon::before, .swiper-button-prev::after { content: '‹' !important; font-family: Arial, sans-serif !important; }
+.carousel-control-next-icon::before, .swiper-button-next::after { content: '›' !important; font-family: Arial, sans-serif !important; }
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon,
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+  color: var(--color-accent) !important;
+  filter: drop-shadow(0 0 12px rgba(214, 158, 46, 0.6));
+}
+
 .apartments-section .swiper-pagination {
   bottom: 20px !important;
   z-index: 10;
 }
 
-/* Wygląd kropek (pagination bullets) */
 .swiper-pagination-bullet {
   background: rgba(255, 255, 255, 0.6) !important;
   opacity: 1 !important;
@@ -778,7 +659,92 @@ font-size: 0.95rem !important;
 }
 
 /* ==========================================================================
-   7. OPINIE GOŚCI (Reviews Section)
+   7. SEKCJA LOKALIZACJA (Location Section)
+   ========================================================================== */
+.location-section {
+  position: relative !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url('../img/location-bg.png') !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 80px 20px !important;
+  margin: 0 !important;
+  min-height: 100vh !important;
+  aspect-ratio: 16 / 9 !important;
+}
+
+.location-content {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  color: #FFFFFF !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin: 0 auto !important;
+  transform: translateY(-40px) !important;
+}
+
+.location-title {
+  font-family: var(--font-title, serif) !important;
+  font-size: 2.2rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 2px !important;
+  margin-top: 0 !important;
+  margin-bottom: 30px !important;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+  text-align: center !important;
+}
+
+.location-info {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.location-info p {
+  font-family: var(--font-body, sans-serif) !important;
+  font-size: 1.1rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px !important;
+  margin: 0 !important;
+  color: #F7FAFC !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+  text-align: left !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.location-info p::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+  background-color: #F7FAFC !important;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") no-repeat center / contain !important;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='black'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E") no-repeat center / contain !important;
+}
+
+/* ==========================================================================
+   8. OPINIE GOŚCI (Reviews Section)
    ========================================================================== */
 .reviews-section {
   padding: 6rem 0;
@@ -842,7 +808,7 @@ font-size: 0.95rem !important;
 }
 
 /* ==========================================================================
-   8. POZNAJ NAS BLIŻEJ (Navigation links Section)
+   9. POZNAJ NAS BLIŻEJ (Navigation Links)
    ========================================================================== */
 .info-links-section {
   padding: 5rem 0;
@@ -850,18 +816,16 @@ font-size: 0.95rem !important;
   color: var(--color-text-light);
 }
 
-/* Złota kreseczka wyrównana do lewej */
 .info-links-section .section-title::after,
 .info-links-section h2::after {
-	content: '';
-	display: block;
-	width: 120px;
-	height: 3px;
-	background-color: var(--color-accent);
-	margin-left: 0 !important;
-  	margin-right: auto !important;
+  content: '';
+  display: block;
+  width: 120px;
+  height: 3px;
+  background-color: var(--color-accent);
+  margin-left: 0 !important;
+  margin-right: auto !important;
 }
-
 
 .info-links {
   display: flex;
@@ -905,17 +869,16 @@ font-size: 0.95rem !important;
 }
 
 /* ==========================================================================
-   9. SEKCJA MAPY (Map Section)
+   10. SEKCJA MAPY (Map Section)
    ========================================================================== */
 .map-section {
-  padding: 6rem 0 0 0; /* Bez dolnego marginesu – styka się ze stopką */
+  padding: 6rem 0 0 0;
 }
 
-/* Wymuszenie 100% szerokości dla mapy oraz jej kontenera */
 .map-container, 
 iframe {
   box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
-  line-height: 0; /* Zapobiega lukom pod iframe */
+  line-height: 0;
   width: 100vw !important;
   position: relative;
   left: 50%;
@@ -927,7 +890,7 @@ iframe {
 }
 
 /* ==========================================================================
-   10. STOPKA (Footer)
+   11. STOPKA (Footer)
    ========================================================================== */
 .site-footer {
   background-color: var(--color-primary);
@@ -991,9 +954,8 @@ iframe {
 }
 
 /* ==========================================================================
-   11. RZETELNY RESPONSIVE DESIGN (Media Queries)
+   12. RESPONSYWNOŚĆ (Media Queries)
    ========================================================================== */
-
 @media (max-width: 992px) {
   .hero-content h1 {
     font-size: 2.75rem;
@@ -1007,26 +969,23 @@ iframe {
 }
 
 @media (max-width: 768px) {
-  /* Pozycjonowanie elementów w nagłówku mobilnym */
   .site-header-inner {
-    justify-content: flex-end; /* Przesuwa przycisk menu na prawą stronę */
+    justify-content: flex-end;
   }
 
   .brand {
-    /* Logo pozostaje idealnie na środku ekranu na telefonach */
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 
-  /* Nawigacja mobilna */
   .nav-toggle {
-    display: block; /* Pokazuje hamburger */
+    display: block;
   }
   
   .site-nav {
-    display: none; /* Domyślnie schowane */
+    display: none;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1036,7 +995,6 @@ iframe {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
   
-  /* Klasa dodawana przez prosty skrypt JS w main.js po kliknięciu hamburgera */
   .site-nav.active {
     display: block;
   }
@@ -1047,10 +1005,36 @@ iframe {
     gap: 1.5rem;
   }
   
-  /* Bohater (Hero) i sekcje */
   .hero-content h1 {
     font-size: 2.25rem;
   }
+
+  .hero-lead {
+    max-width: 100%;
+  }
+
+  .hero-logo {
+    height: 120px;
+  }
+
+  .hero-logo-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .about-section {
+    height: auto;
+    padding: 5rem 0;
+  }
+  
+  .about-content {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .about-title {
+    font-size: 1.75rem;
+  }
+
   .section-title {
     font-size: 1.75rem;
   }
@@ -1061,698 +1045,36 @@ iframe {
   }
   
   .location-section {
-    height: auto;
-    padding: 4rem 0;
+    min-height: 600px !important;
+    aspect-ratio: auto !important;
+    padding: 50px 15px !important;
   }
-  
+
+  .location-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 20px !important;
+  }
+
+  .location-info p {
+    font-size: 0.95rem !important;
+  }
+
   .location-info {
     flex-direction: column;
     gap: 1rem;
   }
-}
 
-/* Ukrywanie tekstów nagłówka dla SEO (dostępność) */
-.visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-/* Styl dla wielkiego logo wyświetlanego na środku ekranu głównego (Hero) */
-.hero-logo-wrapper {
-  padding-top: 40px
-  margin-bottom: 2.5rem; /* Odstęp między logiem a napisem APARTAMENTY Z DUSZĄ */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-logo {
-  height: 110px; /* Twoja wymarzona, trzykrotna wielkość */
-  width: auto;
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3)); /* Lekki cień, by logo było super czytelne na każdym tle */
-  display: block;
-}
-
-/* Dostosowanie wielkości logo na mniejszych ekranach telefonów */
-@media (max-width: 768px) {
-  .hero-logo {
-    height: 120px; /* Na telefonie delikatnie je zmniejszamy, żeby nie zajęło całego ekranu */
-  }
-  .hero-logo-wrapper {
-    margin-bottom: 1.5rem;
-  }
-}
-
-/* ==========================================================================
-   POPRAWA CZYTELNOŚCI TEKSTU NA TLE HERO
-   ========================================================================== */
-
-/* Wzmocnienie ciemnego filtru na zdjęciu tła */
-.hero-overlay {
-  background-color: rgba(0, 0, 0, 0.5) !important; /* 0.5 to 50% przyciemnienia - idealny balans */
-}
-
-/* Dodanie eleganckiego, rozmytego cienia pod białymi napisami */
-.hero-content h1 {
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.6) !important;
-}
-
-.hero-content .hero-lead {
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6) !important;
-}
-
-/* ==========================================================================
-   NIEZALEŻNE POZYCJONOWANIE I NAPRAWA STRZAŁEK HERO
-   ========================================================================== */
-
-/* 1. Precyzyjne ustawienie strzałek z boku, z dala od tekstu */
-.carousel-control-prev,
-.swiper-button-prev,
-.slider-arrow-left {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  left: 5% !important; /* Odsunięcie od lewej krawędzi, by nie nachodzić na tekst */
-  right: auto !important;
-  bottom: auto !important;
-  width: 100px !important;
-  height: 100px !important;
-  z-index: 1090 !important; /* Wyższa warstwa niż jakikolwiek tekst */
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.carousel-control-next,
-.swiper-button-next,
-.slider-arrow-right {
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  right: 5% !important; /* Odsunięcie od prawej krawędzi */
-  left: auto !important;
-  bottom: auto !important;
-  width: 100px !important;
-  height: 100px !important;
-  z-index: 1090 !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* 2. Wygląd gigantycznych strzałek (8rem) */
-.carousel-control-prev-icon,
-.carousel-control-next-icon,
-.swiper-button-prev::after,
-.swiper-button-next::after,
-.slider-arrow i {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 8rem !important;
-  height: 8rem !important;
-  font-size: 8rem !important;
-  line-height: 1 !important;
-  color: #F7FAFC !important;
-  background-image: none !important; /* Czyszczenie fabrycznych grafik */
-}
-
-/* Wymuszenie czystych znaków strzałek tekstowych */
-.carousel-control-prev-icon::before, .swiper-button-prev::after { content: '‹' !important; font-family: Arial, sans-serif !important; }
-.carousel-control-next-icon::before, .swiper-button-next::after { content: '›' !important; font-family: Arial, sans-serif !important; }
-
-/* Złoty hover */
-.carousel-control-prev:hover .carousel-control-prev-icon,
-.carousel-control-next:hover .carousel-control-next-icon,
-.swiper-button-prev:hover::after,
-.swiper-button-next:hover::after {
-  color: var(--color-accent) !important;
-  filter: drop-shadow(0 0 12px rgba(214, 158, 46, 0.6));
-}
-
-/* ==========================================================================
-   BLOK 2: PODZIAŁ 50/50 TYLKO DLA SEKCJI UDOGODNIEŃ (Tekst lewo, Zdjęcie prawo)
-   ========================================================================== */
-.swiper-slide.amenity-slide {
-  display: flex !important;
-  flex-direction: row-reverse !important; 
-  align-items: center !important;         
-  justify-content: space-between !important;
-  background-color: #ffffff !important;   
-  width: 100% !important;
-}
-
-.amenity-slide .amenity-content {
-  flex: 0 0 45% !important;
-  width: 45% !important;
-  padding: 50px !important;               
-  box-sizing: border-box !important;
-  text-align: left !important;            
-}
-
-.amenity-slide .amenity-content h3 {
-  margin-bottom: 15px !important;
-}
-
-.amenity-slide .amenity-content p {
-  margin-bottom: 25px !important;
-  color: #555555 !important;              
-}
-
-.amenity-slide .amenity-img {
-  flex: 0 0 50% !important;
-  width: 50% !important;
-  height: 100% !important;
-  min-height: 450px !important;           
-  object-fit: cover !important;           
-  display: block !important;
-}
-
-@media (max-width: 768px) {
-  .swiper-slide.amenity-slide {
-    flex-direction: column !important;    
-  }
-  .amenity-slide .amenity-content,
-  .amenity-slide .amenity-img {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    padding: 20px !important;
-  }
-  .amenity-slide .amenity-img {
-    min-height: 250px !important;
-  }
-}
-
-/* ==========================================================================
-   1. SEKCJA UDOGODNIEŃ (UKŁAD, PRZEZROCZYSTE TŁO, JASNY TEKST I PRZYCISK)
-   ========================================================================== */
-
-/* Sekcja nadrzędna */
-.amenities-section {
-  background-color: var(--color-bg, #F7FAFC) !important;
-  position: relative !important;
-}
-
-/* Tło slajdu i układ (tekst + zdjęcie w jednym wierszu) */
-.swiper-slide.amenity-slide {
-  display: flex !important;
-  flex-direction: row-reverse !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background-color: transparent !important;
-  background: transparent !important;
-  gap: 40px !important;
-  width: 100% !important;
-}
-
-/* Ściśnięty blok tekstu + ROZJAŚNIENIE TEKSTÓW */
-.amenity-slide .amenity-content {
-  flex: 0 0 35% !important;
-  width: 35% !important;
-  padding: 20px !important;
-  text-align: left !important;
-  color: #FFFFFF !important;
-  
-  /* Zabezpieczenie: wyrównanie elementów wewnątrz bloku tekstu do lewej */
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: flex-start !important; 
-}
-
-.amenity-slide .amenity-content h3 {
-  margin-bottom: 15px !important;
-  color: #FFFFFF !important;
-  font-size: 1.5rem !important;
-  width: 100% !important;
-}
-
-.amenity-slide .amenity-content p {
-  margin-bottom: 25px !important;
-  color: #F7FAFC !important;
-  font-size: 1rem !important;
-  line-height: 1.6 !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-  width: 100% !important;
-}
-
-/* 🎯 BEZWZGLĘDNE ZMNIEJSZENIE PRZYCISKU W BLOKU TEKSTU */
-.amenity-slide .amenity-content a,
-.amenity-slide .amenity-content button,
-.amenity-slide .amenity-content .btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: auto !important;             /* Zezwala na zwężenie */
-  max-width: fit-content !important;  /* Ścina szerokość idealnie do tekstu */
-  align-self: flex-start !important;  /* Blokuje rozciąganie przez flexbox parenta */
-  padding: 10px 24px !important;      /* Wewnętrzny margines napisu */
-  flex-grow: 0 !important;            /* Blokuje rozrastanie się przycisku */
-}
-
-/* Ściśnięte zdjęcie slajdu */
-.amenity-slide .amenity-img {
-  flex: 0 0 40% !important;
-  width: 40% !important;
-  height: 100% !important;
-  min-height: 400px !important;
-  object-fit: cover !important;
-  display: block !important;
-  border-radius: 4px !important;
-}
-
-/* Responsywność dla urządzeń mobilnych */
-@media (max-width: 768px) {
   .swiper-slide.amenity-slide {
     flex-direction: column !important;
   }
+
   .amenity-slide .amenity-content,
   .amenity-slide .amenity-img {
-    flex: 0 0 100% !important;
     width: 100% !important;
-    padding: 20px !important;
+    flex: 1 1 100% !important;
   }
+
   .amenity-slide .amenity-img {
     min-height: 250px !important;
-  }
-}
-
-/* ==========================================================================
-   2. PRECYZYJNE CENTROWANIE TEKSTU TYLKO W SEKCJI APARTAMENTÓW (Tekst od lewej)
-   ========================================================================== */
-.swiper-slide.apartment-slide {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  position: relative !important;
-}
-
-.apartment-slide .slide-content {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 90% !important;
-  max-width: 650px !important;
-  margin: 0 auto !important;
-  text-align: left !important;          /* KAŻDA LINIJKA ZACZYNA SIĘ OD LEWEJ */
-  box-sizing: border-box !important;
-  z-index: 10 !important;
-}
-
-/* Nagłówek i akapit dziedziczą wyrównanie do lewej strony */
-.apartment-slide .slide-content h3,
-.apartment-slide .slide-content p {
-  text-align: left !important;
-  margin-left: 0 !important;
-  margin-right: auto !important;
-}
-
-/* Przycisk "Zobacz więcej" zostawiamy na środku pod tekstem, żeby dobrze wyglądał */
-.apartment-slide .slide-content .btn-slide {
-  display: inline-block !important;
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 20px !important;
-}
-
-/* Szczegóły apartamentu (wielkość, osoby) – trzymamy na środku w jednej linii */
-.apartment-slide .apt-details {
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 15px auto !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: flex-start !important; /* Detale też zaczną się od lewej pod nagłówkiem */
-  gap: 20px !important;
-}
-
-/* ==========================================================================
-   NOWE ZMIANY I TUNING WIZUALNY
-   ========================================================================== */
-
-/* --- 1. WYŻSZE LOGO W HERO --- */
-.hero-content {
-  padding-top: 40px !important; /* Podciągamy zawartość wyżej */
-}
-.hero-logo-wrapper {
-  margin-top: 0 !important;
-  margin-bottom: 15px !important; /* Zmniejszamy dystans pod logo */
-}
-
-/* --- 2. PRZYCIEMNIENIE TŁA W APARTAMENTACH --- */
-.apartment-slide .slide-overlay {
-  background-color: rgba(0, 0, 0, 0.55) !important; /* Zwiększamy krycie (np. z 0.3 na 0.55) dla lepszej czytelności tekstu */
-  position: absolute !important;
-  top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 2 !important;
-}
-
-/* --- 5. OPINIE GOŚCI (Ikona cytatu i wyrównanie autora) --- */
-/* Dodanie eleganckiego cudzysłowu nad opinią */
-.testimonial-text::before {
-  content: '“' !important;
-  display: block !important;
-  font-size: 4rem !important;
-  line-height: 1 !important;
-  color: var(--color-accent, #d69e2e) !important;
-  text-align: center !important;
-  margin-bottom: 10px !important;
-  font-family: Georgia, serif !important;
-}
-/* Centrowanie autora i oceny bezpośrednio pod tekstem */
-.testimonial-author,
-.testimonial-rating {
-  text-align: center !important;
-  margin: 5px auto 0 auto !important;
-  display: block !important;
-  width: 100% !important;
-}
-
-/* ==========================================================================
-   SEKCJA POZNAJ NAS BLIŻEJ (UKŁAD OBAK SIEBIE: LINKI LEWA / FOTO PRAWA)
-   ========================================================================== */
-.info-links-section {
-  padding: 80px 0 !important;
-  background-color: var(--color-bg, #F7FAFC) !important;
-}
-
-/* Kontener staje się elastycznym pudełkiem dzielącym przestrzeń na pół */
-.info-links-section .container {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 40px !important;
-}
-
-/* Lewa strona - Tytuł i bloki linków */
-.info-links-left {
-  flex: 0 0 48% !important;
-  width: 48% !important;
-}
-
-.info-links-left .section-title {
-  text-align: left !important;
-  margin-bottom: 30px !important;
-}
-
-/* Układ linków jeden pod drugim, wyrównany do lewej */
-.info-links {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 25px !important;
-}
-
-/* Styl pojedynczego linku z numerem */
-.info-link {
-  display: flex !important;
-  align-items: center !important; /* Numer i tekst w jednej linii */
-  gap: 20px !important;
-  text-decoration: none !important;
-  color: inherit !important;
-  transition: transform 0.3s ease !important;
-}
-
-/* Styl wielkich cyfr */
-.info-link-num {
-  font-size: 3rem !important;
-  font-weight: 300 !important;
-  line-height: 1 !important;
-  color: var(--color-accent, #d69e2e) !important;
-  opacity: 0.7 !important;
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-/* Styl tekstu obok cyfry */
-.info-link-text {
-  font-size: 1.25rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.5px !important;
-  position: relative !important;
-}
-
-/* Prawa strona - Zdjęcie */
-.info-links-right {
-  flex: 0 0 48% !important;
-  width: 48% !important;
-}
-
-.info-about-img {
-  width: 100% !important;
-  height: auto !important;
-  max-height: 450px !important;
-  object-fit: cover !important;
-  border-radius: 4px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Efekt najechania myszką (Hover) */
-.info-link:hover {
-  transform: translateX(8px) !important; /* Delikatne wysunięcie w prawo */
-}
-.info-link:hover .info-link-num {
-  opacity: 1 !important;
-  transform: scale(1.1) !important;
-}
-
-/* Responsywność: Na telefonach zdjęcie wskakuje pod spód, a tekst się centruje */
-@media (max-width: 768px) {
-  .info-links-left, .info-links-right {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-  }
-  .info-links-left .section-title {
-    text-align: center !important;
-  }
-  .info-link {
-    justify-content: center !important;
-  }
-}
-
-/* ==========================================================================
-   NAWIGACJA Z ROZWIJANYM MENU (DESKTOP + MOBILE)
-   ========================================================================== */
-
-/* Podstawowe pozycjonowanie logo */
-.brand {
-  position: static !important;
-  transform: none !important;
-  z-index: 1010 !important;
-  display: flex !important;
-  align-items: center !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.brand img.logo {
-  height: 80px !important;
-  width: auto !important;
-  display: block !important;
-}
-
-/* Układ nagłówka */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: rgba(18, 18, 18, 0.95);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.header-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.site-nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 32px;
-  align-items: center;
-}
-
-.site-nav a {
-  color: #f3f4f6;
-  text-decoration: none;
-  font-size: 0.95rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.site-nav a:hover {
-  color: #c5a059;
-}
-
-/* Rozwijane submenu - PC (Desktop) */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: #181818;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  min-width: 220px;
-  padding: 10px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0 !important;
-  
-  /* Ukrycie domyślne */
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all 0.25s ease;
-}
-
-.dropdown-menu li a {
-  padding: 10px 18px;
-  font-size: 0.85rem;
-  text-transform: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.dropdown-menu li:last-child a {
-  border-bottom: none;
-}
-
-.dropdown-menu li a:hover {
-  background-color: rgba(197, 160, 89, 0.1);
-  color: #c5a059;
-}
-
-/* Pojawianie się menu po najechaniu myszką (Desktop) */
-@media (min-width: 869px) {
-  .dropdown:hover .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-}
-
-/* Przycisk Hamburgera (Ukryty na PC) */
-.mobile-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.hamburger-bar {
-  width: 26px;
-  height: 2px;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-  display: block;
-}
-
-/* ==========================================================================
-   WIDOK MOBILNY (Telefony)
-   ========================================================================== */
-@media (max-width: 868px) {
-  .brand img.logo {
-    height: 50px !important;
-  }
-
-  .mobile-toggle {
-    display: flex;
-  }
-
-  .mobile-toggle.active .hamburger-bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-  }
-  .mobile-toggle.active .hamburger-bar:nth-child(2) {
-    opacity: 0;
-  }
-  .mobile-toggle.active .hamburger-bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-  }
-
-  .site-nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: #121212;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-  }
-
-  .site-nav.active {
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  .site-nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 15px;
-  }
-
-  .site-nav a {
-    width: 100%;
-    font-size: 1.05rem;
-  }
-
-  .dropdown {
-    width: 100%;
-  }
-
-  .dropdown-menu {
-    position: static;
-    box-shadow: none;
-    border: none;
-    background-color: #181818;
-    border-left: 2px solid #c5a059;
-    margin-top: 8px;
-    margin-left: 10px;
-    padding: 5px 0;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-
-  .dropdown.open .dropdown-menu {
-    display: flex;
   }
 }
