@@ -179,7 +179,7 @@ a {
 }
 
 .brand img.logo {
-  height: 80px !important; /* Dwa razy większe logo */
+  height: 65px !important;
   width: auto !important;
   display: block !important;
 }
