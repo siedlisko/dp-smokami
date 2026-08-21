@@ -145,6 +145,16 @@ title: Kontakt – Dom pod Smokami
     display: block;
   }
 
+  /* Podpis pod zdjęciem w sekcji kontakt */
+  .contact-img-wrapper figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
   /* Sekcja Dane Firmy (Na dole) */
   .company-info-card {
     background-color: var(--color-card-bg);
@@ -218,10 +228,11 @@ title: Kontakt – Dom pod Smokami
 
       </div>
 
-      <!-- Prawa Strona: Zdjęcie -->
-      <div class="contact-img-wrapper">
-        <img src="{{ site.baseurl }}/assets/img/kontakt-side.jpg" alt="Dom Pod Smokami">
-      </div>
+      <!-- Prawa Strona: Zdjęcie z podpisem -->
+      <figure class="contact-img-wrapper">
+        <img src="{{ site.baseurl }}/assets/img/kontakt-hero.jpg" alt="Ryszard i Tatiana">
+        <figcaption>Ryszard i Tatiana</figcaption>
+      </figure>
 
     </div>
 
