@@ -163,30 +163,28 @@ a {
 }
 
 /* ==========================================================================
-   KONTROLA LOGO (Jedyne, co reaguje na skrolowanie!)
+   STAŁE LOGO PO LEWEJ STRONIE (Niezależne od skrolowania)
    ========================================================================== */
 .brand {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important; /* Idealne centrowanie */
+  position: static !important;
+  transform: none !important;
   z-index: 1010 !important;
   display: flex !important;
   align-items: center !important;
   
-  /* Na starcie logo jest ukryte */
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  /* Stała widoczność */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: none !important;
 }
 
 .brand img.logo {
-  height: 60px !important; /* Stała, smukła wysokość */
+  height: 40px !important; /* Stała, mała wysokość (dostosuj np. do 45px/50px jeśli trzeba) */
   width: auto !important;
   display: block !important;
 }
 
-/* Płynne pokazanie logo po przewinięciu strony */
+/* Wyłączenie wpływu skrolowania na klasę .brand */
 .site-header.scrolled .brand {
   opacity: 1 !important;
   visibility: visible !important;
