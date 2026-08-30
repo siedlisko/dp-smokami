@@ -1552,11 +1552,20 @@ iframe {
    WYMUSZENIE WIDOCZNOŚCI DOLNEGO PASKA NA MOBILE (< 768px)
    ========================================================================== */
 /* ==========================================================================
-   WYMUSZENIE STAŁEGO WYGLĄDU PRZYCISKÓW NA MOBILE (< 768px)
+   WYMUSZENIE STAŁEGO WYGLĄDU PRZYCISKÓW ORAZ ZMNIEJSZENIE HERO NA MOBILE (< 768px)
    ========================================================================== */
 
 @media (max-width: 767px) {
-  /* 1. Ukrycie logo oraz hamburgera w nagłówku */
+  /* 1. Zmniejszenie górnego odstępu sekcji Hero (przesunięcie treści w górę) */
+  .hero,
+  #hero,
+  .hero-section {
+    padding-top: 40px !important;    /* Zmniejszony odstęp od góry ekranu */
+    padding-bottom: 90px !important; /* Bezpieczny odstęp od dolnego paska */
+    min-height: auto !important;     /* Zapobiega sztucznemu rozciąganiu sekcji */
+  }
+
+  /* 2. Ukrycie logo oraz hamburgera w nagłówku */
   .site-header .brand,
   .site-header .logo,
   .mobile-toggle,
@@ -1565,7 +1574,7 @@ iframe {
     display: none !important;
   }
 
-  /* 2. Zresetowanie paska nagłówka, aby nie przekazywał stylów z Hero */
+  /* 3. Zresetowanie paska nagłówka */
   .site-header,
   .site-header.scrolled {
     background: transparent !important;
@@ -1579,7 +1588,7 @@ iframe {
     overflow: visible !important;
   }
 
-  /* 3. Pasek nawigacji przyklejony do dołu (stały wygląd w każdej sekcji) */
+  /* 4. Pasek nawigacji przyklejony do dołu (stały wygląd w każdej sekcji) */
   .site-nav,
   #siteNav,
   .site-header.scrolled .site-nav {
@@ -1595,7 +1604,7 @@ iframe {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
-    background-color: #1A202C !important; /* Ciemne tło */
+    background-color: #1A202C !important;
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
     padding: 10px 12px !important;
     z-index: 999999 !important;
@@ -1603,7 +1612,7 @@ iframe {
     box-sizing: border-box !important;
   }
 
-  /* 4. Układ dwóch przycisków obok siebie */
+  /* 5. Układ dwóch przycisków obok siebie */
   .site-nav ul,
   .site-header.scrolled .site-nav ul {
     display: flex !important;
@@ -1626,7 +1635,7 @@ iframe {
     display: block !important;
   }
 
-  /* 5. Stały styl przycisków (nadpisuje style z Hero i Scrolled) */
+  /* 6. Stały styl przycisków */
   .site-nav a,
   .site-nav ul li a,
   .site-header.scrolled .site-nav a,
@@ -1648,10 +1657,10 @@ iframe {
     text-transform: uppercase !important;
     letter-spacing: 0.5px !important;
     box-sizing: border-box !important;
-    transition: none !important; /* Wyłączenie płynnego przechodzenia kolorów podczas skrolowania */
+    transition: none !important;
   }
 
-  /* Wygląd drugiego przycisku (Kontakt) w akcencie */
+  /* Wygląd drugiego przycisku (Kontakt) */
   .site-nav ul li:last-child a,
   .site-header.scrolled .site-nav ul li:last-child a {
     background-color: #D69E2E !important;
