@@ -1548,35 +1548,54 @@ iframe {
 /* ==========================================================================
    WIDOK MOBILNY: UKRYTE LOGO + PRZYCISKI NA DOLE EKRANU
    ========================================================================== */
+/* ==========================================================================
+   WYMUSZENIE WIDOCZNOŚCI DOLNEGO PASKA NA MOBILE (< 768px)
+   ========================================================================== */
 
 @media (max-width: 767px) {
-  /* 1. Ukrycie logo na mobilkach */
+  /* 1. Ukrycie logo oraz hamburgera w nagłówku */
   .site-header .brand,
-  .site-header .logo {
+  .site-header .logo,
+  .mobile-toggle,
+  .nav-toggle,
+  #mobileToggle {
     display: none !important;
   }
 
-  /* 2. Ukrycie przycisku hamburgera (skoro mamy tylko 2 przyciski na dole) */
-  .mobile-toggle {
-    display: none !important;
+  /* 2. Zresetowanie nagłówka na mobilkach */
+  .site-header {
+    background: transparent !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
   }
 
-  /* 3. Pozycjonowanie paska nawigacji na dole ekranu */
-  .site-nav {
+  /* 3. Wymuszenie wyświetlania paska nawigacji przyklejonego do dołu */
+  .site-nav,
+  #siteNav {
+    display: block !important;
     position: fixed !important;
     bottom: 0 !important;
     left: 0 !important;
     right: 0 !important;
     top: auto !important;
     width: 100% !important;
-    background-color: #181818 !important; /* Dopasuj kolor tła */
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    height: auto !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background-color: #1A202C !important; /* Ciemny grafit dopasowany do tła strony */
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
     padding: 10px 12px !important;
-    z-index: 9999 !important;
-    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4) !important;
+    z-index: 999999 !important; /* Wartość gwarantująca wyświetlanie na wierzchu */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+    box-sizing: border-box !important;
   }
 
-  /* 4. Układ dwóch przycisków obok siebie na pełną szerokość */
+  /* 4. Układ dwóch przycisków obok siebie */
   .site-nav ul {
     display: flex !important;
     flex-direction: row !important;
@@ -1590,38 +1609,42 @@ iframe {
   }
 
   .site-nav ul li {
-    flex: 1 !important; /* Każdy przycisk zajmuje dokładnie 50% szerokości */
+    flex: 1 1 50% !important;
+    width: 50% !important;
     margin: 0 !important;
     padding: 0 !important;
+    display: block !important;
   }
 
-  /* 5. Wygląd przycisków */
-  .site-nav ul li a,
-  .site-nav .btn-nav {
+  /* 5. Wygląd i klikalność przycisków */
+  .site-nav ul li a {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    padding: 12px 8px !important;
+    min-height: 44px !important; /* Wygodna strefa kliknięcia na smartfonach */
+    padding: 8px 12px !important;
     text-align: center !important;
     background-color: rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #F7FAFC !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     border-radius: 6px !important;
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
     font-weight: 600 !important;
     text-decoration: none !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
     box-sizing: border-box !important;
   }
 
-  /* Wyróżnienie drugiego przycisku (np. Kontakt jako główny akcent) */
+  /* Przycisk Kontakt wyróżniony kolorem akcentowym (złotym) */
   .site-nav ul li:last-child a {
-    background-color: #c5a059 !important; /* Twój złoty/akcentowy kolor */
-    color: #111111 !important;
-    border-color: #c5a059 !important;
+    background-color: #D69E2E !important;
+    color: #1A202C !important;
+    border-color: #D69E2E !important;
   }
 
-  /* Zapobieganie zasłanianiu treści na dole strony przez stały pasek */
+  /* Odstęp na dole strony, aby pasek nie zasłaniał treść w stopce */
   body {
     padding-bottom: 70px !important;
   }
