@@ -1,26 +1,17 @@
-<header class="site-header">
-  <div class="header-container">
-    
-    <!-- Logo po lewej stronie -->
-    <a href="{{ site.baseurl }}/" class="brand">
-      <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white.png" alt="Dom pod Smokami" class="logo">
-    </a>
-
-    <!-- Przycisk Hamburger (mobilny) -->
-    <button class="mobile-toggle" aria-label="Otwórz menu" id="mobileToggle">
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
-      <span class="hamburger-bar"></span>
+<header class="site-header" id="siteHeader" role="banner">
+  <div class="site-header-inner">
+    <a class="brand" href="{{ site.baseurl }}/index.html" aria-label="Dom Pod Smokami — Strona główna">
+  <h1 class="visually-hidden">Dom Pod Smokami</h1>
+  <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white.png" alt="Dom Pod Smokami" class="logo" loading="eager">
+</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Pokaż menu" aria-expanded="false" aria-controls="siteNav">
+      <span class="hamburger"></span>
     </button>
-
-    <!-- Nawigacja z 6 apartamentami w submenu -->
-    <nav class="site-nav" id="siteNav">
+    <nav class="site-nav" id="siteNav" role="navigation" aria-label="Główne menu">
       <ul>
-        <li><a href="#apartamenty">Apartamenty</a></li>
-
-        <li><a href="{{ site.baseurl }}/kontakt.html">Kontakt</a></li>
+        <li><a href="{{ site.baseurl }}/#apartamenty">APARTAMENTY</a></li>
+        <li><a href="{{ site.baseurl }}/kontakt.html">KONTAKT</a></li>
       </ul>
     </nav>
-
   </div>
 </header>
