@@ -1546,49 +1546,44 @@ iframe {
 }
 
 /* ==========================================================================
-   WIDOK MOBILNY: UKRYTE LOGO + PRZYCISKI NA DOLE EKRANU
-   ========================================================================== */
-/* ==========================================================================
-   WYMUSZENIE WIDOCZNOŚCI DOLNEGO PASKA NA MOBILE (< 768px)
-   ========================================================================== */
-/* ==========================================================================
-   WYMUSZENIE STAŁEGO WYGLĄDU PRZYCISKÓW ORAZ ZMNIEJSZENIE HERO NA MOBILE (< 768px)
-   ========================================================================== */
-/* ==========================================================================
-   WIDOK MOBILNY (< 768px): POPRAWKA PRZYCISKÓW ORAZ SEKCYI HERO
+   WIDOK MOBILNY (< 768px): PEŁNA OPTYMALIZACJA HERO, PRZYCISKÓW I SLAJDERÓW
    ========================================================================== */
 
 @media (max-width: 767px) {
 
-  /* 1. ZMNIEJSZENIE PRZERWY W SEKCYI HERO */
-  .hero {
-    padding-top: 15px !important;
+  /* ------------------------------------------------------------------------
+     1. HERO: ZMNIEJSZENIE PRZERWY OD GÓRY DO LOGO O POŁOWĘ
+     ------------------------------------------------------------------------ */
+  .hero,
+  #hero,
+  section.hero {
+    padding-top: 10px !important;    /* Bardzo mały odstęp od samej góry */
     min-height: auto !important;
   }
 
   .hero-content {
-    padding-top: 5px !important;
+    padding-top: 0 !important;
     margin-top: 0 !important;
   }
 
   .hero-logo-wrapper {
     margin-top: 5px !important;
     margin-bottom: 10px !important;
+    padding-top: 0 !important;
   }
 
   .hero-logo {
-    max-width: 160px !important;
+    max-width: 150px !important;
     height: auto !important;
   }
 
-  /* 2. UKRYCIE GÓRNEGO PASKA NA LEWO/PRAWO (BRAND I HAMBURGER) */
+  /* Ukrycie logo z paska nagłówka i przycisku hamburgera */
   .site-header .brand,
   .site-header.scrolled .brand,
   .brand,
   .nav-toggle,
-  .site-header.scrolled .nav-toggle,
-  #mobileToggle,
-  .mobile-toggle {
+  .mobile-toggle,
+  #mobileToggle {
     display: none !important;
   }
 
@@ -1603,7 +1598,9 @@ iframe {
     box-shadow: none !important;
   }
 
-  /* 3. STAŁY, ELEGANCKI PASEK DOLNY */
+  /* ------------------------------------------------------------------------
+     2. PASEK PRZYCISKÓW NA DOLE (ŁADNY STYL SCHOEN / GLASSMORPHISM)
+     ------------------------------------------------------------------------ */
   .site-nav,
   .site-header .site-nav,
   .site-header.scrolled .site-nav {
@@ -1616,12 +1613,12 @@ iframe {
     width: 100% !important;
     margin: 0 !important;
     padding: 10px 14px !important;
-    background: rgba(26, 32, 44, 0.95) !important; /* Twoje tło #1A202C w wersji 95% opacity */
+    background: rgba(20, 24, 33, 0.95) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
-    border-top: 1px solid rgba(247, 250, 252, 0.15) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
     z-index: 999999 !important;
-    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5) !important;
     box-sizing: border-box !important;
   }
 
@@ -1649,7 +1646,7 @@ iframe {
     display: block !important;
   }
 
-  /* 4. PRAWDZIWY STYL PRZYCISKÓW (NADPYSUJĄCY TRANSPARENTNY STYL LINKÓW) */
+  /* Wygląd eleganckich przycisków */
   .site-nav a,
   .site-nav ul li a,
   .site-header .site-nav a,
@@ -1663,34 +1660,107 @@ iframe {
     min-height: 44px !important;
     padding: 8px 10px !important;
     text-align: center !important;
-    font-family: var(--font-title), sans-serif !important;
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
     font-weight: 600 !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 0.8px !important;
     text-decoration: none !important;
     text-transform: uppercase !important;
-    
-    /* Nowy styl wizualny przycisku */
     background: rgba(255, 255, 255, 0.08) !important;
-    color: #F7FAFC !important;
-    border: 1px solid rgba(247, 250, 252, 0.25) !important;
-    border-radius: 6px !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
     box-sizing: border-box !important;
     transition: none !important;
   }
 
-  /* Wyróżniony drugi przycisk (Kontakt) */
+  /* Przycisk wyróżniony (Kontakt) - Złoty akcent */
   .site-nav ul li:last-child a,
   .site-header .site-nav ul li:last-child a,
   .site-header.scrolled .site-nav ul li:last-child a {
-    background: var(--color-accent, #c5a059) !important;
-    color: #1A202C !important;
-    border-color: var(--color-accent, #c5a059) !important;
+    background: #c5a059 !important;
+    color: #111111 !important;
+    border-color: #c5a059 !important;
     font-weight: 700 !important;
   }
 
   body {
     padding-bottom: 75px !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     3. WIĘKSZA PRZERWA POD TYTUŁEM „NASZE APARTAMENTY”
+     ------------------------------------------------------------------------ */
+  /* Zwiększenie odstępu pod nagłówkami sekcji na telefonie */
+  #apartamenty .section-title,
+  #apartamenty h2,
+  .apartamenty-section h2,
+  #udogodnienia .section-title,
+  #udogodnienia h2 {
+    margin-bottom: 40px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Kontener ze slajdami przunięty w dół, by nie nachodził na tytuł */
+  #apartamenty .slider-container,
+  #apartamenty .swiper,
+  #apartamenty .slick-slider,
+  #udogodnienia .slider-container,
+  #udogodnienia .swiper,
+  #udogodnienia .slick-slider {
+    margin-top: 15px !important;
+    padding-top: 10px !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     4. STRZAŁKI SLAJDERÓW PRZENIESIONE NA DÓŁ PO BOKACH KROPEK
+     ------------------------------------------------------------------------ */
+  /* Zapewnienie stałego miejsca na dole dla całej nawigacji slajdera */
+  .swiper, .slick-slider, .slider-container {
+    padding-bottom: 50px !important;
+    position: relative !important;
+  }
+
+  /* Wymuszenie umieszczenia strzałek na samym dole */
+  .slider-prev, .slider-next,
+  .slick-prev, .slick-next,
+  .swiper-button-prev, .swiper-button-next,
+  .carousel-control-prev, .carousel-control-next {
+    top: auto !important;
+    bottom: 5px !important; /* Dół pod slajdem */
+    transform: none !important;
+    width: 36px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+    background: rgba(26, 32, 44, 0.9) !important;
+    border: 1px solid rgba(197, 160, 89, 0.5) !important; /* Subtelna złota ramka */
+    border-radius: 50% !important;
+    color: #c5a059 !important;
+    z-index: 20 !important;
+  }
+
+  /* Lewa strzałka po lewej stronie kropek */
+  .slider-prev,
+  .slick-prev,
+  .swiper-button-prev,
+  .carousel-control-prev {
+    left: 20% !important;
+    right: auto !important;
+  }
+
+  /* Prawa strzałka po prawej stronie kropek */
+  .slider-next,
+  .slick-next,
+  .swiper-button-next,
+  .carousel-control-next {
+    right: 20% !important;
+    left: auto !important;
+  }
+
+  /* Wycentrowanie kropek (paginacji) dokładnie pomiędzy strzałkami */
+  .swiper-pagination,
+  .slick-dots {
+    bottom: 12px !important;
+    z-index: 10 !important;
   }
 }
