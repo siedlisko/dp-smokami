@@ -1532,64 +1532,52 @@ iframe {
 }
 
 /* ==========================================================================
-   AGRESYWNA OPTYMALIZACJA MOBILNA (< 768px) - WERSJA OSTATECZNA
+   AGRESYWNA OPTYMALIZACJA MOBILNA (< 768px) - FINALNA DOKŁADNOŚĆ
    ========================================================================== */
 
 @media screen and (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ" (Usuwa zwężenie do połowy ekranu)
+     1. ZERO PRZERWY NA GÓRZE EKRANU + LOGO WYŻEJ
      ------------------------------------------------------------------------ */
-  /* Rezygnujemy z flexboxa na rzecz standardowego układu blokowego na telefonie */
-  .info-links-left,
-  .info-links-right {
-    display: block !important;
-    flex: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  html, body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 
-  .info-links-left .section-title {
-    text-align: center !important;
-  }
-
-  .info-link {
-    justify-content: center !important;
-    width: 100% !important;
-  }
-
-
-  /* ------------------------------------------------------------------------
-     2. HERO ORAZ LOGO: MAŁA PRZERWA, LOGO WYŻEJ
-     ------------------------------------------------------------------------ */
   .hero,
   #hero,
-  section.hero {
-    padding-top: 10px !important;    /* Bardzo mały odstęp od samej góry */
+  section.hero,
+  .hero-section {
+    padding-top: 5px !important;     /* Minimalny odstęp od krawędzi ekranu */
+    margin-top: 0 !important;
     min-height: auto !important;
   }
 
-  .hero-content {
+  .hero-content,
+  .hero-container,
+  .hero-inner {
     padding-top: 0 !important;
     margin-top: 0 !important;
   }
 
-  .hero-logo-wrapper {
-    margin-top: 5px !important;
+  .hero-logo-wrapper,
+  .hero-logo-container,
+  .logo-wrapper {
+    margin-top: 0 !important;
     margin-bottom: 10px !important;
     padding-top: 0 !important;
   }
 
-  .hero-logo {
-    max-width: 150px !important;
+  .hero-logo,
+  .hero img,
+  .logo-wrapper img {
+    max-width: 140px !important;     /* Zgrabne logo wysoko na górze */
     height: auto !important;
+    margin-top: 0 !important;
   }
 
-  /* Ukrycie logo z paska nagłówka i przycisku hamburgera */
+  /* Ukrycie paska nagłówka z górnej krawędzi */
   .site-header .brand,
   .site-header.scrolled .brand,
   .brand,
@@ -1612,10 +1600,11 @@ iframe {
 
 
   /* ------------------------------------------------------------------------
-     3. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE (SZKLANY STYL + ZŁOTY)
+     2. DOWOLNY MOMENT (NAWET PRZED SCROLLOWANIEM): GUZIKI NA DOLE W NOWYM STYLU
      ------------------------------------------------------------------------ */
-  /* Używamy prefiksu html body, aby mieć absolutną pewność nadpisania stylów */
+  /* Wymuszenie stylu od pierwszej milisekundy załadowania strony */
   html body .site-header .site-nav,
+  html body .site-header:not(.scrolled) .site-nav,
   html body .site-header.scrolled .site-nav,
   html body #siteNav,
   html body .site-nav,
@@ -1628,7 +1617,7 @@ iframe {
     top: auto !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 10px 14px !important;
+    padding: 8px 12px !important;
     background-color: rgba(18, 22, 29, 0.96) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -1658,25 +1647,25 @@ iframe {
     display: block !important;
   }
 
-  /* Styl ładnych, uformowanych przycisków */
+  /* Wygląd szklanych przycisków od samego początku */
   html body .site-nav a,
   html body .site-nav ul li a,
   html body .site-nav .btn-nav,
-  html body .site-nav .nav-link {
+  html body .site-nav .nav-link,
+  html body .site-header:not(.scrolled) .site-nav a {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    min-height: 44px !important;
-    padding: 8px 10px !important;
+    min-height: 42px !important;
+    padding: 6px 8px !important;
     text-align: center !important;
-    font-size: 0.85rem !important;
+    font-size: 0.82rem !important;
     font-weight: 600 !important;
-    letter-spacing: 0.8px !important;
+    letter-spacing: 0.6px !important;
     text-decoration: none !important;
     text-transform: uppercase !important;
     
-    /* Wygląd powierzchni */
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -1686,9 +1675,10 @@ iframe {
     transition: none !important;
   }
 
-  /* Drugi przycisk (Kontakt) - Złoty akcent */
+  /* Drugi przycisk (Kontakt) - Złoty od początku */
   html body .site-nav ul li:last-child a,
-  html body .site-nav ul li:last-child .nav-link {
+  html body .site-nav ul li:last-child .nav-link,
+  html body .site-header:not(.scrolled) .site-nav ul li:last-child a {
     background-color: #c5a059 !important;
     color: #111111 !important;
     border-color: #c5a059 !important;
@@ -1696,33 +1686,67 @@ iframe {
   }
 
   body {
-    padding-bottom: 75px !important;
+    padding-bottom: 70px !important;
+  }
+
+
+  /* ------------------------------------------------------------------------
+     3. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ"
+     ------------------------------------------------------------------------ */
+  .info-links-left,
+  .info-links-right {
+    display: block !important;
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .info-links-left .section-title {
+    text-align: center !important;
+  }
+
+  .info-link {
+    justify-content: center !important;
+    width: 100% !important;
   }
 
 
   /* ------------------------------------------------------------------------
      4. SLAJDY APARTAMENTÓW: WIĘKSZA PRZERWA POD TYTUŁEM
      ------------------------------------------------------------------------ */
-  /* Szukamy różnych możliwych klas/id sekcji apartamentów */
   #apartamenty h2,
   .apartamenty h2,
   .apartamenty-section h2,
   section[id*="apartament"] h2,
   section[class*="apartament"] h2 {
-    margin-bottom: 75px !important; /* Duży odstęp */
+    margin-bottom: 75px !important;
     padding-bottom: 10px !important;
   }
 
   #apartamenty .slider-container,
   #apartamenty .swiper,
   .apartamenty-slider {
-    margin-top: 25px !important;
+    margin-top: 20px !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     5. SLAJDY UDOGODNIEŃ: ZWEŻONE PRZERWY ORAZ TYTUŁ
+     5. SLAJDY UDOGODNIEŃ: MAKSYMALNA KOMPAKTOWOŚĆ (MIESZCZA SIĘ NA EKRANIE)
      ------------------------------------------------------------------------ */
+  #udogodnienia,
+  .udogodnienia-section,
+  section[id*="udogodnieni"],
+  section[class*="udogodnieni"] {
+    padding-top: 15px !important;
+    padding-bottom: 35px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
   #udogodnienia h2,
   .udogodnienia h2,
   .udogodnienia-section h2,
@@ -1730,17 +1754,38 @@ iframe {
     padding-left: 20% !important;
     padding-right: 20% !important;
     text-align: center !important;
-    margin-bottom: 25px !important;
-    line-height: 1.25 !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    font-size: 1.3rem !important;
+    line-height: 1.2 !important;
   }
 
-  /* Drastyczne zwężenie przerw w kafelkach udogodnień */
+  /* Ścieśnienie samych kafelków / slajdów udogodnień */
+  #udogodnienia .slider-container,
+  #udogodnienia .swiper-wrapper,
   #udogodnienia .swiper-slide,
   #udogodnienia .slick-slide,
+  #udogodnienia .card,
   .udogodnienia-item,
   section[id*="udogodnieni"] .swiper-slide {
-    padding: 2px 4px !important;
-    margin: 0 !important;
+    padding: 0 4px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* Skalowanie zawartości pojedynczego kafelka udogodnień */
+  #udogodnienia .card-body,
+  #udogodnienia .udogodnienie-content {
+    padding: 10px 8px !important;
+  }
+
+  #udogodnienia img,
+  #udogodnienia .icon,
+  section[id*="udogodnieni"] img {
+    max-height: 45px !important;
+    width: auto !important;
+    margin-bottom: 6px !important;
   }
 
 
@@ -1753,7 +1798,7 @@ iframe {
     top: auto !important;
     bottom: 5px !important;
     transform: none !important;
-    width: 30px !important;   /* Połowa pierwotnej wielkości */
+    width: 30px !important;
     height: 30px !important;
     line-height: 28px !important;
     font-size: 11px !important;
@@ -1767,7 +1812,6 @@ iframe {
     align-items: center !important;
   }
 
-  /* Zmniejszenie symboli Swipera */
   .swiper-button-prev::after,
   .swiper-button-next::after {
     font-size: 11px !important;
@@ -1783,4 +1827,4 @@ iframe {
     left: auto !important;
   }
 
-} /* KONIEC AGRESYWNEJ OPTYMALIZACJI */
+} /* KONIEC OPTYMALIZACJI */
