@@ -1530,47 +1530,78 @@ iframe {
   opacity: 1 !important;
   transform: scale(1.1) !important;
 }
+
 /* ==========================================================================
-   POPRAWKA MOBILNA V5 (DOM POD SMOKAMI)
+   POPRAWKA MOBILNA V6 (DOM POD SMOKAMI)
    ========================================================================== */
 
 @media screen and (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. LIKWIDACJA PRZERWY NAD LOGO W SEKCJI HERO
+     1. REDUKCJA DUŻEJ PRZERWY NAD LOGO W HERO
      ------------------------------------------------------------------------ */
-  #siteHeader,
-  .site-header {
-    display: none !important; /* Całkowite usunięcie starych ramek nagłówka */
+  /* Ukrycie logo z headera oraz hamburgera, ale zachowanie pojemnika nav */
+  #siteHeader a.brand,
+  .site-header .brand,
+  #navToggle,
+  .nav-toggle {
+    display: none !important;
   }
 
+  /* Reset wysokości samego wrapper-a headera na górze */
+  #siteHeader,
+  .site-header {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+
+  .site-header-inner {
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* Sekcja HERO - wymuszenie wyrównania treści do samej góry */
   .hero {
-    padding-top: 20px !important; /* Zmniejszony górny odstęp */
-    margin-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    padding-top: 30px !important; /* Tutaj kontrolujesz górną przerwę nad logo */
+    min-height: auto !important;
   }
 
   .hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
     padding-top: 0 !important;
     margin-top: 0 !important;
   }
 
   .hero-logo-wrapper {
     margin-top: 0 !important;
+    margin-bottom: 10px !important;
     padding-top: 0 !important;
   }
 
   .hero-logo-wrapper img.hero-logo,
   .hero-logo {
     display: block !important;
-    max-width: 130px !important;
-    width: 130px !important;
+    max-width: 120px !important;
+    width: 120px !important;
     height: auto !important;
-    margin: 0 auto 15px auto !important;
-    padding: 0 !important;
+    margin: 0 auto !important;
   }
 
   /* ------------------------------------------------------------------------
-     2. GUZIKI NA DOLE — ELEGANCKI DREWNIANO-ZŁOTY STYLE
+     2. DOWÓD NA PRZYCISKI: PASEK PRZYKLEJONY DO DOŁU
      ------------------------------------------------------------------------ */
   #siteNav,
   nav.site-nav {
@@ -1583,20 +1614,19 @@ iframe {
     right: 0 !important;
     top: auto !important;
     width: 100vw !important;
-    padding: 10px 14px !important;
-    background: rgba(18, 22, 29, 0.98) !important; /* Ciemne eleganckie tło */
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-top: 1px solid rgba(197, 160, 89, 0.4) !important; /* Złota akcentowa linia */
+    padding: 8px 12px !important;
+    background: rgba(18, 22, 29, 0.96) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(197, 160, 89, 0.4) !important;
     z-index: 999999 !important;
     box-sizing: border-box !important;
-    transform: none !important;
   }
 
   #siteNav ul {
     display: flex !important;
     flex-direction: row !important;
-    gap: 10px !important;
+    gap: 8px !important;
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
@@ -1607,47 +1637,42 @@ iframe {
     flex: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
+    display: block !important;
   }
 
-  /* Reset i stylizacja przycisków */
+  /* Przycisk 1: APARTAMENTY */
   #siteNav ul li a.btn-nav,
   #siteNav a {
-    all: unset !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    height: 44px !important;
-    padding: 0 8px !important;
-    font-family: inherit !important;
+    height: 42px !important;
+    padding: 0 4px !important;
     font-size: 0.78rem !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.8px !important;
+    letter-spacing: 0.5px !important;
     box-sizing: border-box !important;
-    border-radius: 22px !important; /* Zaokrąglone pigułki */
-    cursor: pointer !important;
-    text-align: center !important;
-    transition: all 0.2s ease !important;
+    border-radius: 6px !important;
+    text-decoration: none !important;
     
-    /* Guzik 1: APARTAMENTY */
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #f4f4f4 !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
   }
 
-  /* Guzik 2: KONTAKT (Główny akcent w kolorze złotym) */
+  /* Przycisk 2: KONTAKT (Wyróżniony) */
   #siteNav ul li:last-child a.btn-nav,
   #siteNav ul li:last-child a {
     background: #c5a059 !important;
     color: #111111 !important;
     border: 1px solid #c5a059 !important;
     font-weight: 700 !important;
-    box-shadow: 0 3px 10px rgba(197, 160, 89, 0.3) !important;
   }
 
   body {
-    padding-bottom: 70px !important;
+    padding-bottom: 65px !important;
   }
 
   /* ------------------------------------------------------------------------
@@ -1655,12 +1680,12 @@ iframe {
      ------------------------------------------------------------------------ */
   .swiper-apartments,
   .swiper-amenities {
-    padding-bottom: 60px !important;
+    padding-bottom: 55px !important;
     position: relative !important;
   }
 
   .swiper-pagination {
-    bottom: 18px !important;
+    bottom: 15px !important;
     left: 0 !important;
     width: 100% !important;
   }
@@ -1668,12 +1693,12 @@ iframe {
   .swiper-button-prev,
   .swiper-button-next {
     top: auto !important;
-    bottom: 5px !important;
+    bottom: 4px !important;
     margin-top: 0 !important;
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
-    min-height: 42px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
     background: #12161d !important;
     border: 2px solid #c5a059 !important;
     border-radius: 50% !important;
