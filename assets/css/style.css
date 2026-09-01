@@ -1598,12 +1598,19 @@ iframe {
     box-shadow: none !important;
   }
 
+/* ==========================================================================
+   WIDOK MOBILNY (< 768px): PEŁNA OPTYMALIZACJA MOBILNA
+   ========================================================================== */
+
+@media (max-width: 767px) {
+
   /* ------------------------------------------------------------------------
-     2. PASEK PRZYCISKÓW NA DOLE (ŁADNY STYL SCHOEN / GLASSMORPHISM)
+     1. USTAWIENIE URODOWYCH PRZYCISKÓW NA DOLE (SZKLANY STYL + ZŁOTY AKCENT)
      ------------------------------------------------------------------------ */
   .site-nav,
   .site-header .site-nav,
-  .site-header.scrolled .site-nav {
+  .site-header.scrolled .site-nav,
+  #siteNav {
     display: block !important;
     position: fixed !important;
     bottom: 0 !important;
@@ -1613,7 +1620,7 @@ iframe {
     width: 100% !important;
     margin: 0 !important;
     padding: 10px 14px !important;
-    background: rgba(20, 24, 33, 0.95) !important;
+    background: rgba(18, 22, 29, 0.95) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -1646,9 +1653,10 @@ iframe {
     display: block !important;
   }
 
-  /* Wygląd eleganckich przycisków */
+  /* Wygląd ładnych, szklanych przycisków na dole (nadpisuje .btn-nav) */
   .site-nav a,
   .site-nav ul li a,
+  .site-nav .btn-nav,
   .site-header .site-nav a,
   .site-header .site-nav ul li a,
   .site-header.scrolled .site-nav a,
@@ -1665,6 +1673,8 @@ iframe {
     letter-spacing: 0.8px !important;
     text-decoration: none !important;
     text-transform: uppercase !important;
+    
+    /* Wygląd powierzchni przycisku */
     background: rgba(255, 255, 255, 0.08) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -1674,8 +1684,9 @@ iframe {
     transition: none !important;
   }
 
-  /* Przycisk wyróżniony (Kontakt) - Złoty akcent */
+  /* Przycisk drugi (Kontakt) - Wyróżniony na złoto */
   .site-nav ul li:last-child a,
+  .site-nav ul li:last-child .btn-nav,
   .site-header .site-nav ul li:last-child a,
   .site-header.scrolled .site-nav ul li:last-child a {
     background: #c5a059 !important;
@@ -1689,78 +1700,83 @@ iframe {
   }
 
   /* ------------------------------------------------------------------------
-     3. WIĘKSZA PRZERWA POD TYTUŁEM „NASZE APARTAMENTY”
+     2. SLAJDY APARTAMENTÓW: WIĘKSZA PRZERWA POD TYTUŁEM
      ------------------------------------------------------------------------ */
-  /* Zwiększenie odstępu pod nagłówkami sekcji na telefonie */
   #apartamenty .section-title,
   #apartamenty h2,
-  .apartamenty-section h2,
-  #udogodnienia .section-title,
-  #udogodnienia h2 {
-    margin-bottom: 40px !important;
-    padding-bottom: 10px !important;
+  .apartamenty-section h2 {
+    margin-bottom: 60px !important; /* Większy odstęp od slajdera */
   }
 
-  /* Kontener ze slajdami przunięty w dół, by nie nachodził na tytuł */
   #apartamenty .slider-container,
   #apartamenty .swiper,
-  #apartamenty .slick-slider,
-  #udogodnienia .slider-container,
-  #udogodnienia .swiper,
-  #udogodnienia .slick-slider {
-    margin-top: 15px !important;
-    padding-top: 10px !important;
+  #apartamenty .slick-slider {
+    margin-top: 25px !important;
   }
 
   /* ------------------------------------------------------------------------
-     4. STRZAŁKI SLAJDERÓW PRZENIESIONE NA DÓŁ PO BOKACH KROPEK
+     3. SLAJDY UDOGODNIEŃ: MNIEJSZE PRZERWY + DWUWIERSZOWY TYTUŁ OGÓLNY
      ------------------------------------------------------------------------ */
-  /* Zapewnienie stałego miejsca na dole dla całej nawigacji slajdera */
-  .swiper, .slick-slider, .slider-container {
-    padding-bottom: 50px !important;
-    position: relative !important;
+  /* Tytuł dwuwierszowy (słowo pod słowem) dzięki szerokim marginesom */
+  #udogodnienia .section-title,
+  #udogodnienia h2,
+  .udogodnienia-section h2 {
+    padding-left: 22% !important;
+    padding-right: 22% !important;
+    text-align: center !important;
+    margin-bottom: 25px !important;
+    line-height: 1.25 !important;
   }
 
-  /* Wymuszenie umieszczenia strzałek na samym dole */
+  /* Zmniejszone przerwy między elementami slajdów udogodnień */
+  #udogodnienia .slider-container,
+  #udogodnienia .swiper-slide,
+  #udogodnienia .slick-slide,
+  .udogodnienia-card,
+  .udogodnienie-item {
+    padding: 10px 8px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    gap: 8px !important;
+  }
+
+  /* ------------------------------------------------------------------------
+     4. ZMNIEJSZONE STRZAŁKI SLAJDERÓW (4 KRATY MNIEJSZE) NA DOLE
+     ------------------------------------------------------------------------ */
   .slider-prev, .slider-next,
   .slick-prev, .slick-next,
   .swiper-button-prev, .swiper-button-next,
   .carousel-control-prev, .carousel-control-next {
     top: auto !important;
-    bottom: 5px !important; /* Dół pod slajdem */
+    bottom: 5px !important;
     transform: none !important;
-    width: 36px !important;
-    height: 36px !important;
-    line-height: 36px !important;
-    background: rgba(26, 32, 44, 0.9) !important;
-    border: 1px solid rgba(197, 160, 89, 0.5) !important; /* Subtelna złota ramka */
+    width: 22px !important;  /* Zmniejszone 4-krotnie */
+    height: 22px !important;
+    line-height: 20px !important;
+    font-size: 10px !important;
+    background: rgba(18, 22, 29, 0.85) !important;
+    border: 1px solid rgba(197, 160, 89, 0.6) !important;
     border-radius: 50% !important;
     color: #c5a059 !important;
     z-index: 20 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
 
-  /* Lewa strzałka po lewej stronie kropek */
-  .slider-prev,
-  .slick-prev,
-  .swiper-button-prev,
-  .carousel-control-prev {
-    left: 20% !important;
+  /* Zmniejszenie symboli wewnętrznych strzałek w Swiper/Slick */
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 10px !important;
+  }
+
+  .slider-prev, .slick-prev, .swiper-button-prev, .carousel-control-prev {
+    left: 25% !important;
     right: auto !important;
   }
 
-  /* Prawa strzałka po prawej stronie kropek */
-  .slider-next,
-  .slick-next,
-  .swiper-button-next,
-  .carousel-control-next {
-    right: 20% !important;
+  .slider-next, .slick-next, .swiper-button-next, .carousel-control-next {
+    right: 25% !important;
     left: auto !important;
-  }
-
-  /* Wycentrowanie kropek (paginacji) dokładnie pomiędzy strzałkami */
-  .swiper-pagination,
-  .slick-dots {
-    bottom: 12px !important;
-    z-index: 10 !important;
   }
 }
