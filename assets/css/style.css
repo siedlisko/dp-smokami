@@ -1532,83 +1532,82 @@ iframe {
 }
 
 /* ==========================================================================
-   AGRESYWNA OPTYMALIZACJA MOBILNA (< 768px) - FINALNA DOKŁADNOŚĆ
+   WIDOK MOBILNY (< 768px): CAŁKOWITE WYMUSZENIE I NAPRAWA HERO
    ========================================================================== */
 
 @media screen and (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. ZERO PRZERWY NA GÓRZE EKRANU + LOGO WYŻEJ
+     1. ZERO PRZERWY NA GÓRZE, LOGO NA SAMEJ GÓRZE, NAPRAWA TŁA HERO
      ------------------------------------------------------------------------ */
   html, body {
     margin-top: 0 !important;
     padding-top: 0 !important;
+    border: none !important;
   }
 
   .hero,
   #hero,
   section.hero,
   .hero-section {
-    padding-top: 5px !important;     /* Minimalny odstęp od krawędzi ekranu */
+    padding-top: 0 !important;       /* Zero odstępu od samej góry */
+    padding-bottom: 90px !important; /* Bezpieczny odstęp od dolnego paska */
     margin-top: 0 !important;
-    min-height: auto !important;
+    min-height: 80vh !important;     /* Wymuszenie stałej, dobrej wysokości hero */
+    height: 80vh !important;
+    position: relative !important;
+  }
+
+  /* Naprawa kurczącego się zdjęcia w tle */
+  .hero-bg,
+  #heroBg,
+  .hero img,
+  .hero .bg-image {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;    /* Zdjęcie cover (wypełnia sekcję, nie kurczy się) */
+    object-position: center !important;
+    z-index: 1 !important;
   }
 
   .hero-content,
-  .hero-container,
   .hero-inner {
-    padding-top: 0 !important;
+    padding-top: 0 !important;       /* Przesunięcie logo na samą górę wewnątrz contentu */
     margin-top: 0 !important;
+    z-index: 5 !important;
+    position: relative !important;
   }
 
-  .hero-logo-wrapper,
-  .hero-logo-container,
-  .logo-wrapper {
-    margin-top: 0 !important;
-    margin-bottom: 10px !important;
+  .hero-logo-wrapper {
+    margin-top: 0 !important;        /* Przesunięcie logo na samą górę wrapperu */
+    margin-bottom: 15px !important;
     padding-top: 0 !important;
   }
 
-  .hero-logo,
-  .hero img,
-  .logo-wrapper img {
-    max-width: 140px !important;     /* Zgrabne logo wysoko na górze */
+  .hero-logo {
+    max-width: 160px !important;     /* Zgrabne, widoczne logo wysoko na górze */
     height: auto !important;
     margin-top: 0 !important;
   }
 
   /* Ukrycie paska nagłówka z górnej krawędzi */
-  .site-header .brand,
-  .site-header.scrolled .brand,
-  .brand,
-  .nav-toggle,
-  .mobile-toggle,
-  #mobileToggle {
-    display: none !important;
-  }
-
-  .site-header,
-  .site-header.scrolled {
-    position: static !important;
-    background: transparent !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
+  #header,
+  .site-header {
+    display: none !important;        /* Usunięcie całego górnego paska nagłówka na telefonie */
   }
 
 
   /* ------------------------------------------------------------------------
-     2. DOWOLNY MOMENT (NAWET PRZED SCROLLOWANIEM): GUZIKI NA DOLE W NOWYM STYLU
+     2. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE OD SAMEGO STARTU
      ------------------------------------------------------------------------ */
-  /* Wymuszenie stylu od pierwszej milisekundy załadowania strony */
-  html body .site-header .site-nav,
-  html body .site-header:not(.scrolled) .site-nav,
-  html body .site-header.scrolled .site-nav,
+  /* Odwołujemy się bezpośrednio do identyfikatorów #header oraz #siteNav z !important */
   html body #siteNav,
-  html body .site-nav,
-  html body nav.site-nav {
+  html body #header #siteNav,
+  html body .site-nav {
     display: block !important;
     position: fixed !important;
     bottom: 0 !important;
@@ -1617,8 +1616,8 @@ iframe {
     top: auto !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 8px 12px !important;
-    background-color: rgba(18, 22, 29, 0.96) !important;
+    padding: 10px 14px !important;
+    background-color: rgba(18, 22, 29, 0.96) !important; /* Szklane, ciemne tło */
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
@@ -1627,6 +1626,7 @@ iframe {
     box-sizing: border-box !important;
   }
 
+  html body #siteNav ul,
   html body .site-nav ul {
     display: flex !important;
     flex-direction: row !important;
@@ -1639,6 +1639,7 @@ iframe {
     width: 100% !important;
   }
 
+  html body #siteNav ul li,
   html body .site-nav ul li {
     flex: 1 1 50% !important;
     width: 50% !important;
@@ -1647,38 +1648,39 @@ iframe {
     display: block !important;
   }
 
-  /* Wygląd szklanych przycisków od samego początku */
+  /* Styl ładnych, uformowanych przycisków od samego początku */
+  html body #siteNav a,
   html body .site-nav a,
+  html body #siteNav ul li a,
   html body .site-nav ul li a,
-  html body .site-nav .btn-nav,
-  html body .site-nav .nav-link,
-  html body .site-header:not(.scrolled) .site-nav a {
+  html body .site-nav .btn-nav {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    min-height: 42px !important;
-    padding: 6px 8px !important;
+    min-height: 46px !important;
+    padding: 8px 10px !important;
     text-align: center !important;
-    font-size: 0.82rem !important;
+    font-size: 0.88rem !important;
     font-weight: 600 !important;
-    letter-spacing: 0.6px !important;
+    letter-spacing: 0.8px !important;
     text-decoration: none !important;
     text-transform: uppercase !important;
     
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* Powierzchnia przycisku */
+    background-color: rgba(255, 255, 255, 0.12) !important;
     color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
     box-sizing: border-box !important;
     transition: none !important;
   }
 
-  /* Drugi przycisk (Kontakt) - Złoty od początku */
+  /* Drugi przycisk (Kontakt) - Złoty akcent od początku */
+  html body #siteNav ul li:last-child a,
   html body .site-nav ul li:last-child a,
-  html body .site-nav ul li:last-child .nav-link,
-  html body .site-header:not(.scrolled) .site-nav ul li:last-child a {
+  html body .site-nav ul li:last-child .btn-nav {
     background-color: #c5a059 !important;
     color: #111111 !important;
     border-color: #c5a059 !important;
@@ -1686,71 +1688,42 @@ iframe {
   }
 
   body {
-    padding-bottom: 70px !important;
+    padding-bottom: 75px !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     3. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ"
+     3. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ" (Opcjonalne, ale zalecane)
      ------------------------------------------------------------------------ */
-  .info-links-left,
-  .info-links-right {
-    display: block !important;
-    flex: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  .info-links-left .section-title {
-    text-align: center !important;
-  }
-
-  .info-link {
-    justify-content: center !important;
-    width: 100% !important;
-  }
+  .info-links-left, .info-links-right { display: block !important; width: 100% !important; }
 
 
   /* ------------------------------------------------------------------------
      4. SLAJDY APARTAMENTÓW: WIĘKSZA PRZERWA POD TYTUŁEM
      ------------------------------------------------------------------------ */
+  #apartamenty .section-title,
   #apartamenty h2,
-  .apartamenty h2,
-  .apartamenty-section h2,
-  section[id*="apartament"] h2,
-  section[class*="apartament"] h2 {
-    margin-bottom: 75px !important;
-    padding-bottom: 10px !important;
+  .apartamenty-section h2 {
+    margin-bottom: 60px !important;
   }
 
   #apartamenty .slider-container,
   #apartamenty .swiper,
   .apartamenty-slider {
-    margin-top: 20px !important;
+    margin-top: 10px !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     5. SLAJDY UDOGODNIEŃ: MAKSYMALNA KOMPAKTOWOŚĆ (MIESZCZA SIĘ NA EKRANIE)
+     5. SLAJDY UDOGODNIEŃ: MAKSYMALNA KOMPAKTOWOŚĆ (WSZYSTKO NA EKRANIE)
      ------------------------------------------------------------------------ */
-  #udogodnienia,
-  .udogodnienia-section,
-  section[id*="udogodnieni"],
-  section[class*="udogodnieni"] {
+  #udogodnienia, .udogodnienia-section, section[id*="udogodnieni"] {
     padding-top: 15px !important;
-    padding-bottom: 35px !important;
+    padding-bottom: 30px !important;
     margin-top: 0 !important;
-    margin-bottom: 0 !important;
   }
 
-  #udogodnienia h2,
-  .udogodnienia h2,
-  .udogodnienia-section h2,
-  section[id*="udogodnieni"] h2 {
+  #udogodnienia h2, .udogodnienia h2, .udogodnienia-section h2 {
     padding-left: 20% !important;
     padding-right: 20% !important;
     text-align: center !important;
@@ -1760,48 +1733,34 @@ iframe {
     line-height: 1.2 !important;
   }
 
-  /* Ścieśnienie samych kafelków / slajdów udogodnień */
-  #udogodnienia .slider-container,
-  #udogodnienia .swiper-wrapper,
-  #udogodnienia .swiper-slide,
-  #udogodnienia .slick-slide,
-  #udogodnienia .card,
-  .udogodnienia-item,
-  section[id*="udogodnieni"] .swiper-slide {
-    padding: 0 4px !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    gap: 0 !important;
-  }
-
-  /* Skalowanie zawartości pojedynczego kafelka udogodnień */
+  /* Drastyczne zwężenie przerw w kafelkach udogodnień */
   #udogodnienia .card-body,
   #udogodnienia .udogodnienie-content {
-    padding: 10px 8px !important;
+    padding: 8px 6px !important;
   }
 
   #udogodnienia img,
-  #udogodnienia .icon,
-  section[id*="udogodnieni"] img {
-    max-height: 45px !important;
+  #udogodnienia .icon {
+    max-height: 40px !important;
     width: auto !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 5px !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     6. STRZAŁKI SLAJDERÓW: ROZMIAR 30px (50%) I NA DOLE
+     6. STRZAŁKI SLAJDERÓW: ROZMIAR ODPOWIEDNI (40px) ORAZ NA DOLE
      ------------------------------------------------------------------------ */
+  /* Zwiększamy rozmiar do 40px (wyraźne, ale nie gigantyczne) */
   .swiper-button-prev, .swiper-button-next,
   .slick-prev, .slick-next,
   .slider-prev, .slider-next {
     top: auto !important;
     bottom: 5px !important;
     transform: none !important;
-    width: 30px !important;
-    height: 30px !important;
-    line-height: 28px !important;
-    font-size: 11px !important;
+    width: 40px !important;   /* Zwiększony, widoczny rozmiar (odpowiednio 3x mniejszy) */
+    height: 40px !important;
+    line-height: 38px !important;
+    font-size: 14px !important;
     background: rgba(18, 22, 29, 0.92) !important;
     border: 1px solid rgba(197, 160, 89, 0.7) !important;
     border-radius: 50% !important;
@@ -1814,17 +1773,286 @@ iframe {
 
   .swiper-button-prev::after,
   .swiper-button-next::after {
-    font-size: 11px !important;
+    font-size: 14px !important;
   }
 
   .swiper-button-prev, .slick-prev, .slider-prev {
-    left: 22% !important;
+    left: 20% !important;
     right: auto !important;
   }
 
   .swiper-button-next, .slick-next, .slider-next {
-    right: 22% !important;
+    right: 20% !important;
     left: auto !important;
   }
 
-} /* KONIEC OPTYMALIZACJI */
+} /* KONIEC AGRESYWNEJ OPTYMALIZACJI */
+```Dzieje się tak dlatego, że **oryginalny skrypt/styl motywu ustawia te przezroczyste style przy użyciu identyfikatorów `#` (np. `#siteNav`), które mają w CSS absolutny priorytet nad klasami**. Dodatkowo obrazek tła w Hero stracił właściwość pokrywania sekcji i skurczył się.
+
+Oto kompletna naprawa tych trzech punktów:
+
+1.  **Guziki od samej góry (od razu w nowym stylu)**: Wymusimy styl szklano-złoty, odwołując się bezpośrednio do identyfikatorów `#header` oraz `#siteNav`, co zagwarantuje, że style motywu zostaną nadpisane natychmiast, bez względu na to, czy strona została przewinięta.
+2.  **Hero wyżej + Naprawa tła**: Skasujemy całkowicie domyślny margines/padding, przesuwając logo i tekst na samą górę, oraz **wymusimy na obrazku tła standardową wysokość 80vh z właściwością `object-fit: cover`**, aby wypełniał sekcję, a nie kurczył się.
+3.  **Właściwy rozmiar strzałek (odpowiednio 3 razy mniejsze)**: Zwiększymy ich średnicę do **40px** (jest to optymalny rozmiar na smartfony – wyraźne, ale nie gigantyczne).
+
+---
+
+### Zastąp CAŁY kod mobilny na samym końcu pliku CSS poniższym kodem:
+
+```css
+/* ==========================================================================
+   WIDOK MOBILNY (< 768px): CAŁKOWITE WYMUSZENIE I NAPRAWA HERO
+   ========================================================================== */
+
+@media screen and (max-width: 767px) {
+
+  /* ------------------------------------------------------------------------
+     1. ZERO PRZERWY NA GÓRZE, LOGO NA SAMEJ GÓRZE, NAPRAWA TŁA HERO
+     ------------------------------------------------------------------------ */
+  html, body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border: none !important;
+  }
+
+  .hero,
+  #hero,
+  section.hero,
+  .hero-section {
+    padding-top: 0 !important;       /* Zero odstępu od samej góry */
+    padding-bottom: 90px !important; /* Bezpieczny odstęp od dolnego paska */
+    margin-top: 0 !important;
+    min-height: 80vh !important;     /* Wymuszenie stałej, dobrej wysokości hero */
+    height: 80vh !important;
+    position: relative !important;
+  }
+
+  /* Naprawa kurczącego się zdjęcia w tle */
+  .hero-bg,
+  #heroBg,
+  .hero img,
+  .hero .bg-image {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;    /* Zdjęcie cover (wypełnia sekcję, nie kurczy się) */
+    object-position: center !important;
+    z-index: 1 !important;
+  }
+
+  .hero-content,
+  .hero-inner {
+    padding-top: 0 !important;       /* Przesunięcie logo na samą górę wewnątrz contentu */
+    margin-top: 0 !important;
+    z-index: 5 !important;
+    position: relative !important;
+  }
+
+  .hero-logo-wrapper {
+    margin-top: 0 !important;        /* Przesunięcie logo na samą górę wrapperu */
+    margin-bottom: 15px !important;
+    padding-top: 0 !important;
+  }
+
+  .hero-logo {
+    max-width: 160px !important;     /* Zgrabne, widoczne logo wysoko na górze */
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+
+  /* Ukrycie paska nagłówka z górnej krawędzi */
+  #header,
+  .site-header {
+    display: none !important;        /* Usunięcie całego górnego paska nagłówka na telefonie */
+  }
+
+
+  /* ------------------------------------------------------------------------
+     2. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE OD SAMEGO STARTU
+     ------------------------------------------------------------------------ */
+  /* Odwołujemy się bezpośrednio do identyfikatorów #header oraz #siteNav z !important */
+  html body #siteNav,
+  html body #header #siteNav,
+  html body .site-nav {
+    display: block !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px 14px !important;
+    background-color: rgba(18, 22, 29, 0.96) !important; /* Szklane, ciemne tło */
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+    z-index: 999999 !important;
+    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5) !important;
+    box-sizing: border-box !important;
+  }
+
+  html body #siteNav ul,
+  html body .site-nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+    width: 100% !important;
+  }
+
+  html body #siteNav ul li,
+  html body .site-nav ul li {
+    flex: 1 1 50% !important;
+    width: 50% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  /* Styl ładnych, uformowanych przycisków od samego początku */
+  html body #siteNav a,
+  html body .site-nav a,
+  html body #siteNav ul li a,
+  html body .site-nav ul li a,
+  html body .site-nav .btn-nav {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 46px !important;
+    padding: 8px 10px !important;
+    text-align: center !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.8px !important;
+    text-decoration: none !important;
+    text-transform: uppercase !important;
+    
+    /* Powierzchnia przycisku */
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    box-sizing: border-box !important;
+    transition: none !important;
+  }
+
+  /* Drugi przycisk (Kontakt) - Złoty akcent od początku */
+  html body #siteNav ul li:last-child a,
+  html body .site-nav ul li:last-child a,
+  html body .site-nav ul li:last-child .btn-nav {
+    background-color: #c5a059 !important;
+    color: #111111 !important;
+    border-color: #c5a059 !important;
+    font-weight: 700 !important;
+  }
+
+  body {
+    padding-bottom: 75px !important;
+  }
+
+
+  /* ------------------------------------------------------------------------
+     3. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ" (Opcjonalne, ale zalecane)
+     ------------------------------------------------------------------------ */
+  .info-links-left, .info-links-right { display: block !important; width: 100% !important; }
+
+
+  /* ------------------------------------------------------------------------
+     4. SLAJDY APARTAMENTÓW: WIĘKSZA PRZERWA POD TYTUŁEM
+     ------------------------------------------------------------------------ */
+  #apartamenty .section-title,
+  #apartamenty h2,
+  .apartamenty-section h2 {
+    margin-bottom: 60px !important;
+  }
+
+  #apartamenty .slider-container,
+  #apartamenty .swiper,
+  .apartamenty-slider {
+    margin-top: 10px !important;
+  }
+
+
+  /* ------------------------------------------------------------------------
+     5. SLAJDY UDOGODNIEŃ: MAKSYMALNA KOMPAKTOWOŚĆ (WSZYSTKO NA EKRANIE)
+     ------------------------------------------------------------------------ */
+  #udogodnienia, .udogodnienia-section, section[id*="udogodnieni"] {
+    padding-top: 15px !important;
+    padding-bottom: 30px !important;
+    margin-top: 0 !important;
+  }
+
+  #udogodnienia h2, .udogodnienia h2, .udogodnienia-section h2 {
+    padding-left: 20% !important;
+    padding-right: 20% !important;
+    text-align: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    font-size: 1.3rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Drastyczne zwężenie przerw w kafelkach udogodnień */
+  #udogodnienia .card-body,
+  #udogodnienia .udogodnienie-content {
+    padding: 8px 6px !important;
+  }
+
+  #udogodnienia img,
+  #udogodnienia .icon {
+    max-height: 40px !important;
+    width: auto !important;
+    margin-bottom: 5px !important;
+  }
+
+
+  /* ------------------------------------------------------------------------
+     6. STRZAŁKI SLAJDERÓW: ROZMIAR ODPOWIEDNI (40px) ORAZ NA DOLE
+     ------------------------------------------------------------------------ */
+  /* Zwiększamy rozmiar do 40px (wyraźne, ale nie gigantyczne) */
+  .swiper-button-prev, .swiper-button-next,
+  .slick-prev, .slick-next,
+  .slider-prev, .slider-next {
+    top: auto !important;
+    bottom: 5px !important;
+    transform: none !important;
+    width: 40px !important;   /* Zwiększony, widoczny rozmiar (odpowiednio 3x mniejszy) */
+    height: 40px !important;
+    line-height: 38px !important;
+    font-size: 14px !important;
+    background: rgba(18, 22, 29, 0.92) !important;
+    border: 1px solid rgba(197, 160, 89, 0.7) !important;
+    border-radius: 50% !important;
+    color: #c5a059 !important;
+    z-index: 99 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 14px !important;
+  }
+
+  .swiper-button-prev, .slick-prev, .slider-prev {
+    left: 20% !important;
+    right: auto !important;
+  }
+
+  .swiper-button-next, .slick-next, .slider-next {
+    right: 20% !important;
+    left: auto !important;
+  }
+
+} /* KONIEC AGRESYWNEJ OPTYMALIZACJI */
