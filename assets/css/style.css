@@ -1530,29 +1530,14 @@ iframe {
   opacity: 1 !important;
   transform: scale(1.1) !important;
 }
-
-/* Responsywność: Na telefonach zdjęcie wskakuje pod spód, a tekst się centruje */
-@media (max-width: 768px) {
-  .info-links-left, .info-links-right {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-  }
-  .info-links-left .section-title {
-    text-align: center !important;
-  }
-  .info-link {
-    justify-content: center !important;
-  }
-}
-
 /* ==========================================================================
-   WIDOK MOBILNY (< 768px): PEŁNA OPTYMALIZACJA HERO, PRZYCISKÓW I SLAJDERÓW
-   ========================================================================== */
+   WIDOK MOBILNY (< 768px): PEŁNA OPTYMALIZACJA (SCALONA I POPRAWIONA)
+   ========================================================================= */
 
 @media (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. HERO: ZMNIEJSZENIE PRZERWY OD GÓRY DO LOGO O POŁOWĘ
+     1. HERO ORAZ GÓRNY PASEK: MAŁE LOGO, MAŁA PRZERWA
      ------------------------------------------------------------------------ */
   .hero,
   #hero,
@@ -1598,14 +1583,9 @@ iframe {
     box-shadow: none !important;
   }
 
-/* ==========================================================================
-   WIDOK MOBILNY (< 768px): PRECYZYJNA KOREKTA UKŁADU I STYLÓW
-   ========================================================================== */
-
-@media (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. WYMUSZENIE ELEGANCKIEGO WYGLĄDU PRZYCISKÓW NA DOLE
+     2. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE (NAJWYŻSZY PRIORYTET)
      ------------------------------------------------------------------------ */
   html body .site-header .site-nav,
   html body .site-header.scrolled .site-nav,
@@ -1698,8 +1678,9 @@ iframe {
     padding-bottom: 75px !important;
   }
 
+
   /* ------------------------------------------------------------------------
-     2. SLAJDY APARTAMENTÓW: ZNACZNIE WIĘKSZA PRZERWA POD TYTUŁEM
+     3. SLAJDY APARTAMENTÓW: ZNACZNIE WIĘKSZA PRZERWA POD TYTUŁEM
      ------------------------------------------------------------------------ */
   #apartamenty .section-title,
   #apartamenty h2,
@@ -1716,8 +1697,9 @@ iframe {
     margin-top: 30px !important;
   }
 
+
   /* ------------------------------------------------------------------------
-     3. SLAJDY UDOGODNIEŃ: ZWEŻONE PRZERWY MIĘDZY ELEMENTAMI
+     4. SLAJDY UDOGODNIEŃ: ZWEŻONE PRZERWY MIĘDZY ELEMENTAMI
      ------------------------------------------------------------------------ */
   #udogodnienia .section-title,
   #udogodnienia h2,
@@ -1743,8 +1725,9 @@ iframe {
     gap: 4px !important;
   }
 
+
   /* ------------------------------------------------------------------------
-     4. STRZAŁKI SLAJDERÓW: PRZYWRÓCONE DO 50% PIERWOTNEJ WIELKOŚCI (30px)
+     5. STRZAŁKI SLAJDERÓW: ROZMIAR 30px (50% PIERWOTNEJ) I NA DOLE
      ------------------------------------------------------------------------ */
   .slider-prev, .slider-next,
   .slick-prev, .slick-next,
@@ -1781,4 +1764,5 @@ iframe {
     right: 22% !important;
     left: auto !important;
   }
-}
+
+} /* KONIEC BLOKU MEDIA MOBILNEGO */
