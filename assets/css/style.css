@@ -1537,6 +1537,36 @@ iframe {
 
 @media screen and (max-width: 767px) {
 
+	/* ==========================================================================
+     KROK: PEŁNA WYSOKOŚĆ EKRANU DLA KAŻDEJ SEKCJI
+     ========================================================================== */
+  
+  /* Przypisujemy wszystkim głównym sekcjom pełną wysokość */
+  main section,
+  body > section,
+  .site-main > section {
+    min-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; /* Wyrównanie treści do środka w pionie */
+    align-items: center !important;     /* Wyrównanie treści do środka w poziomie */
+    box-sizing: border-box !important;
+    padding-top: 40px !important;       /* Bezpieczny oddech od góry */
+    padding-bottom: 75px !important;    /* Bezpieczne miejsce na stałe guziki na dole */
+  }
+
+  /* Opcjonalnie: efekt magnetycznego "przyklejania" sekcji przy skrolowaniu */
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+
+  main section,
+  body > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
   /* ------------------------------------------------------------------------
      1. HERO NA PEŁNĄ WYSOKOŚĆ EKRANU + POWIĘKSZONE LOGO O 25%
      ------------------------------------------------------------------------ */
