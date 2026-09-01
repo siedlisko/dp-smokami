@@ -1530,14 +1530,41 @@ iframe {
   opacity: 1 !important;
   transform: scale(1.1) !important;
 }
-/* ==========================================================================
-   WIDOK MOBILNY (< 768px): PEŁNA OPTYMALIZACJA (SCALONA I POPRAWIONA)
-   ========================================================================= */
 
-@media (max-width: 767px) {
+/* ==========================================================================
+   AGRESYWNA OPTYMALIZACJA MOBILNA (< 768px) - WERSJA OSTATECZNA
+   ========================================================================== */
+
+@media screen and (max-width: 767px) {
 
   /* ------------------------------------------------------------------------
-     1. HERO ORAZ GÓRNY PASEK: MAŁE LOGO, MAŁA PRZERWA
+     1. NAPRAWA SEKCJI "POZNAJ NAS BLIŻEJ" (Usuwa zwężenie do połowy ekranu)
+     ------------------------------------------------------------------------ */
+  /* Rezygnujemy z flexboxa na rzecz standardowego układu blokowego na telefonie */
+  .info-links-left,
+  .info-links-right {
+    display: block !important;
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .info-links-left .section-title {
+    text-align: center !important;
+  }
+
+  .info-link {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+
+  /* ------------------------------------------------------------------------
+     2. HERO ORAZ LOGO: MAŁA PRZERWA, LOGO WYŻEJ
      ------------------------------------------------------------------------ */
   .hero,
   #hero,
@@ -1585,12 +1612,14 @@ iframe {
 
 
   /* ------------------------------------------------------------------------
-     2. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE (NAJWYŻSZY PRIORYTET)
+     3. GWARANTOWANY WYGLĄD PRZYCISKÓW NA DOLE (SZKLANY STYL + ZŁOTY)
      ------------------------------------------------------------------------ */
+  /* Używamy prefiksu html body, aby mieć absolutną pewność nadpisania stylów */
   html body .site-header .site-nav,
   html body .site-header.scrolled .site-nav,
   html body #siteNav,
-  html body .site-nav {
+  html body .site-nav,
+  html body nav.site-nav {
     display: block !important;
     position: fixed !important;
     bottom: 0 !important;
@@ -1600,7 +1629,7 @@ iframe {
     width: 100% !important;
     margin: 0 !important;
     padding: 10px 14px !important;
-    background: rgba(18, 22, 29, 0.95) !important;
+    background-color: rgba(18, 22, 29, 0.96) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
@@ -1609,9 +1638,7 @@ iframe {
     box-sizing: border-box !important;
   }
 
-  html body .site-nav ul,
-  html body .site-header .site-nav ul,
-  html body .site-header.scrolled .site-nav ul {
+  html body .site-nav ul {
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
@@ -1623,9 +1650,7 @@ iframe {
     width: 100% !important;
   }
 
-  html body .site-nav ul li,
-  html body .site-header .site-nav ul li,
-  html body .site-header.scrolled .site-nav ul li {
+  html body .site-nav ul li {
     flex: 1 1 50% !important;
     width: 50% !important;
     margin: 0 !important;
@@ -1633,14 +1658,11 @@ iframe {
     display: block !important;
   }
 
-  /* Styl szklanych przycisków */
+  /* Styl ładnych, uformowanych przycisków */
   html body .site-nav a,
   html body .site-nav ul li a,
   html body .site-nav .btn-nav,
-  html body .site-header .site-nav a,
-  html body .site-header .site-nav ul li a,
-  html body .site-header.scrolled .site-nav a,
-  html body .site-header.scrolled .site-nav ul li a {
+  html body .site-nav .nav-link {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
@@ -1654,20 +1676,19 @@ iframe {
     text-decoration: none !important;
     text-transform: uppercase !important;
     
-    /* Prawdziwe tło i obramowanie */
-    background-color: rgba(255, 255, 255, 0.08) !important;
+    /* Wygląd powierzchni */
+    background-color: rgba(255, 255, 255, 0.1) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.25) !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
     box-sizing: border-box !important;
+    transition: none !important;
   }
 
-  /* Drugi przycisk (Kontakt) ze złotym akcentem */
+  /* Drugi przycisk (Kontakt) - Złoty akcent */
   html body .site-nav ul li:last-child a,
-  html body .site-nav ul li:last-child .btn-nav,
-  html body .site-header .site-nav ul li:last-child a,
-  html body .site-header.scrolled .site-nav ul li:last-child a {
+  html body .site-nav ul li:last-child .nav-link {
     background-color: #c5a059 !important;
     color: #111111 !important;
     border-color: #c5a059 !important;
@@ -1680,29 +1701,30 @@ iframe {
 
 
   /* ------------------------------------------------------------------------
-     3. SLAJDY APARTAMENTÓW: ZNACZNIE WIĘKSZA PRZERWA POD TYTUŁEM
+     4. SLAJDY APARTAMENTÓW: WIĘKSZA PRZERWA POD TYTUŁEM
      ------------------------------------------------------------------------ */
-  #apartamenty .section-title,
+  /* Szukamy różnych możliwych klas/id sekcji apartamentów */
   #apartamenty h2,
+  .apartamenty h2,
   .apartamenty-section h2,
-  section[id*="apartament"] h2 {
-    margin-bottom: 70px !important; /* Duży odstęp, by treść nie nachodziła */
-    padding-bottom: 15px !important;
+  section[id*="apartament"] h2,
+  section[class*="apartament"] h2 {
+    margin-bottom: 75px !important; /* Duży odstęp */
+    padding-bottom: 10px !important;
   }
 
   #apartamenty .slider-container,
   #apartamenty .swiper,
-  #apartamenty .slick-slider,
-  section[id*="apartament"] .slider-container {
-    margin-top: 30px !important;
+  .apartamenty-slider {
+    margin-top: 25px !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     4. SLAJDY UDOGODNIEŃ: ZWEŻONE PRZERWY MIĘDZY ELEMENTAMI
+     5. SLAJDY UDOGODNIEŃ: ZWEŻONE PRZERWY ORAZ TYTUŁ
      ------------------------------------------------------------------------ */
-  #udogodnienia .section-title,
   #udogodnienia h2,
+  .udogodnienia h2,
   .udogodnienia-section h2,
   section[id*="udogodnieni"] h2 {
     padding-left: 20% !important;
@@ -1712,57 +1734,53 @@ iframe {
     line-height: 1.25 !important;
   }
 
-  /* Wyraźne zmniejszenie przerw wewnętrznych i marginesów dla kafelków udogodnień */
-  #udogodnienia .slider-container,
+  /* Drastyczne zwężenie przerw w kafelkach udogodnień */
   #udogodnienia .swiper-slide,
   #udogodnienia .slick-slide,
-  #udogodnienia .card,
-  #udogodnienia .udogodnienie-item,
+  .udogodnienia-item,
   section[id*="udogodnieni"] .swiper-slide {
-    padding: 4px 6px !important;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    gap: 4px !important;
+    padding: 2px 4px !important;
+    margin: 0 !important;
   }
 
 
   /* ------------------------------------------------------------------------
-     5. STRZAŁKI SLAJDERÓW: ROZMIAR 30px (50% PIERWOTNEJ) I NA DOLE
+     6. STRZAŁKI SLAJDERÓW: ROZMIAR 30px (50%) I NA DOLE
      ------------------------------------------------------------------------ */
-  .slider-prev, .slider-next,
-  .slick-prev, .slick-next,
   .swiper-button-prev, .swiper-button-next,
-  .carousel-control-prev, .carousel-control-next {
+  .slick-prev, .slick-next,
+  .slider-prev, .slider-next {
     top: auto !important;
     bottom: 5px !important;
     transform: none !important;
-    width: 30px !important;   /* Dokładnie połowa średnicy pierwotnej */
+    width: 30px !important;   /* Połowa pierwotnej wielkości */
     height: 30px !important;
     line-height: 28px !important;
-    font-size: 12px !important;
-    background: rgba(18, 22, 29, 0.9) !important;
-    border: 1px solid rgba(197, 160, 89, 0.6) !important;
+    font-size: 11px !important;
+    background: rgba(18, 22, 29, 0.92) !important;
+    border: 1px solid rgba(197, 160, 89, 0.7) !important;
     border-radius: 50% !important;
     color: #c5a059 !important;
-    z-index: 20 !important;
+    z-index: 99 !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
   }
 
+  /* Zmniejszenie symboli Swipera */
   .swiper-button-prev::after,
   .swiper-button-next::after {
-    font-size: 12px !important;
+    font-size: 11px !important;
   }
 
-  .slider-prev, .slick-prev, .swiper-button-prev, .carousel-control-prev {
+  .swiper-button-prev, .slick-prev, .slider-prev {
     left: 22% !important;
     right: auto !important;
   }
 
-  .slider-next, .slick-next, .swiper-button-next, .carousel-control-next {
+  .swiper-button-next, .slick-next, .slider-next {
     right: 22% !important;
     left: auto !important;
   }
 
-} /* KONIEC BLOKU MEDIA MOBILNEGO */
+} /* KONIEC AGRESYWNEJ OPTYMALIZACJI */
