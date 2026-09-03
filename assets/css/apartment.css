@@ -75,9 +75,12 @@ body {
   position: relative;
   height: 100vh;
   min-height: 380px;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  
+  /* KLUCZOWA ZMIANA: cover rozciąga zdjęcie na całą wysokość i przycina boki */
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  
   display: flex;
   align-items: center;
   justify-content: center;
