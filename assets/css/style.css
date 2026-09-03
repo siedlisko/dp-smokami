@@ -1871,33 +1871,3 @@ html body .site-header .brand img.logo-mobile {
     pointer-events: auto !important;
   }
 }
-
-/* --- AMENITIES & SECTION TITLES MOBILE FIX --- */
-@media screen and (max-width: 767px) {
-
-  /* Zapewnia odstęp od krawędzi dla wszystkich nagłówków sekcji na mobile */
-  .section-title,
-  h2.section-title,
-  .amenities-section .section-title,
-  .slider-title-overlay .section-title {
-    max-width: 95% !important;        /* Zwęża kontener z tekstem */
-    margin-left: auto !important;     /* Środkuje blok */
-    margin-right: auto !important;
-    padding-left: 15px !important;    /* Margines wewnętrzny jako zabezpieczenie */
-    padding-right: 15px !important;
-    text-align: center !important;    /* Środkowanie tekstu */
-    
-    /* Wymuszenie zawijania słów */
-    white-space: normal !important;
-    word-break: keep-all !important;   /* Nie rozrywa słów na pół */
-    overflow-wrap: break-word !important;
-  }
-
-  /* Zabezpieczenie nakładki tytułu na sliderze */
-  .slider-title-overlay {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-}
