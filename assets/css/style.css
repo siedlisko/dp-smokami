@@ -909,6 +909,7 @@ font-size: 0.95rem !important;
    ========================================================================== */
 .map-section {
   padding: 6rem 0 0 0; /* Bez dolnego marginesu – styka się ze stopką */
+  background-color: #000000 !important; /* Tutaj wpisz swój kolor */
 }
 
 /* Wymuszenie 100% szerokości dla mapy oraz jej kontenera */
