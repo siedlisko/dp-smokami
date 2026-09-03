@@ -16,29 +16,28 @@
   <script>
 document.addEventListener('DOMContentLoaded', function() {
   let lastScrollTop = 0;
-  // Szukamy nagłówka na podstawie id lub klasy
-  const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
+  // Celujemy bezpośrednio w wewnętrzny kontener z logo
+  const logoBar = document.querySelector('.site-header-inner');
 
-  if (!siteHeader) return; // Jeśli na jakiejś podstronie nie ma nagłówka, skrypt bezpiecznie się wyłączy
+  if (!logoBar) return;
 
   window.addEventListener('scroll', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    // Próg przy samej górze strony
     if (scrollTop <= 10) {
-      siteHeader.classList.remove('scroll-up', 'scroll-down');
+      logoBar.classList.remove('scroll-up', 'scroll-down');
       lastScrollTop = scrollTop;
       return;
     }
 
     if (scrollTop > lastScrollTop) {
-      // Przewijanie W DÓŁ -> ukrycie
-      siteHeader.classList.add('scroll-down');
-      siteHeader.classList.remove('scroll-up');
+      // Przewijanie W DÓŁ -> chowamy logo
+      logoBar.classList.add('scroll-down');
+      logoBar.classList.remove('scroll-up');
     } else {
-      // Przewijanie W GÓRĘ -> pokazanie
-      siteHeader.classList.add('scroll-up');
-      siteHeader.classList.remove('scroll-down');
+      // Przewijanie W GÓRĘ -> pokazujemy logo
+      logoBar.classList.add('scroll-up');
+      logoBar.classList.remove('scroll-down');
     }
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
