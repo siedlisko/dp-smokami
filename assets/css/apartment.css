@@ -439,3 +439,36 @@ body {
     margin-right: 0 !important;
   }
 }
+
+/* --- POZIOME PRZESUWANIE MINIATUREK PALCEM NA MOBILE --- */
+@media screen and (max-width: 767px) {
+
+  .thumbnails-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;       /* Wymusza jeden rząd (nie zawija miniatur pod spód) */
+    overflow-x: auto !important;        /* Włącza poziomy pasek/gest przewijania */
+    -webkit-overflow-scrolling: touch;  /* Płynny, sprężysty gest przewijania na iPhone/iOS */
+    
+    gap: 8px !important;                /* Odstęp między miniaturkami */
+    padding: 10px 15px !important;      /* Odstęp wewnątrz, żeby skrajne miniaturki nie dotykały krawędzi */
+    margin-bottom: 20px !important;
+    
+    /* Ukrycie brzydkiego paska przewijania (scrollbara) */
+    scrollbar-width: none;              /* Firefox */
+    -ms-overflow-style: none;           /* IE/Edge */
+  }
+
+  /* Ukrycie paska przewijania dla Chrome / Safari / Opera */
+  .thumbnails-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Ustawienie stałej szerokości każdej miniaturki na mobilce */
+  .thumbnails-grid > * {
+    flex: 0 0 70px !important;          /* Każda miniaturka ma sztywno np. 70px szerokości */
+    width: 70px !important;
+    height: 50px !important;
+    object-fit: cover !important;
+    border-radius: 4px;
+  }
+}
