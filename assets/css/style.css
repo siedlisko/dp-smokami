@@ -1770,11 +1770,12 @@ html body .site-header .brand img.logo-mobile {
 /* WERSJA MOBILNA (poniżej 768px) */
 @media screen and (max-width: 767px) {
   
-  /* 1. Ukrywamy desktopowe logo, pokazujemy mobilne w stałym miejscu */
+  /* 1. Ukrywamy desktopowe logo */
   html body .site-header .brand img.logo-desktop {
     display: none !important;
   }
 
+  /* 2. Wyświetlamy mobilne logo */
   html body .site-header .brand img.logo-mobile {
     display: block !important;
     height: 36px !important;
@@ -1782,9 +1783,13 @@ html body .site-header .brand img.logo-mobile {
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 
+  /* 3. Wymuszamy widoczność kontenera logo i pozycjonujemy w lewym górnym rogu */
   .brand,
-  .site-header a.brand {
+  .site-header a.brand,
+  #siteHeader a.brand {
     display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     position: fixed !important;
     top: 10px !important;
     left: 15px !important;
@@ -1792,13 +1797,13 @@ html body .site-header .brand img.logo-mobile {
     pointer-events: auto !important;
   }
 
-  /* 2. ROZMIAR TYTUŁÓW SEKCJI NA MOBILCE */
+  /* 4. Rozmiar i odstępy dla tytułów sekcji na mobilce */
   .section-title,
   h2.section-title,
   #apt-title,
   #amenities-title {
-    font-size: 1.4rem !important; /* Tutaj zmieniasz rozmiar tytułów na telefonie */
-    padding-left: 15px !important;  /* Zabezpieczenie przed dotykaniem krawędzi */
+    font-size: 1.4rem !important;
+    padding-left: 15px !important;
     padding-right: 15px !important;
     box-sizing: border-box !important;
   }
