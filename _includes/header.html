@@ -1,6 +1,28 @@
 <header class="site-header" id="siteHeader" role="banner">
   <div class="site-header-inner">
     <a class="brand" href="{{ site.baseurl }}/index.html" aria-label="Dom Pod Smokami — Strona główna">
+      <h1 class="visually-hidden">Dom Pod Smokami</h1>
+      
+      <!-- Logo dla komputerów -->
+      <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white.png" alt="Dom Pod Smokami" class="logo logo-desktop" loading="eager">
+      
+      <!-- Logo dla telefonów -->
+      <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white3.png" alt="Dom Pod Smokami" class="logo logo-mobile" loading="eager">
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Pokaż menu" aria-expanded="false" aria-controls="siteNav">
+      <span class="hamburger"></span>
+    </button>
+    <nav class="site-nav" id="siteNav" role="navigation" aria-label="Główne menu">
+      <ul>
+        <li><a href="{{ site.baseurl }}/#apartamenty" class="btn-nav">APARTAMENTY</a></li>
+        <li><a href="{{ site.baseurl }}/kontakt.html" class="btn-nav">KONTAKT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header><header class="site-header" id="siteHeader" role="banner">
+  <div class="site-header-inner">
+    <a class="brand" href="{{ site.baseurl }}/index.html" aria-label="Dom Pod Smokami — Strona główna">
   <h1 class="visually-hidden">Dom Pod Smokami</h1>
   <img src="{{ site.baseurl }}/assets/img/logo-pod-smokami-white.png" alt="Dom Pod Smokami" class="logo" loading="eager">
 </a>
