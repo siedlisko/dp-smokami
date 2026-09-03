@@ -1872,20 +1872,32 @@ html body .site-header .brand img.logo-mobile {
   }
 }
 
-/* --- ZAWANIANIE I MARGINESY DLA TYTUŁÓW UUDOGODNIEŃ NA MOBILE --- */
+/* --- AMENITIES & SECTION TITLES MOBILE FIX --- */
 @media screen and (max-width: 767px) {
-  /* Celujemy w nagłówki wewnątrz sekcji udogodnień */
-  .udogodnienia h2,
-  .udogodnienia h3,
-  .amenities h2,
-  .amenities h3,
-  #udogodnienia h2,
-  #udogodnienia h3 {
-    max-width: 80% !important; /* Zawęża obszar tekstu, żeby wyraz nie dotykał krawędzi */
-    margin-left: auto !important; /* Środkuje nagłówek na ekranie */
+
+  /* Zapewnia odstęp od krawędzi dla wszystkich nagłówków sekcji na mobile */
+  .section-title,
+  h2.section-title,
+  .amenities-section .section-title,
+  .slider-title-overlay .section-title {
+    max-width: 80% !important;        /* Zwęża kontener z tekstem */
+    margin-left: auto !important;     /* Środkuje blok */
     margin-right: auto !important;
-    text-align: center !important; /* Wyśrodkowanie tekstu */
-    hyphens: auto !important; /* Opcjonalnie: ładne dzielenie wyrazów w języku polskim */
-    word-wrap: break-word !important;
+    padding-left: 15px !important;    /* Margines wewnętrzny jako zabezpieczenie */
+    padding-right: 15px !important;
+    text-align: center !important;    /* Środkowanie tekstu */
+    
+    /* Wymuszenie zawijania słów */
+    white-space: normal !important;
+    word-break: keep-all !important;   /* Nie rozrywa słów na pół */
+    overflow-wrap: break-word !important;
+  }
+
+  /* Zabezpieczenie nakładki tytułu na sliderze */
+  .slider-title-overlay {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }
