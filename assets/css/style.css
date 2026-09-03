@@ -1835,31 +1835,32 @@ iframe {
 
 /* --- REGŁY DLA DWOCH LOGO (JEKYLL) --- */
 
-/* Domyślnie (komputery): pokarz desktopowe, ukryj mobilne */
-.brand .logo-desktop {
-  display: block !important;
+/* 1. DOMYŚLNIE (komputery / ekrany od 768px w górę) */
+html body .site-header .brand img.logo-desktop {
+  display: inline-block !important;
 }
-.brand .logo-mobile {
+
+html body .site-header .brand img.logo-mobile {
   display: none !important;
 }
 
-/* Wersja mobilna (poniżej 768px) */
+/* 2. WERSJA MOBILNA (poniżej 768px) */
 @media screen and (max-width: 767px) {
   
-  /* Ukrywamy desktopowe logo */
-  .brand .logo-desktop {
+  /* Ukrywamy desktopowe logo na telefonie */
+  html body .site-header .brand img.logo-desktop {
     display: none !important;
   }
 
-  /* Pokazujemy mobilne logo */
-  .brand .logo-mobile {
+  /* Pokazujemy mobilne logo na telefonie */
+  html body .site-header .brand img.logo-mobile {
     display: block !important;
     height: 36px !important;
     width: auto !important;
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 
-  /* Pozycjonowanie i płynna animacja chowania logo */
+  /* Pozycjonowanie paska z logo */
   .brand,
   .site-header a.brand {
     display: flex !important;
@@ -1874,14 +1875,14 @@ iframe {
     opacity: 1;
   }
 
-  /* Przewijanie W DÓŁ -> ucieczka logo do góry */
+  /* Stan: SCROLL W DÓŁ -> ucieczka logo */
   .brand.scroll-down,
   .site-header a.brand.scroll-down {
     transform: translateY(-150%) !important;
     opacity: 0 !important;
   }
 
-  /* Przewijanie W GÓRĘ -> powrót logo */
+  /* Stan: SCROLL W GÓRĘ -> powrót logo */
   .brand.scroll-up,
   .site-header a.brand.scroll-up {
     transform: translateY(0) !important;
