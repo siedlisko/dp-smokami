@@ -1801,6 +1801,19 @@ iframe {
   /* PODMIANA PLIKU LOGO W LEWYM GÓRNYM ROGU NA MOBILE */
   .brand img,
   .site-header a.brand img {
-    content: url("../assets/img/logo-pod-smokami-white3.png") !important;
+    /* Ustawiamy wymiary ramki na nowe logo */
+    width: 130px !important; 
+    height: 38px !important;
+    
+    /* Wgrywamy nowe logo jako tło */
+    background-image: url("/assets/img/logo-pod-smokami-white3.png") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: left center !important;
+    
+    /* Ukrywamy oryginalny plik obrazka, zostawiając samo tło */
+    box-sizing: border-box !important;
+    padding-left: 100% !important;
+    overflow: hidden !important;
   }
 }
