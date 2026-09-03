@@ -440,72 +440,42 @@ body {
   }
 }
 
-/* --- POZIOME PRZESUWANIE MINIATUREK PALCEM NA MOBILE --- */
+/* --- Wymuszenie wyświetlania wszystkich 8 miniaturek na mobile --- */
 @media screen and (max-width: 767px) {
 
+  /* 1. Zamiana siatki na elastyczny pasek przewijany w bok */
   .thumbnails-grid {
     display: flex !important;
-    flex-wrap: nowrap !important;       /* Wymusza jeden rząd (nie zawija miniatur pod spód) */
-    overflow-x: auto !important;        /* Włącza poziomy pasek/gest przewijania */
-    -webkit-overflow-scrolling: touch;  /* Płynny, sprężysty gest przewijania na iPhone/iOS */
-    
-    gap: 8px !important;                /* Odstęp między miniaturkami */
-    padding: 10px 15px !important;      /* Odstęp wewnątrz, żeby skrajne miniaturki nie dotykały krawędzi */
-    margin-bottom: 20px !important;
-    
-    /* Ukrycie brzydkiego paska przewijania (scrollbara) */
-    scrollbar-width: none;              /* Firefox */
-    -ms-overflow-style: none;           /* IE/Edge */
-  }
-
-  /* Ukrycie paska przewijania dla Chrome / Safari / Opera */
-  .thumbnails-grid::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  /* Ustawienie stałej szerokości każdej miniaturki na mobilce */
-  .thumbnails-grid > * {
-    flex: 0 0 70px !important;          /* Każda miniaturka ma sztywno np. 70px szerokości */
-    width: 70px !important;
-    height: 50px !important;
-    object-fit: cover !important;
-    border-radius: 4px;
-  }
-}
-
-/* --- ODABLOKOWANIE WSZYSTKICH MINIATUREK DLA MOBILE --- */
-@media screen and (max-width: 767px) {
-
-  /* 1. Zmiana siatki Grid na elastyczną taśmę Flex */
-  .thumbnails-grid {
-    display: flex !important;
-    flex-wrap: nowrap !important;        /* Wymusza 1 rząd - brak zawijania */
-    overflow-x: auto !important;         /* Płynne przesuwanie palcem */
-    -webkit-overflow-scrolling: touch;   /* Płynność na iOS/iPhone */
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     gap: 8px !important;
-    padding: 5px 15px !important;        /* Odstęp wewnętrzny */
+    padding: 10px 15px !important;
     margin-top: 12px !important;
     
     /* Ukrycie paska przewijania */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
   .thumbnails-grid::-webkit-scrollbar {
     display: none !important;
   }
 
-  /* 2. Stała szerokość miniaturki, żeby nie ściskało ich w ekranie */
-  .thumbnails-grid .thumb {
-    flex: 0 0 75px !important;           /* Każda miniaturka ma dokładnie 75px */
+  /* 2. Stała szerokość miniaturki (nie ucina i nie ściska do 5 sztuk) */
+  .thumbnails-grid .thumb,
+  .thumbnails-grid img.thumb {
+    display: block !important;
+    flex: 0 0 75px !important; /* Sztywna szerokość 75px dla każdej z 8 miniaturek */
     width: 75px !important;
+    min-width: 75px !important;
     height: 55px !important;
     object-fit: cover !important;
-    opacity: 0.7;
+    opacity: 0.6;
   }
 
   .thumbnails-grid .thumb.active {
-    opacity: 1;
-    outline: 2px solid var(--accent);
+    opacity: 1 !important;
+    outline: 2px solid var(--accent) !important;
   }
 }
