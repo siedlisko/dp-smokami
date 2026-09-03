@@ -1797,35 +1797,38 @@ iframe {
     opacity: 1 !important;
   }
 }
+
 @media screen and (max-width: 767px) {
-  /* 1. Pojemnik na logo - ustala wymiary obszaru */
   .brand,
   .site-header a.brand {
+    display: flex !important;
     position: fixed !important;
     top: 10px !important;
     left: 15px !important;
-    width: 140px !important;
-    height: 38px !important;
-    display: block !important;
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+    
+    transition: transform 0.3s ease, opacity 0.3s ease !important;
+    transform: translateY(0);
+    opacity: 1;
   }
 
-  /* 2. Ukrywamy oryginalny obrazek <img> */
   .brand img,
   .site-header a.brand img {
-    display: none !important;
+    display: block !important;
+    height: 36px !important;
+    width: auto !important;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 
-  /* 3. Wstawiamy nowe logo przez ::after */
-  .brand::after,
-  .site-header a.brand::after {
-    content: "" !important;
-    display: block !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-image: url("/assets/img/logo-pod-smokami-white3.png") !important;
-    background-size: contain !important;
-    background-repeat: no-repeat !important;
-    background-position: left center !important;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
+  .brand.scroll-down,
+  .site-header a.brand.scroll-down {
+    transform: translateY(-150%) !important;
+    opacity: 0 !important;
+  }
+
+  .brand.scroll-up,
+  .site-header a.brand.scroll-up {
+    transform: translateY(0) !important;
   }
 }
