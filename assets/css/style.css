@@ -1880,7 +1880,7 @@ html body .site-header .brand img.logo-mobile {
   h2.section-title,
   .amenities-section .section-title,
   .slider-title-overlay .section-title {
-    max-width: 80% !important;        /* Zwęża kontener z tekstem */
+    max-width: 95% !important;        /* Zwęża kontener z tekstem */
     margin-left: auto !important;     /* Środkuje blok */
     margin-right: auto !important;
     padding-left: 15px !important;    /* Margines wewnętrzny jako zabezpieczenie */
