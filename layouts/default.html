@@ -17,16 +17,19 @@
 document.addEventListener('DOMContentLoaded', function() {
   let lastScrollTop = 0;
   
-  const brandAnchor = document.querySelector('.brand') || document.querySelector('.site-header a.brand');
+  // Wskazujemy BARDZO PRECYZYJNIE logo w górnym pasku (#siteHeader)
+  const headerNav = document.querySelector('#siteHeader') || document.querySelector('.site-header');
+  const brandAnchor = headerNav ? headerNav.querySelector('a.brand, .brand') : null;
   const brandImg = brandAnchor ? brandAnchor.querySelector('img') : null;
 
   if (!brandAnchor || !brandImg) return;
 
-  // Wpisz tutaj poprawną ścieżkę do nowego logo oraz zapamiętaj oryginalną dla desktopu
-  const mobileLogoSrc = 'assets/img/logo-pod-smokami-white3.png';
+  // Ścieżka do logo mobilnego (z ukośnikiem na początku, aby szukać od katalogu głównego)
+  const mobileLogoSrc = '/assets/img/logo-pod-smokami-white3.png';
+  
+  // Zapamiętujemy oryginalne logo z nagłówka
   const desktopLogoSrc = brandImg.getAttribute('src');
 
-  // Funkcja zmieniająca obrazek w zależności od szerokości ekranu
   function updateLogoSource() {
     if (window.innerWidth <= 767) {
       if (brandImg.getAttribute('src') !== mobileLogoSrc) {
@@ -39,11 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // Wywołaj na starcie i przy zmianie rozmiaru okna
+  // Uruchamiamy od razu
   updateLogoSource();
   window.addEventListener('resize', updateLogoSource);
 
-  // Obsługa chowania/wysuwania logo przy scrollowaniu
+  // Obsługa chowania/wysuwania logo przy scrollowaniu na mobilce
   window.addEventListener('scroll', function() {
     if (window.innerWidth > 767) return;
 
