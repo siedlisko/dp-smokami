@@ -1075,7 +1075,7 @@ iframe {
 }
 
 @media (max-width: 768px) {
-  /* O PENSJONACIE MOBAIL */
+  /* O PENSJONACIE MOBILE */
   .about-section {
     height: auto;
     padding: 5rem 0;
@@ -1148,33 +1148,77 @@ iframe {
   }
 }
 
-/* --- POPRAWKI MOBILNE V9 (DOM POD SMOKAMI) --- */
+/* --- POPRAWKI MOBILNE V10 (DOM POD SMOKAMI) --- */
 @media screen and (max-width: 767px) {
 
-  /* 1. HERO NA PEŁNĄ WYSOKOŚĆ EKRANU + POWIĘKSZONE LOGO */
-  .site-header a.brand,
-  #siteHeader a.brand,
-  .brand,
+  /* 1. GÓRNY NAGŁÓWEK Z LOGO - PŁYNNIE CHOWANY PRZY SCROLLU W DÓŁ, POKAZYWANY W GÓRĘ */
   #navToggle,
   .nav-toggle {
     display: none !important;
   }
 
   #siteHeader,
-  .site-header,
-  .site-header-inner {
-    position: absolute !important;
+  .site-header {
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
+    height: auto !important;
+    min-height: 50px !important;
+    padding: 10px 15px !important;
     margin: 0 !important;
-    background: transparent !important;
+    background: linear-gradient(to bottom, rgba(18, 22, 29, 0.95) 0%, rgba(18, 22, 29, 0) 100%) !important;
     border: none !important;
+    z-index: 999999 !important;
+    pointer-events: none !important;
+    
+    /* Animacja wyjazdu/wjazdu */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
+    transform: translateY(0) !important;
+    opacity: 1 !important;
   }
 
+  /* UKRYCIE NAGŁÓWKA (PRZEWIJANIE W DÓŁ) */
+  #siteHeader.scroll-down,
+  .site-header.scroll-down {
+    transform: translateY(-100%) !important;
+    opacity: 0 !important;
+  }
+
+  /* POKAZANIE NAGŁÓWKA (PRZEWIJANIE W GÓRĘ) */
+  #siteHeader.scroll-up,
+  .site-header.scroll-up {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+  }
+
+  .site-header-inner {
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    background: transparent !important;
+  }
+
+  .site-header a.brand,
+  #siteHeader a.brand,
+  .brand {
+    display: flex !important;
+    pointer-events: auto !important;
+  }
+
+  .brand img.logo,
+  .site-header img {
+    height: 38px !important;
+    width: auto !important;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)) !important;
+  }
+
+  .site-header .site-nav {
+    display: none !important;
+  }
+
+  /* HERO SEKCJA MOBILNA */
   section.hero,
   .hero {
     display: flex !important;
@@ -1183,7 +1227,7 @@ iframe {
     align-items: center !important;
     min-height: 100vh !important;
     height: 100vh !important;
-    padding-top: 20px !important;
+    padding-top: 60px !important;
     padding-bottom: 70px !important;
     margin-top: 0 !important;
     box-sizing: border-box !important;
