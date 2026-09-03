@@ -1798,22 +1798,34 @@ iframe {
   }
 }
 @media screen and (max-width: 767px) {
-  /* PODMIANA PLIKU LOGO W LEWYM GÓRNYM ROGU NA MOBILE */
+  /* 1. Pojemnik na logo - ustala wymiary obszaru */
+  .brand,
+  .site-header a.brand {
+    position: fixed !important;
+    top: 10px !important;
+    left: 15px !important;
+    width: 140px !important;
+    height: 38px !important;
+    display: block !important;
+  }
+
+  /* 2. Ukrywamy oryginalny obrazek <img> */
   .brand img,
   .site-header a.brand img {
-    /* Ustawiamy wymiary ramki na nowe logo */
-    width: 130px !important; 
-    height: 38px !important;
-    
-    /* Wgrywamy nowe logo jako tło */
+    display: none !important;
+  }
+
+  /* 3. Wstawiamy nowe logo przez ::after */
+  .brand::after,
+  .site-header a.brand::after {
+    content: "" !important;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
     background-image: url("/assets/img/logo-pod-smokami-white3.png") !important;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: left center !important;
-    
-    /* Ukrywamy oryginalny plik obrazka, zostawiając samo tło */
-    box-sizing: border-box !important;
-    padding-left: 100% !important;
-    overflow: hidden !important;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 }
