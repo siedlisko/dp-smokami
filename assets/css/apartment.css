@@ -407,3 +407,35 @@ body {
     display: none; 
   }
 }
+
+/* --- GALERIA DO KRAWĘDZI EKRANU TYLKO NA MOBILE --- */
+@media screen and (max-width: 767px) {
+
+  /* 1. Wyciągamy cały kontener galerii na pełną szerokość okna */
+  .apartment-gallery {
+    width: 100vw !important;
+    max-width: none !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 2. Zjmujemy zaokrąglenie rogów i dostosowujemy wysokość głównego zdjęcia */
+  .main-slide {
+    height: 60vh !important;       /* Elastyczna wysokość zamiast sztywnych 520px */
+    min-height: 280px !important;
+    border-radius: 0 !important;   /* Płaskie krawędzie przy samym brzegu ekranu */
+  }
+
+  /* 3. Miniaturki również bez bocznych marginesów */
+  .thumbnails-grid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
