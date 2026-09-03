@@ -1755,84 +1755,6 @@ iframe {
     display: block !important;
   }
 }
-
-/* --- DZIEWCZYŃSKO-PRECYZYJNE CHOWANIE LOGO MOBILNEGO --- */
-@media screen and (max-width: 767px) {
-  
-  /* Pokazujemy małe logo w lewym górnym rogu */
-  .site-header a.brand,
-  #siteHeader a.brand,
-  .brand {
-    display: flex !important;
-    position: fixed !important;
-    top: 10px !important;
-    left: 15px !important;
-    z-index: 999999 !important;
-    pointer-events: auto !important;
-    
-    /* Płynna animacja uciekania do góry */
-    transition: transform 0.3s ease, opacity 0.3s ease !important;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .brand img,
-  .site-header a.brand img {
-    height: 36px !important;
-    width: auto !important;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
-  }
-
-  /* Przewijanie W DÓŁ -> ukrycie samego logo */
-  .brand.scroll-down,
-  .site-header a.brand.scroll-down {
-    transform: translateY(-150%) !important;
-    opacity: 0 !important;
-  }
-
-  /* Przewijanie W GÓRĘ -> pokazanie logo */
-  .brand.scroll-up,
-  .site-header a.brand.scroll-up {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .brand,
-  .site-header a.brand {
-    display: flex !important;
-    position: fixed !important;
-    top: 10px !important;
-    left: 15px !important;
-    z-index: 999999 !important;
-    pointer-events: auto !important;
-    
-    transition: transform 0.3s ease, opacity 0.3s ease !important;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  .brand img,
-  .site-header a.brand img {
-    display: block !important;
-    height: 36px !important;
-    width: auto !important;
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
-  }
-
-  .brand.scroll-down,
-  .site-header a.brand.scroll-down {
-    transform: translateY(-150%) !important;
-    opacity: 0 !important;
-  }
-
-  .brand.scroll-up,
-  .site-header a.brand.scroll-up {
-    transform: translateY(0) !important;
-  }
-}
-
 /* --- ZARZĄDZANIE LOGO DESKTOP / MOBILE --- */
 
 /* DOMYŚLNIE (komputery / ekrany od 768px w górę) */
@@ -1847,12 +1769,11 @@ html body .site-header .brand img.logo-mobile {
 /* WERSJA MOBILNA (poniżej 768px) */
 @media screen and (max-width: 767px) {
   
-  /* Ukrywamy desktopowe logo na telefonie */
+  /* 1. Ukrywamy desktopowe logo, pokazujemy mobilne w stałym miejscu */
   html body .site-header .brand img.logo-desktop {
     display: none !important;
   }
 
-  /* Pokazujemy mobilne logo na telefonie */
   html body .site-header .brand img.logo-mobile {
     display: block !important;
     height: 36px !important;
@@ -1860,7 +1781,6 @@ html body .site-header .brand img.logo-mobile {
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 
-  /* Pozycjonowanie logo w lewym górnym rogu */
   .brand,
   .site-header a.brand {
     display: flex !important;
@@ -1869,5 +1789,16 @@ html body .site-header .brand img.logo-mobile {
     left: 15px !important;
     z-index: 999999 !important;
     pointer-events: auto !important;
+  }
+
+  /* 2. ROZMIAR TYTUŁÓW SEKCJI NA MOBILCE */
+  .section-title,
+  h2.section-title,
+  #apt-title,
+  #amenities-title {
+    font-size: 1.4rem !important; /* Tutaj zmieniasz rozmiar tytułów na telefonie */
+    padding-left: 15px !important;  /* Zabezpieczenie przed dotykaniem krawędzi */
+    padding-right: 15px !important;
+    box-sizing: border-box !important;
   }
 }
