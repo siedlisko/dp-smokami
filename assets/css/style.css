@@ -1801,6 +1801,6 @@ iframe {
   /* PODMIANA PLIKU LOGO W LEWYM GÓRNYM ROGU NA MOBILE */
   .brand img,
   .site-header a.brand img {
-    content: url("/assets/img/logo-pod-smokami-white3.png") !important;
+    content: url("../assets/img/logo-pod-smokami-white3.png") !important;
   }
 }
