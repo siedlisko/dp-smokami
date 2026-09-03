@@ -13,5 +13,33 @@
 
   {% include footer.html %}
 
+  <script>
+  let lastScrollTop = 0;
+  const siteHeader = document.getElementById('siteHeader') || document.querySelector('.site-header');
+
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Zapobiega błędnym odczytom na samej górze (np. na iOS przy sprężynowaniu)
+    if (scrollTop <= 10) {
+      siteHeader.classList.remove('scroll-up', 'scroll-down');
+      lastScrollTop = scrollTop;
+      return;
+    }
+
+    if (scrollTop > lastScrollTop) {
+      // Przewijanie W DÓŁ -> chowamy nagłówek z logo
+      siteHeader.classList.add('scroll-down');
+      siteHeader.classList.remove('scroll-up');
+    } else {
+      // Przewijanie W GÓRĘ -> pokazujemy nagłówek z logo
+      siteHeader.classList.add('scroll-up');
+      siteHeader.classList.remove('scroll-down');
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, { passive: true });
+</script>
+
 </body>
 </html>
