@@ -16,28 +16,29 @@
   <script>
 document.addEventListener('DOMContentLoaded', function() {
   let lastScrollTop = 0;
-  // Celujemy bezpośrednio w wewnętrzny kontener z logo
-  const logoBar = document.querySelector('.site-header-inner');
+  // Celujemy wyłącznie w element z logo
+  const brandLogo = document.querySelector('.brand') || document.querySelector('.site-header a.brand');
 
-  if (!logoBar) return;
+  if (!brandLogo) return;
 
   window.addEventListener('scroll', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     
-    if (scrollTop <= 10) {
-      logoBar.classList.remove('scroll-up', 'scroll-down');
+    // Na samej górze strony logo zawsze widoczne
+    if (scrollTop <= 15) {
+      brandLogo.classList.remove('scroll-up', 'scroll-down');
       lastScrollTop = scrollTop;
       return;
     }
 
     if (scrollTop > lastScrollTop) {
-      // Przewijanie W DÓŁ -> chowamy logo
-      logoBar.classList.add('scroll-down');
-      logoBar.classList.remove('scroll-up');
+      // Przewijanie W DÓŁ -> schowaj logo
+      brandLogo.classList.add('scroll-down');
+      brandLogo.classList.remove('scroll-up');
     } else {
-      // Przewijanie W GÓRĘ -> pokazujemy logo
-      logoBar.classList.add('scroll-up');
-      logoBar.classList.remove('scroll-down');
+      // Przewijanie W GÓRĘ -> pokaż logo
+      brandLogo.classList.add('scroll-up');
+      brandLogo.classList.remove('scroll-down');
     }
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
