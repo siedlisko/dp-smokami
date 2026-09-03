@@ -1058,146 +1058,57 @@ iframe {
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* ==========================================================================
-   11. RESPONSIVE DESIGN (Media Queries)
-   ========================================================================== */
-
-@media (max-width: 992px) {
-  .hero-content h1 {
-    font-size: 2.75rem;
-  }
-  .location-title {
-    font-size: 2rem;
-  }
-  .location-info {
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 768px) {
-  /* O PENSJONACIE MOBILE */
-  .about-section {
-    height: auto;
-    padding: 5rem 0;
-  }
-  
-  .about-content {
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .about-title {
-    font-size: 1.75rem;
-  }
-
-  /* UDOGODNIENIA MOBILE */
-  .swiper-slide.amenity-slide {
-    flex-direction: column !important;    
-  }
-  .amenity-slide .amenity-content,
-  .amenity-slide .amenity-img {
-    flex: 0 0 100% !important;
-    width: 100% !important;
-    padding: 20px !important;
-  }
-  .amenity-slide .amenity-img {
-    min-height: 250px !important;
-  }
-
-  /* HERO LOGO MOBILE */
-  .hero-logo {
-    height: 120px;
-  }
-  .hero-logo-wrapper {
-    margin-bottom: 1.5rem;
-  }
-
-  /* LOKALIZACJA MOBILE */
-  .location-section {
-    min-height: 500px !important;
-    aspect-ratio: auto !important;
-    padding: 50px 15px !important;
-  }
-  .location-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 20px !important;
-  }
-  .location-info p {
-    font-size: 0.95rem !important;
-  }
-
-  /* UKŁAD OGÓLNY MOBILE */
-  .hero-content h1 {
-    font-size: 2.25rem;
-  }
-  .hero-lead {
-    max-width: 100%;
-  }
-  .section-title {
-    font-size: 1.75rem;
-  }
-  
-  .apartment-slide {
-    height: 480px;
-    padding: 2rem;
-  }
-  
-  .location-info {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
-/* --- POPRAWKI MOBILNE V11 (DOM POD SMOKAMI) --- */
+/* --- POPRAWKI MOBILNE V12 (DOM POD SMOKAMI) --- */
 @media screen and (max-width: 767px) {
 
-  /* 1. MAŁE LOGO W LEWYM GÓRNYM ROGU (CHOWA SIĘ PRZY SCROLLU W DÓŁ) */
   #navToggle,
   .nav-toggle {
     display: none !important;
   }
 
+  /* Główny kontener nagłówka - neutralny, nie przesuwa się */
   #siteHeader,
   .site-header {
+    position: static !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* 1. PASEK Z LOGO W LEWYM GÓRNYM ROGU (ANIMOWANY) */
+  .site-header-inner {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
-    height: auto !important;
-    min-height: 50px !important;
     padding: 10px 15px !important;
-    margin: 0 !important;
-    background: linear-gradient(to bottom, rgba(18, 22, 29, 0.9) 0%, rgba(18, 22, 29, 0) 100%) !important;
-    border: none !important;
-    z-index: 999999 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    background: linear-gradient(to bottom, rgba(18, 22, 29, 0.95) 0%, rgba(18, 22, 29, 0) 100%) !important;
+    z-index: 99999 !important;
+    box-sizing: border-box !important;
     pointer-events: none !important;
-    
-    /* Animacja wysuwania i chowania samego logo */
+
+    /* Płynne chowanie i wysuwanie */
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out !important;
     transform: translateY(0) !important;
     opacity: 1 !important;
   }
 
-  /* Stan: przewijanie W DÓŁ -> logo wyjeżdża do góry */
-  #siteHeader.scroll-down,
-  .site-header.scroll-down {
+  /* Stan: SCROLL W DÓŁ -> logo ucieka do góry */
+  .site-header-inner.scroll-down {
     transform: translateY(-100%) !important;
     opacity: 0 !important;
   }
 
-  /* Stan: przewijanie W GÓRĘ -> logo pojawia się z powrotem */
-  #siteHeader.scroll-up,
-  .site-header.scroll-up {
+  /* Stan: SCROLL W GÓRĘ -> logo wraca */
+  .site-header-inner.scroll-up {
     transform: translateY(0) !important;
     opacity: 1 !important;
-  }
-
-  .site-header-inner {
-    padding: 0 !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    background: transparent !important;
   }
 
   .site-header a.brand,
@@ -1212,6 +1123,10 @@ iframe {
     height: 38px !important;
     width: auto !important;
     filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)) !important;
+  }
+
+  .site-header .site-nav {
+    display: none !important;
   }
 
   /* 2. HERO SEKCJA MOBILNA */
@@ -1251,7 +1166,7 @@ iframe {
     padding: 0 !important;
   }
 
-  /* 3. GUZIKI NA DOLE - NA STAŁE PRZYKLEJONE DO DOŁU (STICKY NAV) */
+  /* 3. GUZIKI NA DOLE - NA STAŁE PRZYKLEJONE (STICKY NAV) */
   html body nav#siteNav {
     display: block !important;
     visibility: visible !important;
@@ -1270,7 +1185,7 @@ iframe {
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4) !important;
     z-index: 9999999 !important;
     box-sizing: border-box !important;
-    transform: none !important; /* Wykluczenie ze skryptu chowania */
+    transform: none !important;
   }
 
   html body nav#siteNav ul {
