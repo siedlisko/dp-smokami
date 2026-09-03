@@ -1833,9 +1833,9 @@ iframe {
   }
 }
 
-/* --- REGŁY DLA DWOCH LOGO (JEKYLL) --- */
+/* --- ZARZĄDZANIE LOGO DESKTOP / MOBILE --- */
 
-/* 1. DOMYŚLNIE (komputery / ekrany od 768px w górę) */
+/* DOMYŚLNIE (komputery / ekrany od 768px w górę) */
 html body .site-header .brand img.logo-desktop {
   display: inline-block !important;
 }
@@ -1844,7 +1844,7 @@ html body .site-header .brand img.logo-mobile {
   display: none !important;
 }
 
-/* 2. WERSJA MOBILNA (poniżej 768px) */
+/* WERSJA MOBILNA (poniżej 768px) */
 @media screen and (max-width: 767px) {
   
   /* Ukrywamy desktopowe logo na telefonie */
@@ -1860,7 +1860,7 @@ html body .site-header .brand img.logo-mobile {
     filter: drop-shadow(0 2px 5px rgba(0,0,0,0.7)) !important;
   }
 
-  /* Pozycjonowanie paska z logo */
+  /* Pozycjonowanie logo w lewym górnym rogu */
   .brand,
   .site-header a.brand {
     display: flex !important;
@@ -1869,23 +1869,5 @@ html body .site-header .brand img.logo-mobile {
     left: 15px !important;
     z-index: 999999 !important;
     pointer-events: auto !important;
-    
-    transition: transform 0.3s ease, opacity 0.3s ease !important;
-    transform: translateY(0);
-    opacity: 1;
-  }
-
-  /* Stan: SCROLL W DÓŁ -> ucieczka logo */
-  .brand.scroll-down,
-  .site-header a.brand.scroll-down {
-    transform: translateY(-150%) !important;
-    opacity: 0 !important;
-  }
-
-  /* Stan: SCROLL W GÓRĘ -> powrót logo */
-  .brand.scroll-up,
-  .site-header a.brand.scroll-up {
-    transform: translateY(0) !important;
-    opacity: 1 !important;
   }
 }
