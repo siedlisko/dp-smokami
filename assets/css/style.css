@@ -1871,3 +1871,21 @@ html body .site-header .brand img.logo-mobile {
     pointer-events: auto !important;
   }
 }
+
+/* --- ZAWANIANIE I MARGINESY DLA TYTUŁÓW UUDOGODNIEŃ NA MOBILE --- */
+@media screen and (max-width: 767px) {
+  /* Celujemy w nagłówki wewnątrz sekcji udogodnień */
+  .udogodnienia h2,
+  .udogodnienia h3,
+  .amenities h2,
+  .amenities h3,
+  #udogodnienia h2,
+  #udogodnienia h3 {
+    max-width: 80% !important; /* Zawęża obszar tekstu, żeby wyraz nie dotykał krawędzi */
+    margin-left: auto !important; /* Środkuje nagłówek na ekranie */
+    margin-right: auto !important;
+    text-align: center !important; /* Wyśrodkowanie tekstu */
+    hyphens: auto !important; /* Opcjonalnie: ładne dzielenie wyrazów w języku polskim */
+    word-wrap: break-word !important;
+  }
+}
