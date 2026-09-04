@@ -479,3 +479,10 @@ body {
     outline: 2px solid var(--accent) !important;
   }
 }
+
+/* Zabezpieczenie kontenera slajdera na mobile */
+.main-slide {
+  touch-action: pan-y; /* Zezwala na pionowe skrolowanie strony, ale przechwytuje poziome gesty */
+  user-select: none;   /* Zapobiega przypadkowemu zaznaczaniu zdjęcia przy przesuwaniu */
+  -webkit-user-drag: none;
+}
