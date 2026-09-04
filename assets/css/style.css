@@ -1622,7 +1622,7 @@ iframe {
 }
 
 /* ==========================================================================
-   POPRAWKA MOBILNA V9 (DOM POD SMOKAMI)
+   POPRAWKA MOBILNA V10 (DOM POD SMOKAMI)
    ========================================================================== */
 
 @media screen and (max-width: 767px) {
@@ -1630,10 +1630,7 @@ iframe {
   /* ------------------------------------------------------------------------
      1. HERO NA PEŁNĄ WYSOKOŚĆ EKRANU + POWIĘKSZONE LOGO O 25%
      ------------------------------------------------------------------------ */
-  /* Ukrycie logo z headera i hamburgera */
-  .site-header a.brand,
-  #siteHeader a.brand,
-  .brand,
+  /* Ukrycie hamburgera i reset przestrzeni nagłówka */
   #navToggle,
   .nav-toggle {
     display: none !important;
@@ -1771,10 +1768,9 @@ iframe {
   }
 
   /* ------------------------------------------------------------------------
-     3. STRZAŁKI SLAJDERA NA DOLE PO BOKACH KROPEK
+     3. STRZAŁKI SLAJDERA NA DOLE PO BOKACH KROPEK (OGÓLNE)
      ------------------------------------------------------------------------ */
-  .swiper-apartments,
-  .swiper-amenities {
+  .swiper-apartments {
     padding-bottom: 55px !important;
     position: relative !important;
   }
@@ -1844,8 +1840,62 @@ iframe {
     border-radius: 8px !important;
     display: block !important;
   }
+
+  /* ------------------------------------------------------------------------
+     5. KOMPRESJA SLAJDERA UDOGODNIEŃ (ZWIĘKSZONY ODSTĘP POD PRZYCISKI)
+     ------------------------------------------------------------------------ */
+  /* Odchudzenie pionowe całej sekcji udogodnień */
+  .amenities-section {
+    padding: 2rem 0 !important;
+  }
+
+  /* Zwiększony bufor pod slajderem (60px), by strzałki nie nachodziły na przycisk w karcie */
+  .amenities-section .swiper,
+  .swiper-amenities {
+    padding-bottom: 60px !important;
+    position: relative !important;
+  }
+
+  /* Obniżenie wysokości zdjęcia w karcie z 250px do 130px */
+  .amenity-img {
+    height: 130px !important;
+  }
+
+  /* Ścieśnienie marginesów wewnątrz karty udogodnienia */
+  .amenity-content {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .amenity-content h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 0.35rem !important;
+  }
+
+  .amenity-content p {
+    font-size: 0.85rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  /* Ochrona ostatniego elementu w karcie (przycisku) przed krawędzią */
+  .amenity-content > *:last-child {
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Pozycjonowanie strzałek nawigacyjnych bezpośrednio pod kartą */
+  .amenities-section .swiper-button-prev,
+  .amenities-section .swiper-button-next {
+    bottom: 5px !important;
+  }
+
+  .amenities-section .swiper-pagination {
+    bottom: 15px !important;
+  }
 }
-/* --- ZARZĄDZANIE LOGO DESKTOP / MOBILE --- */
+
+/* ==========================================================================
+   ZARZĄDZANIE LOGO DESKTOP / MOBILE
+   ========================================================================== */
 
 /* DOMYŚLNIE (komputery / ekrany od 768px w górę) */
 html body .site-header .brand img.logo-desktop {
