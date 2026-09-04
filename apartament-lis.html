@@ -162,7 +162,6 @@ gallery:
     thumbs.forEach((thumb, index) => {
       if (index === currentIndex) {
         thumb.classList.add('active');
-        // Wyśrodkowuje aktywną miniaturkę w przewijanym pasku mobilnym
         thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       } else {
         thumb.classList.remove('active');
@@ -180,35 +179,47 @@ gallery:
     updateSlider();
   }
 
-  /* --- OBSŁUGA GESTÓW SWIPE (PRZESUWANIE PALCEM) NA MOBILE --- */
+  /* --- WSTĘPNE WCZYTYWANIE ZDJĘĆ W TLE (ZERO OPÓŹNIEŃ) --- */
+  function preloadGalleryImages() {
+    const thumbs = document.querySelectorAll('.thumb');
+    thumbs.forEach(thumb => {
+      const src = thumb.getAttribute('data-large');
+      if (src) {
+        const img = new Image();
+        img.src = src; // Wymusza pobranie dużego zdjęcia do cache przeglądarki
+      }
+    });
+  }
+
+  /* --- INICJALIZACJA PO ZAŁADOWANIU STRONY --- */
   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Uruchomienie preloadu dużych zdjęć
+    preloadGalleryImages();
+
+    // 2. Obsługa gestów swipe na urządzeniach mobilnych
     const mainSlide = document.querySelector('.main-slide');
     if (!mainSlide) return;
 
     let touchStartX = 0;
     let touchEndX = 0;
 
-    // Zapamiętanie pozycji startowej dotyku
     mainSlide.addEventListener('touchstart', (e) => {
       touchStartX = e.changedTouches[0].screenX;
     }, { passive: true });
 
-    // Wykrycie punktu końcowego i wywołanie gestu
     mainSlide.addEventListener('touchend', (e) => {
       touchEndX = e.changedTouches[0].screenX;
       handleGesture();
     }, { passive: true });
 
     function handleGesture() {
-      const minSwipeDistance = 40; // Czułość gestu w pikselach
+      const minSwipeDistance = 40;
       
       if (touchEndX < touchStartX - minSwipeDistance) {
-        // Ruch w lewo -> Następne zdjęcie
         changeSlide(1);
       }
       
       if (touchEndX > touchStartX + minSwipeDistance) {
-        // Ruch w prawo -> Poprzednie zdjęcie
         changeSlide(-1);
       }
     }
