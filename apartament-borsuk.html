@@ -137,6 +137,8 @@ gallery:
     thumbs.forEach((thumb, index) => {
       if (index === currentIndex) {
         thumb.classList.add('active');
+        // Wyśrodkowuje aktywną miniaturkę w przewijanym pasku mobilnym
+        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       } else {
         thumb.classList.remove('active');
       }
@@ -152,4 +154,38 @@ gallery:
     currentIndex = index;
     updateSlider();
   }
+
+  /* --- OBSŁUGA GESTÓW SWIPE (PRZESUWANIE PALCEM) NA MOBILE --- */
+  document.addEventListener('DOMContentLoaded', () => {
+    const mainSlide = document.querySelector('.main-slide');
+    if (!mainSlide) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    // Zapamiętanie pozycji startowej dotyku
+    mainSlide.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    // Wykrycie punktu końcowego i wywołanie gestu
+    mainSlide.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    }, { passive: true });
+
+    function handleGesture() {
+      const minSwipeDistance = 40; // Czułość gestu w pikselach
+      
+      if (touchEndX < touchStartX - minSwipeDistance) {
+        // Ruch w lewo -> Następne zdjęcie
+        changeSlide(1);
+      }
+      
+      if (touchEndX > touchStartX + minSwipeDistance) {
+        // Ruch w prawo -> Poprzednie zdjęcie
+        changeSlide(-1);
+      }
+    }
+  });
 </script>
