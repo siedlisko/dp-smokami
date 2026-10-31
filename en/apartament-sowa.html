@@ -1,0 +1,216 @@
+---
+layout: default
+title: OWL Apartment – Dom pod Smokami
+lang: en
+custom_css: assets/css/apartment.css
+gallery:
+  - large: "../assets/img/ap-sowa-main.jpg"
+    thumb: "../assets/img/thumbs/ap-sowa-main-thumb.jpg"
+    alt: "Living room in the Owl apartment"
+  - large: "../assets/img/large/sowa-2.jpg"
+    thumb: "../assets/img/thumbs/sowa-2-thumb.jpg"
+    alt: "Kitchen with dining area"
+  - large: "../assets/img/large/sowa-3.jpg"
+    thumb: "../assets/img/thumbs/sowa-3-thumb.jpg"
+    alt: "Living room"
+  - large: "../assets/img/large/sowa-4.jpg"
+    thumb: "../assets/img/thumbs/sowa-4-thumb.jpg"
+    alt: "Bedroom with double bed"
+  - large: "../assets/img/large/sowa-5.jpg"
+    thumb: "../assets/img/thumbs/sowa-5-thumb.jpg"
+    alt: "Dining area"
+  - large: "../assets/img/large/sowa-6.jpg"
+    thumb: "../assets/img/thumbs/sowa-6-thumb.jpg"
+    alt: "Bathroom"
+  - large: "../assets/img/large/sowa-7.jpg"
+    thumb: "../assets/img/thumbs/sowa-7-thumb.jpg"
+    alt: "Bathroom"
+---
+
+<!-- SEKACJA HERO -->
+<section class="apartment-hero" style="background-image: url('../assets/img/ap-sowa-main.jpg');">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>OWL</h1>
+    <p class="subtitle">TWO-BEDROOM APARTMENT WITH FIREPLACE</p>
+  </div>
+</section>
+
+<!-- NAGŁÓWEK I PODSTAWOWE INFORMACJE -->
+<section class="apartment-intro container">
+  <div class="intro-grid">
+    
+    <!-- LEWA POŁOWA (TREŚĆ ZAWINIĘTA DO 50%) -->
+    <div class="intro-left">
+      <div class="intro-header">
+        <h2>OWL</h2>
+        <p class="tagline">TWO-BEDROOM APARTMENT WITH FIREPLACE</p>
+      </div>
+      
+      <p class="description">
+        Spacious apartment with two bedrooms and a fireplace. Large kitchen with a dining area. Separate living room. Bathroom with a shower.
+      </p>
+
+      <div class="quick-facts">
+        <div class="fact-item"><strong>Size:</strong> 35 m²</div>
+        <div class="fact-item"><strong>Guests:</strong> 4/5</div>
+        <div class="fact-item"><strong>View:</strong> High Tatras, forest</div>
+      </div>
+    </div>
+
+    <!-- PRAWA POŁOWA (PUSTA — ZAPEWNIA ZAWINIĘCIE TEKSTU) -->
+    <div class="intro-right"></div>
+
+  </div>
+</section>
+  
+<!-- GALERIA Z MINIATURKAMI -->
+<section class="apartment-gallery container">
+  <div class="slider-wrapper">
+    
+    <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI -->
+    <div class="main-slide">
+      <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Previous photo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      
+      {% assign first_item = page.gallery | first %}
+      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+
+      <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    <!-- PASEK MINIATUR -->
+    <div class="thumbnails-grid">
+      {% for item in page.gallery %}
+        <img 
+          class="thumb {% if forloop.first %}active{% endif %}" 
+          src="{{ item.thumb | relative_url }}" 
+          data-large="{{ item.large | relative_url }}"
+          onclick="setSlide({{ forloop.index0 }})" 
+          alt="{{ item.alt }}">
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- WYPOSAŻENIE / SZCZEGÓŁY -->
+<section class="apartment-details container">
+  <div class="details-grid">
+    
+    <div class="details-col">
+      <h3>In the apartment you will find:</h3>
+      <ul class="check-list">
+        <li>Kitchen with a dining area, induction hob, fridge, kettle, and basic utensils</li>
+        <li>Private bathroom with a shower, toilet, bidet, and towels</li>
+        <li>TV, Wi-Fi access, and a space to work or relax</li>
+        <li>Mountain view, overlooking the Belianske High Tatras</li>
+        <li>Comfortable beds ensuring a restful sleep</li>
+      </ul>
+    </div>
+
+    <div class="details-col">
+      <h3>In addition, we provide guests with:</h3>
+      <ul class="check-list">
+        <li>Fresh rolls delivered every morning</li>
+        <li>Access to the garden, barbecue area, bonfire site, and free parking</li>
+        <li>Access to the sauna in a separate wooden building</li>
+        <li>Pet-friendly accommodation</li>
+      </ul>
+      
+      <div class="booking-box">
+        <a href="tel:+48602100806" class="btn-slide">Call and book</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  let currentIndex = 0;
+
+  function updateSlider() {
+    const thumbs = document.querySelectorAll('.thumb');
+    const mainImg = document.getElementById('current-slide-img');
+
+    if (!thumbs.length || !mainImg) return;
+
+    if (currentIndex >= thumbs.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = thumbs.length - 1;
+
+    const selectedThumb = thumbs[currentIndex];
+    const largeSrc = selectedThumb.getAttribute('data-large');
+    const altText = selectedThumb.getAttribute('alt');
+
+    mainImg.src = largeSrc;
+    mainImg.alt = altText;
+
+    thumbs.forEach((thumb, index) => {
+      if (index === currentIndex) {
+        thumb.classList.add('active');
+        thumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } else {
+        thumb.classList.remove('active');
+      }
+    });
+  }
+
+  function changeSlide(direction) {
+    currentIndex += direction;
+    updateSlider();
+  }
+
+  function setSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+
+  /* --- WSTĘPNE WCZYTYWANIE ZDJĘĆ W TLE (ZERO OPÓŹNIEŃ) --- */
+  function preloadGalleryImages() {
+    const thumbs = document.querySelectorAll('.thumb');
+    thumbs.forEach(thumb => {
+      const src = thumb.getAttribute('data-large');
+      if (src) {
+        const img = new Image();
+        img.src = src; // Wymusza pobranie dużego zdjęcia do cache przeglądarki
+      }
+    });
+  }
+
+  /* --- INICJALIZACJA PO ZAŁADOWANIU STRONY --- */
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Uruchomienie preloadu dużych zdjęć
+    preloadGalleryImages();
+
+    // 2. Obsługa gestów swipe na urządzeniach mobilnych
+    const mainSlide = document.querySelector('.main-slide');
+    if (!mainSlide) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    mainSlide.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    mainSlide.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    }, { passive: true });
+
+    function handleGesture() {
+      const minSwipeDistance = 40;
+      
+      if (touchEndX < touchStartX - minSwipeDistance) {
+        changeSlide(1);
+      }
+      
+      if (touchEndX > touchStartX + minSwipeDistance) {
+        changeSlide(-1);
+      }
+    }
+  });
+</script>
