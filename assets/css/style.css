@@ -1947,3 +1947,8 @@ html body .site-header .brand img.logo-mobile {
     box-sizing: border-box !important;
   }
 }
+.site-nav ul li.nav-lang-item {
+  display: block;
+  width: 100%;
+  margin-top: 10px; /* opcjonalny odstęp nad przełącznikiem */
+}
