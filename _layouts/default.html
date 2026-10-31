@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="{% if page.lang == 'en' %}en{% else %}pl{% endif %}">
+<head>
+  {% include head.html %}
+</head>
+<body>
+
+  {% if page.lang == 'en' %}
+    {% include header-en.html %}
+  {% else %}
+    {% include header.html %}
+  {% endif %}
+
+  <main class="site-main" role="main">
+    {{ content }}
+  </main>
+
+  {% if page.lang == 'en' %}
+    {% include footer-en.html %}
+  {% else %}
+    {% include footer.html %}
+  {% endif %}
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  let lastScrollTop = 0;
+  
+  // Wskazujemy BARDZO PRECYZYJNIE logo w górnym pasku (#siteHeader)
+  const headerNav = document.querySelector('#siteHeader') || document.querySelector('.site-header');
+  const brandAnchor = headerNav ? headerNav.querySelector('a.brand, .brand') : null;
+  const brandImg = brandAnchor ? brandAnchor.querySelector('img') : null;
+
+  if (!brandAnchor || !brandImg) return;
+
+  // Ścieżka do logo mobilnego (z ukośnikiem na początku, aby szukać od katalogu głównego)
+  const mobileLogoSrc = '/assets/img/logo-pod-smokami-white3.png';
+  
+  // Zapamiętujemy oryginalne logo z nagłówka
+  const desktopLogoSrc = brandImg.getAttribute('src');
+
+  function updateLogoSource() {
+    if (window.innerWidth <= 767) {
+      if (brandImg.getAttribute('src') !== mobileLogoSrc) {
+        brandImg.setAttribute('src', mobileLogoSrc);
+      }
+    } else {
+      if (brandImg.getAttribute('src') !== desktopLogoSrc) {
+        brandImg.setAttribute('src', desktopLogoSrc);
+      }
+    }
+  }
+
+  // Uruchamiamy od razu
+  updateLogoSource();
+  window.addEventListener('resize', updateLogoSource);
+
+  // Obsługa chowania/wysuwania logo przy scrollowaniu na mobilce
+  window.addEventListener('scroll', function() {
+    if (window.innerWidth > 767) return;
+
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop <= 15) {
+      brandAnchor.classList.remove('scroll-up', 'scroll-down');
+      lastScrollTop = scrollTop;
+      return;
+    }
+
+    if (scrollTop > lastScrollTop) {
+      brandAnchor.classList.add('scroll-down');
+      brandAnchor.classList.remove('scroll-up');
+    } else {
+      brandAnchor.classList.add('scroll-up');
+      brandAnchor.classList.remove('scroll-down');
+    }
+    
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, { passive: true });
+});
+</script>
+
+</body>
+</html>
