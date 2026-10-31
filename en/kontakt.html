@@ -1,0 +1,271 @@
+---
+layout: default
+title: Contact – Dom pod Smokami
+lang: en
+---
+
+<style>
+  :root {
+    --color-gold: #c5a059;
+    --color-bg-dark: #121212;
+    --color-card-bg: #181818;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+  }
+
+  .contact-page {
+    background-color: var(--color-bg-dark) !important;
+    color: var(--color-text-main) !important;
+    min-height: 100vh;
+    padding-bottom: 60px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Sekcja Hero z obrazem tła */
+  .contact-hero {
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(18, 18, 18, 0.6)), 
+                url('{{ site.baseurl }}/assets/img/widok-gory-promienie-chmury.jpg') center/cover no-repeat;
+    min-height: 100dvh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box; 
+  }
+
+  .contact-hero-title {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    margin: 0;
+  }
+
+  .contact-hero-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 140px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 18px auto 0 auto !important;
+  }
+
+  /* Kontener główny dla sekcji z informacjami */
+  .contact-container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 60px 20px 20px 20px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    color: #ffffff !important;
+    margin: 0;
+    text-align: center !important;
+  }
+
+  .section-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 120px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 14px auto 0 auto !important;
+  }
+
+  /* Układ DWUKOLUMNOWY (Lewo: Dane, Prawo: Zdjęcie) */
+  .contact-split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+
+  /* Domyślny układ na komputerze (do lewej) */
+  .contact-left-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .contact-block {
+    text-align: left;
+    width: 100%;
+  }
+
+  .contact-block h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 8px;
+  }
+
+  .contact-block p, 
+  .contact-block ul {
+    color: var(--color-text-main);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .contact-block ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-block a {
+    color: var(--color-text-main);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .contact-block a:hover {
+    color: var(--color-gold);
+  }
+
+  .contact-img-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  }
+
+  .contact-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .contact-img-wrapper figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    text-align: center;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  /* Sekcja Dane Firmy (Na dole) */
+  .company-info-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+  }
+
+  .company-info-card h3 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-gold);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .company-info-card p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  /* Responsywność MOBILNA */
+  @media (max-width: 868px) {
+    .contact-split-section {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    /* Środkowanie całego kontenera na ekranie telefonu */
+    .contact-left-content {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Blok ma szerokość dopasowaną do najdłuższej linii i jest wyśrodkowany, ale sam tekst ma wyrównanie do lewej */
+    .contact-block {
+      display: inline-block;
+      text-align: left;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .contact-hero-title { font-size: 2rem; }
+    .section-title { font-size: 1.6rem; }
+  }
+</style>
+
+<main class="contact-page">
+
+  <!-- Sekcja 1: Hero na Pełną Wysokość Ekranu -->
+  <section class="contact-hero">
+    <h1 class="contact-hero-title">CONTACT</h1>
+  </section>
+
+  <!-- Sekcja 2: Informacje Kontaktowe -->
+  <div class="contact-container">
+    
+    <div class="section-header">
+      <h2 class="section-title">How to book an apartment?</h2>
+    </div>
+
+    <!-- Podział na 2 kolumny: Dane rezerwacji (Lewo) + Zdjęcie (Prawo) -->
+    <div class="contact-split-section">
+      
+      <!-- Lewa Strona -->
+      <div class="contact-left-content">
+        
+        <div class="contact-block">
+          <h3>Call or write to us</h3>
+          <p><strong>phone:</strong> <a href="tel:+48602100806">+48 602 100 806</a></p>
+          <p><strong>email:</strong> <a href="mailto:dompodsmokami@wp.pl">dompodsmokami@wp.pl</a></p>
+        </div>
+
+        <div class="contact-block">
+          <h3>Online booking</h3>
+          <ul>
+            <li><a href="https://slowhop.com/pl/miejsca/dom-pod-smokami.html" target="_blank" rel="noopener">slowhop.com</a></li>
+            <li><a href="https://www.booking.com/hotel/pl/dom-pod-smokami.pl.html" target="_blank" rel="noopener">booking.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Prawa Strona: Zdjęcie z podpisem -->
+      <figure class="contact-img-wrapper">
+        <img src="{{ site.baseurl }}/assets/img/kontakt-hero.jpg" alt="Ryszard and Tatiana">
+        <figcaption>We invite you</figcaption>
+        <figcaption>Ryszard and Tatiana</figcaption>
+      </figure>
+
+    </div>
+
+    <!-- Poniżej: Dane Firmy (zgodnie z wymogiem pozostawione po polsku) -->
+    <div class="company-info-card">
+      <h3>Company Contact Details</h3>
+      <p><strong>Dom Pod Smokami Ryszard Żelazny</strong></p>
+      <p>Ul. Leśna 41, 34-530, Bukowina Tatrzańska</p>
+      <p><strong>NIP:</strong> 9290117435 &nbsp;|&nbsp; <strong>REGON:</strong> 97118967500000</p>
+    </div>
+
+  </div>
+
+</main>
