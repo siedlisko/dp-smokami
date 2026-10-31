@@ -85,9 +85,8 @@ gallery:
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       
-      {% assign first_item = page.gallery | first %}
-      <!-- Jawne dodanie ../ wyciąga ścieżkę z folderu /en/ do głównego katalogu -->
-      <img id="current-slide-img" src="{{ site.baseurl }}/{{ first_item.large | remove_first: '../' }}" alt="{{ first_item.alt }}">
+{% assign first_item = page.gallery | first %}
+      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
 
       <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
