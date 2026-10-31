@@ -1,28 +1,50 @@
 <!doctype html>
-<html lang="pl">
+<html lang="{% if page.lang == 'en' %}en{% else %}pl{% endif %}">
 <head>
   {% include head.html %}
 </head>
 <body>
 
-  {% include header.html %}
+  <!-- Automatyczne ładowanie nagłówka (polski lub angielski) -->
+  {% if page.lang == 'en' %}
+    {% include header-en.html %}
+  {% else %}
+    {% include header.html %}
+  {% endif %}
 
   <main class="site-main" role="main">
     {{ content }}
   </main>
 
-  {% include footer.html %}
+  <!-- Automatyczne ładowanie stopki (polski lub angielski) -->
+  {% if page.lang == 'en' %}
+    {% include footer-en.html %}
+  {% else %}
+    {% include footer.html %}
+  {% endif %}
 
   <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const navToggle = document.getElementById('navToggle') || document.getElementById('mobileToggle');
+    const mobileToggle = document.getElementById('navToggle') || document.getElementById('mobileToggle');
     const siteNav = document.getElementById('siteNav');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
 
     // Obsługa kliknięcia w Hamburger na telefonie
-    if (navToggle && siteNav) {
-      navToggle.addEventListener('click', function () {
-        navToggle.classList.toggle('active');
+    if (mobileToggle && siteNav) {
+      mobileToggle.addEventListener('click', function () {
+        mobileToggle.classList.toggle('active');
         siteNav.classList.toggle('active');
+      });
+    }
+
+    // Obsługa rozwijania menu Apartamenty na telefonie
+    if (dropdownToggle && dropdown) {
+      dropdownToggle.addEventListener('click', function (e) {
+        if (window.innerWidth <= 868) {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+        }
       });
     }
   });
