@@ -1,0 +1,593 @@
+---
+layout: default
+title: Photo Gallery – Dom pod Smokami
+lang: en
+---
+
+<style>
+  :root {
+    --color-gold: #c5a059;
+    --color-bg-dark: #121212;
+    --color-card-bg: #181818;
+    --color-text-main: #f3f4f6;
+    --color-text-muted: #9ca3af;
+  }
+
+  /* Główny kontener całej podstrony */
+  .gallery-page {
+    background-color: var(--color-bg-dark) !important;
+    color: var(--color-text-main) !important;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  /* Sekcja nagłówkowa galerii */
+  .gallery-hero {
+    background-color: var(--color-card-bg);
+    padding: 60px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .gallery-main-title {
+    text-align: center !important;
+    position: relative;
+    display: inline-block;
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #ffffff !important;
+    margin: 0;
+  }
+
+  /* Złota kreseczka na środku pod głównym tytułem */
+  .gallery-main-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 140px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 16px auto 0 auto !important;
+  }
+
+  .gallery-hero-desc {
+    margin: 20px auto 0 auto;
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 650px;
+    line-height: 1.6;
+  }
+
+  /* Kontener na sekcje z kafelkami */
+  .gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+  }
+
+  .gallery-section {
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  /* Wyśrodkowane tytuły sekcji */
+  .gallery-section-title {
+    position: relative;
+    display: inline-block;
+    text-align: center !important;
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: #ffffff !important;
+    margin: 0;
+  }
+
+  /* Złota kreseczka na środku pod podtytułami sekcji */
+  .gallery-section-title::after {
+    content: '' !important;
+    display: block !important;
+    width: 120px !important;
+    height: 2px !important;
+    background-color: var(--color-gold) !important;
+    margin: 12px auto 0 auto !important;
+  }
+
+  .gallery-section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-top: 14px;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(197, 160, 89, 0.25);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+
+  /* Nakładka tekstowa na miniaturkach po najechaniu */
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    text-align: left;
+    box-sizing: border-box;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-tag {
+    font-size: 0.75rem;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .gallery-caption {
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 99999;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    box-sizing: border-box;
+    user-select: none;
+  }
+
+  .lightbox-modal.active {
+    display: flex !important;
+  }
+
+  .lightbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .lightbox-counter {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+
+  .lightbox-close {
+    background: none;
+    border: none;
+    color: #e5e7eb;
+    font-size: 2.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 12px;
+    transition: color 0.2s;
+  }
+
+  .lightbox-close:hover {
+    color: var(--color-gold);
+  }
+
+  .lightbox-body {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1100px;
+    width: 100%;
+    margin: 16px auto;
+  }
+
+  .lightbox-img {
+    max-height: 72vh;
+    max-width: 90vw;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  }
+
+  .lightbox-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+    z-index: 10;
+  }
+
+  .lightbox-btn:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+  }
+
+  .lightbox-btn.prev { left: 10px; }
+  .lightbox-btn.next { right: 10px; }
+
+  .lightbox-footer {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .lightbox-title {
+    color: var(--color-gold);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .lightbox-desc {
+    color: #d1d5db;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    font-weight: 300;
+  }
+
+  @media (max-width: 640px) {
+    .gallery-main-title { font-size: 1.8rem; }
+    .gallery-section-title { font-size: 1.4rem; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .lightbox-btn { width: 40px; height: 40px; }
+  }
+</style>
+
+<main class="gallery-page">
+  
+  <!-- Sekcja Baneru Głównego -->
+  <section class="gallery-hero">
+    <h1 class="gallery-main-title">PHOTO GALLERY</h1>
+    <p class="gallery-hero-desc">
+      We invite you to take a virtual tour of Dom Pod Smokami. Explore our cozy interiors, apartment finishes, and charming surroundings.
+    </p>
+  </section>
+
+  <div class="gallery-container">
+
+    <!-- Sekcja 1: Dom i ogród -->
+    <section class="gallery-section">
+      <h2 class="gallery-section-title">House & Garden</h2>
+      <p class="gallery-section-subtitle">The guesthouse with dragon sculptures and its surroundings.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(0)">
+          <img src="../assets/img/pensjonat-wsrod-lak.jpg" alt="Guesthouse among meadows">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Guesthouse among meadows</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(1)">
+          <img src="../assets/img/wjazd-parking-dom-pod-smokami.jpg" alt="Entrance and parking">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Entrance and parking by the guesthouse</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(2)">
+          <img src="../assets/img/taras-lesne-doliny-pod-smokami.jpg" alt="Terrace and valleys">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Meadows and forest valleys</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(3)">
+          <img src="../assets/img/pensjonat_smoki_widok.jpg" alt="Log cabin guesthouse">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Log cabin guesthouse with dragon sculptures</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(4)">
+          <img src="../assets/img/smok-mgla-las.jpg" alt="Dragon and fog over the forest">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Dragon and fog over the forest</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(5)">
+          <img src="../assets/img/przed_pensjonatem.jpg" alt="Bench by the guesthouse with mountain views">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Relaxation by the guesthouse</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(6)">
+          <img src="../assets/img/stolik-ogrod-las-gory.jpg" alt="Garden table with mountain view">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Garden table with mountain view</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(7)">
+          <img src="../assets/img/pensjonat-swiatla-noc.jpg" alt="Guesthouse illuminated at night">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Guesthouse at night</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja 2: Widoki -->
+    <section class="gallery-section">
+      <h2 class="gallery-section-title">Views</h2>
+      <p class="gallery-section-subtitle">Picturesque surroundings and mountain views.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(8)">
+          <img src="../assets/img/gory-w-chmurach.jpg" alt="Mountains in clouds">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Mountains in the clouds</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(9)">
+          <img src="../assets/img/rozowa-zorza-okno.jpg" alt="View through the window on pink glow and mountains">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Mountains and glow</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(10)">
+          <img src="../assets/img/dwa-smoki-gory-snieg.jpg" alt="Two dragons and mountains">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Two dragons and mountains</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(11)">
+          <img src="../assets/img/smok_pinsjonat_gory.jpg" alt="View of mountains at sunset">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Mountains at sunset</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(12)">
+          <img src="../assets/img/tatry-widok-zachod-slonca.jpg" alt="Tatras and red sunset">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Tatras and red sunset</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(13)">
+          <img src="../assets/img/widok-gory-promienie-chmury.jpg" alt="Sun rays breaking through clouds and lighting up mountains">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Golden rays illuminating the mountains</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(14)">
+          <img src="../assets/img/wies-pod-szczytami.jpg" alt="View of peaks and neighboring village">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">View of peaks and neighboring village</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(15)">
+          <img src="../assets/img/ciemne-gory-zachod.jpg" alt="Dark mountains and fiery sunset">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Fiery sunset</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sekcja 3: Sauna -->
+    <section id="sauna" class="gallery-section">
+      <h2 class="gallery-section-title">Sauna</h2>
+      <p class="gallery-section-subtitle">Atmospheric sauna in a separate wooden building.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" onclick="openLightbox(16)">
+          <img src="../assets/img/amenity-sauna.JPG" alt="Sauna interior">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Interior</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+        
+        <div class="gallery-item" onclick="openLightbox(17)">
+          <img src="../assets/img/sauna-3.JPG" alt="Sauna anteroom">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Anteroom</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(18)">
+          <img src="../assets/img/sauna-6.jpg" alt="Entrance to the sauna building">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Entrance to the building</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+
+        <div class="gallery-item" onclick="openLightbox(19)">
+          <img src="../assets/img/sauna-5.jpg" alt="Sauna building">
+          <div class="gallery-overlay">
+            <span class="gallery-tag">Sauna building</span>
+            <div class="gallery-caption"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div id="lightboxModal" class="lightbox-modal">
+  <div class="lightbox-header">
+    <span id="lightboxCounter" class="lightbox-counter">1 / 10</span>
+    <button onclick="closeLightbox()" class="lightbox-close" aria-label="Close preview">&times;</button>
+  </div>
+
+  <div class="lightbox-body">
+    <button onclick="changeImage(-1)" class="lightbox-btn prev" aria-label="Previous photo">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+
+    <img id="lightboxImage" class="lightbox-img" src="" alt="Photo preview">
+
+    <button onclick="changeImage(1)" class="lightbox-btn next" aria-label="Next photo">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+
+  <div class="lightbox-footer">
+    <h3 id="lightboxTitle" class="lightbox-title"></h3>
+    <p id="lightboxDesc" class="lightbox-desc"></p>
+  </div>
+</div>
+
+<script>
+  let galleryData = [];
+  let currentIndex = 0;
+
+  function initGallery() {
+    const items = document.querySelectorAll('.gallery-item');
+    galleryData = [];
+
+    items.forEach((item, index) => {
+      const img = item.querySelector('img');
+      const tagEl = item.querySelector('.gallery-tag');
+      const descEl = item.querySelector('.gallery-caption');
+
+      const src = item.getAttribute('data-full') || (img ? img.src : '');
+      const tag = tagEl ? tagEl.innerText : '';
+      const desc = descEl ? descEl.innerText : '';
+
+      galleryData.push({ src, tag, desc });
+
+      item.onclick = function() {
+        openLightbox(index);
+      };
+    });
+  }
+
+  function openLightbox(index) {
+    if (galleryData.length === 0) initGallery();
+    currentIndex = index;
+    updateLightboxContent();
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    const modal = document.getElementById('lightboxModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function changeImage(direction) {
+    if (galleryData.length === 0) initGallery();
+    currentIndex = (currentIndex + direction + galleryData.length) % galleryData.length;
+    updateLightboxContent();
+  }
+
+  function updateLightboxContent() {
+    const data = galleryData[currentIndex];
+    if (!data) return;
+    document.getElementById('lightboxImage').src = data.src;
+    document.getElementById('lightboxTitle').innerText = data.tag;
+    document.getElementById('lightboxDesc').innerText = data.desc;
+    document.getElementById('lightboxCounter').innerText = `${currentIndex + 1} / ${galleryData.length}`;
+  }
+
+  document.addEventListener('DOMContentLoaded', initGallery);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    initGallery();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('lightboxModal');
+    if (modal.classList.contains('active')) {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+    }
+  });
+
+  document.getElementById('lightboxModal').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('lightbox-body')) {
+      closeLightbox();
+    }
+  });
+</script>
