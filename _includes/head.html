@@ -1,16 +1,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>{% if page.title %}{{ page.title }}{% else %}Dom Pod Smokami — Pensjonat w Bukowinie Tatrzańskiej{% endif %}</title>
-<meta name="description" content="Dom Pod Smokami — pensjonat w Bukowinie Tatrzańskiej. Apartamenty z widokami na Tatry, sauna, świeże bułeczki. Rezerwacje online." />
-<meta property="og:locale" content="pl_PL">
+<title>{% if page.title %}{{ page.title }}{% else %}{% if page.lang == 'en' %}Dom Pod Smokami — Guesthouse in Bukowina Tatrzańska{% else %}Dom Pod Smokami — Pensjonat w Bukowinie Tatrzańskiej{% endif %}{% endif %}</title>
+<meta name="description" content="{% if page.lang == 'en' %}Dom Pod Smokami — guesthouse in Bukowina Tatrzańska. Apartments with Tatra mountain views, sauna, fresh rolls. Online booking.{% else %}Dom Pod Smokami — pensjonat w Bukowinie Tatrzańskiej. Apartamenty z widokami na Tatry, sauna, świeże bułeczki. Rezerwacje online.{% endif %}" />
+<meta property="og:locale" content="{% if page.lang == 'en' %}en_US{% else %}pl_PL{% endif %}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}Dom Pod Smokami — Pensjonat Bukowina Tatrzańska{% endif %}">
-<meta property="og:description" content="Apartamenty z widokami na Tatry, sauna, codzienne świeże bułeczki, miejsce przyjazne zwierzętom.">
+<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{% if page.lang == 'en' %}Dom Pod Smokami — Guesthouse Bukowina Tatrzańska{% else %}Dom Pod Smokami — Pensjonat Bukowina Tatrzańska{% endif %}{% endif %}">
+<meta property="og:description" content="{% if page.lang == 'en' %}Apartments with Tatra mountain views, sauna, daily fresh rolls, pet-friendly place.{% else %}Apartamenty z widokami na Tatry, sauna, codzienne świeże bułeczki, miejsce przyjazne zwierzętom.{% endif %}">
 <meta property="og:image" content="{{ site.baseurl }}/assets/img/logo-dom-pod-smokami-social.jpg">
 <meta property="og:url" content="{{ site.url }}{{ page.url }}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Dom Pod Smokami">
-<meta name="twitter:description" content="Pensjonat w Bukowinie Tatrzańskiej — apartamenty z widokami na Tatry">
+<meta name="twitter:description" content="{% if page.lang == 'en' %}Guesthouse in Bukowina Tatrzańska — apartments with Tatra mountain views{% else %}Pensjonat w Bukowinie Tatrzańskiej — apartamenty z widokami na Tatry{% endif %}">
 <meta name="twitter:image" content="{{ site.baseurl }}/assets/img/logo-dom-pod-smokami-social.jpg">
 
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/fonts.css">
