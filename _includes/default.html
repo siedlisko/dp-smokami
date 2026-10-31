@@ -5,12 +5,7 @@
 </head>
 <body>
 
-  <!-- Automatyczne ładowanie nagłówka (polski lub angielski) -->
-  {% if page.lang == 'en' %}
-    {% include header-en.html %}
-  {% else %}
-    {% include header.html %}
-  {% endif %}
+{% include header.html %}
 
   <main class="site-main" role="main">
     {{ content }}
