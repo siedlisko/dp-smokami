@@ -1952,3 +1952,11 @@ html body .site-header .brand img.logo-mobile {
   width: 100%;
   margin-top: 10px; /* opcjonalny odstęp nad przełącznikiem */
 }
+/* Wymuszenie wyświetlania przełącznika języka w nowej linii pod linkami */
+.site-nav ul li.nav-lang-item,
+.site-nav ul li[style*="display: block"] {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 15px !important;
+  clear: both !important;
+}
