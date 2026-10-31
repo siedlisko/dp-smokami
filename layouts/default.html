@@ -1,17 +1,25 @@
 <!doctype html>
-<html lang="pl">
+<html lang="{% if page.lang == 'en' %}en{% else %}pl{% endif %}">
 <head>
   {% include head.html %}
 </head>
 <body>
 
-  {% include header.html %}
+  {% if page.lang == 'en' %}
+    {% include header-en.html %}
+  {% else %}
+    {% include header.html %}
+  {% endif %}
 
   <main class="site-main" role="main">
     {{ content }}
   </main>
 
-  {% include footer.html %}
+  {% if page.lang == 'en' %}
+    {% include footer-en.html %}
+  {% else %}
+    {% include footer.html %}
+  {% endif %}
 
   <script>
 document.addEventListener('DOMContentLoaded', function() {
