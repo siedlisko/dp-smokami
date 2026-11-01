@@ -56,31 +56,32 @@ gallery:
 <section class="apartment-gallery container">
   <div class="slider-wrapper">
     
-    <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI -->
-    <div class="main-slide">
-      <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Previous photo">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      
-      {% assign first_item = page.gallery | first %}
-      <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/ap-borsuk-main.jpg">
+    <!-- GALERIA APARTAMENTU -->
+<div class="apartment-gallery">
 
-      <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
+  <!-- GŁÓWNE ZDJĘCIE ZE STRZAŁKAMI -->
+  <div class="main-slide">
+    <button class="slider-arrow prev" onclick="changeSlide(-1)" aria-label="Previous photo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    
+    <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/ap-borsuk-main.jpg" alt="Double room Badger">
 
-    <!-- PASEK MINIATUR -->
-    <div class="thumbnails-grid">
-      {% for item in page.gallery %}
-        <img 
-          class="thumb {% if forloop.first %}active{% endif %}" 
-          src="{{ item.thumb }}" 
-          data-large="{{ item.large }}"
-          onclick="setSlide({{ forloop.index0 }})" 
-          alt="{{ item.alt }}">
-      {% endfor %}
-    </div>
+    <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+
+  <!-- PASEK MINIATUR -->
+  <div class="thumbnails-grid">
+    <img class="thumb active" src="{{ site.baseurl }}/assets/img/thumbs/ap-borsuk-main-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/ap-borsuk-main.jpg" onclick="setSlide(0)" alt="Double room Badger">
+    
+    <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/borsuk-2-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/borsuk-2.jpg" onclick="setSlide(1)" alt="Room with bathroom">
+    
+    <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/borsuk-3-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/borsuk-3.jpg" onclick="setSlide(2)" alt="Bedroom entrance">
+  </div>
+
+</div>
 
   </div>
 </section>
