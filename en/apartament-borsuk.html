@@ -63,7 +63,7 @@ gallery:
       </button>
       
       {% assign first_item = page.gallery | first %}
-      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+      <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/ap-borsuk-main.jpg">
 
       <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
