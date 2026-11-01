@@ -74,8 +74,8 @@ gallery:
       {% for item in page.gallery %}
         <img 
           class="thumb {% if forloop.first %}active{% endif %}" 
-          src="{{ item.thumb | relative_url }}" 
-          data-large="{{ item.large | relative_url }}"
+          src="{{ item.thumb }}" 
+          data-large="{{ item.large }}"
           onclick="setSlide({{ forloop.index0 }})" 
           alt="{{ item.alt }}">
       {% endfor %}
