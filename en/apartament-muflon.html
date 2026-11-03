@@ -4,28 +4,28 @@ title: MOUFLON Apartment – Dom pod Smokami
 lang: en
 custom_css: assets/css/apartment.css
 gallery:
-  - large: "../assets/img/large/muflon-1.JPG"
-    thumb: "../assets/img/thumbs/muflon-1-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-1.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-1-thumb.JPG"
     alt: "Living room in the Mouflon apartment"
-  - large: "../assets/img/large/muflon-2.JPG"
-    thumb: "../assets/img/thumbs/muflon-2-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-2.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-2-thumb.JPG"
     alt: "Living room with kitchenette"
-  - large: "../assets/img/large/muflon-3.JPG"
-    thumb: "../assets/img/thumbs/muflon-3-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-3.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-3-thumb.JPG"
     alt: "Living room from the bathroom side"
-  - large: "../assets/img/large/muflon-4.JPG"
-    thumb: "../assets/img/thumbs/muflon-4-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-4.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-4-thumb.JPG"
     alt: "Bedroom with two single beds"
-  - large: "../assets/img/large/muflon-5.JPG"
-    thumb: "../assets/img/thumbs/muflon-5-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-5.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-5-thumb.JPG"
     alt: "Bedroom with double bed and balcony"
-  - large: "../assets/img/large/muflon-6.JPG"
-    thumb: "../assets/img/thumbs/muflon-6-thumb.JPG"
+  - large: "{{ site.baseurl }}/assets/img/large/muflon-6.JPG"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/muflon-6-thumb.JPG"
     alt: "Bathroom"
 ---
 
 <!-- SEKACJA HERO -->
-<section class="apartment-hero" style="background-image: url('../assets/img/ap-muflon-main.jpg');">
+<section class="apartment-hero" style="background-image: url('{{ site.baseurl }}/assets/img/ap-muflon-main.jpg');">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>MOUFLON</h1>
@@ -71,8 +71,7 @@ gallery:
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       
-      {% assign first_item = page.gallery | first %}
-      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+      <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/large/muflon-1.JPG" alt="Living room in the Mouflon apartment">
 
       <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
@@ -81,15 +80,21 @@ gallery:
 
     <!-- PASEK MINIATUR -->
     <div class="thumbnails-grid">
-      {% for item in page.gallery %}
-        <img 
-          class="thumb {% if forloop.first %}active{% endif %}" 
-          src="{{ item.thumb | relative_url }}" 
-          data-large="{{ item.large | relative_url }}"
-          onclick="setSlide({{ forloop.index0 }})" 
-          alt="{{ item.alt }}">
-      {% endfor %}
+      <img class="thumb active" src="{{ site.baseurl }}/assets/img/thumbs/muflon-1-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-1.JPG" onclick="setSlide(0)" alt="Living room in the Mouflon apartment">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/muflon-2-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-2.JPG" onclick="setSlide(1)" alt="Living room with kitchenette">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/muflon-3-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-3.JPG" onclick="setSlide(2)" alt="Living room from the bathroom side">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/muflon-4-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-4.JPG" onclick="setSlide(3)" alt="Bedroom with two single beds">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/muflon-5-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-5.JPG" onclick="setSlide(4)" alt="Bedroom with double bed and balcony">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/muflon-6-thumb.JPG" data-large="{{ site.baseurl }}/assets/img/large/muflon-6.JPG" onclick="setSlide(5)" alt="Bathroom">
     </div>
+
+  </div>
+</section>
 
   </div>
 </section>
