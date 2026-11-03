@@ -4,31 +4,31 @@ title: OWL Apartment – Dom pod Smokami
 lang: en
 custom_css: assets/css/apartment.css
 gallery:
-  - large: "../assets/img/ap-sowa-main.jpg"
-    thumb: "../assets/img/thumbs/ap-sowa-main-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/ap-sowa-main.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/ap-sowa-main-thumb.jpg"
     alt: "Living room in the Owl apartment"
-  - large: "../assets/img/large/sowa-2.jpg"
-    thumb: "../assets/img/thumbs/sowa-2-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-2.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-2-thumb.jpg"
     alt: "Kitchen with dining area"
-  - large: "../assets/img/large/sowa-3.jpg"
-    thumb: "../assets/img/thumbs/sowa-3-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-3.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-3-thumb.jpg"
     alt: "Living room"
-  - large: "../assets/img/large/sowa-4.jpg"
-    thumb: "../assets/img/thumbs/sowa-4-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-4.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-4-thumb.jpg"
     alt: "Bedroom with double bed"
-  - large: "../assets/img/large/sowa-5.jpg"
-    thumb: "../assets/img/thumbs/sowa-5-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-5.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-5-thumb.jpg"
     alt: "Dining area"
-  - large: "../assets/img/large/sowa-6.jpg"
-    thumb: "../assets/img/thumbs/sowa-6-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-6.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-6-thumb.jpg"
     alt: "Bathroom"
-  - large: "../assets/img/large/sowa-7.jpg"
-    thumb: "../assets/img/thumbs/sowa-7-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/sowa-7.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/sowa-7-thumb.jpg"
     alt: "Bathroom"
 ---
 
 <!-- SEKACJA HERO -->
-<section class="apartment-hero" style="background-image: url('../assets/img/ap-sowa-main.jpg');">
+<section class="apartment-hero" style="background-image: url('{{ site.baseurl }}/assets/img/ap-sowa-main.jpg');">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>OWL</h1>
@@ -74,8 +74,7 @@ gallery:
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       
-      {% assign first_item = page.gallery | first %}
-      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+      <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/ap-sowa-main.jpg" alt="Living room in the Owl apartment">
 
       <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
@@ -84,15 +83,23 @@ gallery:
 
     <!-- PASEK MINIATUR -->
     <div class="thumbnails-grid">
-      {% for item in page.gallery %}
-        <img 
-          class="thumb {% if forloop.first %}active{% endif %}" 
-          src="{{ item.thumb | relative_url }}" 
-          data-large="{{ item.large | relative_url }}"
-          onclick="setSlide({{ forloop.index0 }})" 
-          alt="{{ item.alt }}">
-      {% endfor %}
+      <img class="thumb active" src="{{ site.baseurl }}/assets/img/thumbs/ap-sowa-main-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/ap-sowa-main.jpg" onclick="setSlide(0)" alt="Living room in the Owl apartment">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-2-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-2.jpg" onclick="setSlide(1)" alt="Kitchen with dining area">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-3-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-3.jpg" onclick="setSlide(2)" alt="Living room">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-4-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-4.jpg" onclick="setSlide(3)" alt="Bedroom with double bed">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-5-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-5.jpg" onclick="setSlide(4)" alt="Dining area">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-6-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-6.jpg" onclick="setSlide(5)" alt="Bathroom">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/sowa-7-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/sowa-7.jpg" onclick="setSlide(6)" alt="Bathroom">
     </div>
+
+  </div>
+</section>
 
   </div>
 </section>
