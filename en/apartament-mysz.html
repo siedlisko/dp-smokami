@@ -4,34 +4,34 @@ title: MOUSE Apartment – Dom pod Smokami
 lang: en
 custom_css: assets/css/apartment.css
 gallery:
-  - large: "../assets/img/large/ap-mysz-main.jpg"
-    thumb: "../assets/img/thumbs/mysz-2-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/ap-mysz-main.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/ap-mysz-main-thumb.jpg"
     alt: "Living room in the Mouse apartment"
-  - large: "../assets/img/large/mysz-2.jpg"
-    thumb: "../assets/img/thumbs/ap-mysz-main-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-2.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-2-thumb.jpg"
     alt: "Living room Mouse"
-  - large: "../assets/img/large/mysz-3.jpg"
-    thumb: "../assets/img/thumbs/mysz-3-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-3.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-3-thumb.jpg"
     alt: "Living room in Mouse apartment"
-  - large: "../assets/img/large/mysz-4.jpg"
-    thumb: "../assets/img/thumbs/mysz-4-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-4.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-4-thumb.jpg"
     alt: "Bedroom with double bed"
-  - large: "../assets/img/large/mysz-5.jpg"
-    thumb: "../assets/img/thumbs/mysz-5-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-5.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-5-thumb.jpg"
     alt: "Bedroom with two single beds"
-  - large: "../assets/img/large/mysz-6.jpg"
-    thumb: "../assets/img/thumbs/mysz-6-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-6.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-6-thumb.jpg"
     alt: "Bathroom in Mouse apartment"
-  - large: "../assets/img/large/mysz-7.jpg"
-    thumb: "../assets/img/thumbs/mysz-7-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-7.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-7-thumb.jpg"
     alt: "View from bedroom to terrace"
-  - large: "../assets/img/large/mysz-8.jpg"
-    thumb: "../assets/img/thumbs/mysz-8-thumb.jpg"
+  - large: "{{ site.baseurl }}/assets/img/large/mysz-8.jpg"
+    thumb: "{{ site.baseurl }}/assets/img/thumbs/mysz-8-thumb.jpg"
     alt: "View from living room to terrace"
 ---
 
 <!-- SEKACJA HERO -->
-<section class="apartment-hero" style="background-image: url('../assets/img/ap-mysz-main.jpg');">
+<section class="apartment-hero" style="background-image: url('{{ site.baseurl }}/assets/img/ap-mysz-main.jpg');">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <h1>MOUSE</h1>
@@ -77,8 +77,7 @@ gallery:
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
       
-      {% assign first_item = page.gallery | first %}
-      <img id="current-slide-img" src="{{ first_item.large | relative_url }}" alt="{{ first_item.alt }}">
+      <img id="current-slide-img" src="{{ site.baseurl }}/assets/img/large/ap-mysz-main.jpg" alt="Living room in the Mouse apartment">
 
       <button class="slider-arrow next" onclick="changeSlide(1)" aria-label="Next photo">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
@@ -87,15 +86,25 @@ gallery:
 
     <!-- PASEK MINIATUR -->
     <div class="thumbnails-grid">
-      {% for item in page.gallery %}
-        <img 
-          class="thumb {% if forloop.first %}active{% endif %}" 
-          src="{{ item.thumb | relative_url }}" 
-          data-large="{{ item.large | relative_url }}"
-          onclick="setSlide({{ forloop.index0 }})" 
-          alt="{{ item.alt }}">
-      {% endfor %}
+      <img class="thumb active" src="{{ site.baseurl }}/assets/img/thumbs/ap-mysz-main-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/ap-mysz-main.jpg" onclick="setSlide(0)" alt="Living room in the Mouse apartment">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-2-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-2.jpg" onclick="setSlide(1)" alt="Living room Mouse">
+      
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-3-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-3.jpg" onclick="setSlide(2)" alt="Living room in Mouse apartment">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-4-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-4.jpg" onclick="setSlide(3)" alt="Bedroom with double bed">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-5-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-5.jpg" onclick="setSlide(4)" alt="Bedroom with two single beds">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-6-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-6.jpg" onclick="setSlide(5)" alt="Bathroom in Mouse apartment">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-7-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-7.jpg" onclick="setSlide(6)" alt="View from bedroom to terrace">
+
+      <img class="thumb" src="{{ site.baseurl }}/assets/img/thumbs/mysz-8-thumb.jpg" data-large="{{ site.baseurl }}/assets/img/large/mysz-8.jpg" onclick="setSlide(7)" alt="View from living room to terrace">
     </div>
+
+  </div>
+</section>
 
   </div>
 </section>
