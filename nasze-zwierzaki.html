@@ -1,0 +1,307 @@
+---
+layout: default
+title: Nasze zwierzaki – Dom pod Smokami
+---
+
+<style>
+  /* Spójna kolorystyka i typografia projektu */
+  .pets-page {
+    background-color: #121212;
+    color: #f4f1ea;
+    padding-bottom: 80px;
+  }
+
+  /* SEKCJA HERO */
+  .pets-hero {
+    position: relative;
+    min-height: 60vh;
+    width: 100%;
+    /* PODMIEŃ ŚCIEŻKĘ DO ZDJĘCIA W TLE PONIŻEJ */
+    background-image: linear-gradient(rgba(18, 18, 18, 0.55), rgba(18, 18, 18, 0.85)), url('{{ "/assets/img/hero-zwierzaki.jpg" | relative_url }}');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .pets-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .pets-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+  }
+
+  .pets-hero-subtitle {
+    font-size: 1.2rem;
+    color: #e0dcd3;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* SEKCJA ZWIERZĄT */
+  .pets-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 70px 20px 20px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+  }
+
+  /* Wyśrodkowana złota kreseczka pod tytułem sekcji */
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #c5a059;
+    margin: 14px auto 0 auto;
+  }
+
+  /* SIATKA KART ZWIERZAKÓW */
+  .pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+
+  /* Układ 3 kolumn dla sekcji psów na większych ekranach */
+  .pets-grid--dogs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .pet-card {
+    background-color: #1a1a1a;
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pet-card:hover {
+    transform: translateY(-5px);
+    border-color: #c5a059;
+  }
+
+  .pet-image-wrapper {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+  }
+
+  .pet-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .pet-card:hover .pet-image {
+    transform: scale(1.05);
+  }
+
+  .pet-info {
+    padding: 24px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .pet-name {
+    font-size: 1.4rem;
+    color: #c5a059;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+  }
+
+  .pet-desc {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: #d6d2c9;
+    margin: 0;
+  }
+
+  /* RESPONSYWNOŚĆ */
+  @media (max-width: 992px) {
+    .pets-grid--dogs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pets-hero {
+      min-height: 45vh;
+    }
+
+    .pets-hero-title {
+      font-size: 2.2rem;
+    }
+
+    .pets-hero-subtitle {
+      font-size: 1.05rem;
+    }
+
+    .pets-grid,
+    .pets-grid--dogs {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="pets-page">
+
+  <!-- SEKCJA HERO -->
+  <section class="pets-hero">
+    <div class="pets-hero-content">
+      <h1 class="pets-hero-title">Nasze zwierzaki</h1>
+      <p class="pets-hero-subtitle">
+        Poznaj czworonożnych domowników Domu pod Smokami, którzy każdego dnia dbają o ciepłą, domową atmosferę i chętnie dotrzymują towarzystwa naszym gościom.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEKCJA ZWIERZAKÓW -->
+  <section class="pets-section">
+    
+    <!-- PODSEKCJA: KOTY (4) -->
+    <div class="section-header">
+      <h2 class="section-title">Nasi koci rezydenci</h2>
+    </div>
+
+    <div class="pets-grid">
+      
+      <!-- KOT 1 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/kot-1.jpg' | relative_url }}" alt="Imię Kota 1" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Kota 1</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis charakteru kota – np. czy lubi wygrzewać się na tarasie z widokiem na Tatry, czy chętnie przychodzi na głaskanie.
+          </p>
+        </div>
+      </article>
+
+      <!-- KOT 2 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/kot-2.jpg' | relative_url }}" alt="Imię Kota 2" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Kota 2</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis drugiego kota – np. nieśmiały obserwator ogrodu, który uwielbia popołudniowe drzemki w słonecznych miejscach.
+          </p>
+        </div>
+      </article>
+
+      <!-- KOT 3 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/kot-3.jpg' | relative_url }}" alt="Imię Kota 3" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Kota 3</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis trzeciego kota – np. największy pieszczoch w pensjonacie, zawsze pierwszy przy drzwiach witający gości.
+          </p>
+        </div>
+      </article>
+
+      <!-- KOT 4 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/kot-4.jpg' | relative_url }}" alt="Imię Kota 4" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Kota 4</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis czwartego kota – np. ciekawy świata odkrywca, który pilnuje porządku na drewnianych schodach i ścieżkach.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- PODSEKCJA: PSY (3) -->
+    <div class="section-header">
+      <h2 class="section-title">Nasi psi przyjaciele</h2>
+    </div>
+
+    <div class="pets-grid pets-grid--dogs">
+      
+      <!-- PIES 1 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/pies-1.jpg' | relative_url }}" alt="Imię Psa 1" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Psa 1</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis pierwszego psa – np. wierny strażnik posesji o łagodnym sercu, który uwielbia wspólne spacery po okolicy.
+          </p>
+        </div>
+      </article>
+
+      <!-- PIES 2 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/pies-2.jpg' | relative_url }}" alt="Imię Psa 2" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Psa 2</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis drugiego psa – np. wulkan energii i miłośnik zabawy na świeżym powietrzu, zawsze gotowy na drapanie za uchem.
+          </p>
+        </div>
+      </article>
+
+      <!-- PIES 3 -->
+      <article class="pet-card">
+        <div class="pet-image-wrapper">
+          <!-- PODMIEŃ ŚCIEŻKĘ ZDJĘCIA -->
+          <img src="{{ '/assets/img/pies-3.jpg' | relative_url }}" alt="Imię Psa 3" class="pet-image">
+        </div>
+        <div class="pet-info">
+          <h3 class="pet-name">Imię Psa 3</h3>
+          <p class="pet-desc">
+            Tutaj wpisz krótki opis trzeciego psa – np. spokojny towarzysz odpoczynku przy kominku, uwielbiający towarzystwo zarówno ludzi, jak i innych zwierząt.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+  </section>
+</div>
