@@ -1981,7 +1981,7 @@ html body .site-header .brand img.logo-mobile {
   .apartment-slide {
     height: auto !important;
     min-height: 560px !important; /* Daje więcej miejsca w pionie dla dłuższych opisów */
-    padding-top: 130px !important; /* Gwarantuje bezpieczny odstęp od tytułu sekcji u góry */
+    padding-top: 150px !important; /* Gwarantuje bezpieczny odstęp od tytułu sekcji u góry */
     padding-bottom: 42px !important; /* Zmniejsza odstęp od dolnej krawędzi i kropek (było 2rem/32px, ale treść była wyżej) */
     justify-content: flex-end !important; /* Dopycha treść na sam dół slajdu */
   }
