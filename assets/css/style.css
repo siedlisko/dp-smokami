@@ -1980,16 +1980,16 @@ html body .site-header .brand img.logo-mobile {
   /* 2. Slajd dopasowuje się wysokością do treści */
   .apartment-slide {
     height: auto !important;
-    min-height: 615px !important; /* Lekko podniesione, żeby zachować proporcje */
+    min-height: 630px !important; /* Lekko podniesione, żeby zachować proporcje */
     padding: 0 1.5rem 45px 1.5rem !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
   }
 
-  /* 3. Zwiększamy margines o tyle samo (o 35px), by odstęp pod tytułem pozostał identyczny */
+  /* 3. Zwiększamy margines o 40px, by odstęp pod tytułem był wiekszy */
   .slide-content {
-    margin-top: 165px !important; /* Było 135px + 30px przesunięcia tytułu */
+    margin-top: 175px !important; /* Było 135px + 40px przesunięcia tytułu */
     width: 100% !important;
   }
 
@@ -2000,6 +2000,6 @@ html body .site-header .brand img.logo-mobile {
 
   /* 4. Kropki blisko dolnej krawędzi */
   .apartments-section .swiper-pagination {
-    bottom: 12px !important;
+    bottom: 16px !important;
   }
 }
