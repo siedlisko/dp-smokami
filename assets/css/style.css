@@ -1974,7 +1974,7 @@ html body .site-header .brand img.logo-mobile {
 @media (max-width: 768px) {
   /* 1. Tytuł sekcji blisko góry */
   .slider-title-overlay {
-    top: 30px !important;
+    top: 65px !important;
   }
 
   /* 2. Slajd dopasowuje się wysokością do treści, ale trzyma ją na dole */
