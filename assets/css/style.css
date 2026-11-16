@@ -1969,27 +1969,27 @@ html body .site-header .brand img.logo-mobile {
 }
 
 /* ==========================================================================
-   DOPASOWANIE SLAJDERA APARTAMENTÓW NA TELEFONACH (Wersja odporna na długi tekst)
+   DOPASOWANIE SLAJDERA APARTAMENTÓW NA TELEFONACH
    ========================================================================== */
 @media (max-width: 768px) {
-  /* 1. Tytuł sekcji blisko góry */
+  /* 1. Zwiększamy ilość tła nad tytułem sekcji (przesuwamy tytuł niżej) */
   .slider-title-overlay {
-    top: 65px !important;
+    top: 65px !important; /* Było 30px — teraz nad napisem widać więcej zdjęcia */
   }
 
-  /* 2. Slajd dopasowuje się wysokością do treści, ale trzyma ją na dole */
+  /* 2. Slajd dopasowuje się wysokością do treści */
   .apartment-slide {
     height: auto !important;
-    min-height: 580px !important;
-    padding: 0 1.5rem 45px 1.5rem !important; /* 45px to stały odstęp od dolnej krawędzi i kropek */
+    min-height: 615px !important; /* Lekko podniesione, żeby zachować proporcje */
+    padding: 0 1.5rem 45px 1.5rem !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
   }
 
-  /* 3. Sztywna strefa ochronna nad treścią — gwarantuje odstęp od tytułu "APARTAMENTY" */
+  /* 3. Zwiększamy margines o tyle samo (o 35px), by odstęp pod tytułem pozostał identyczny */
   .slide-content {
-    margin-top: 135px !important; /* Tyle dokładnie miejsca rezerwuje u góry pod tytuł sekcji */
+    margin-top: 170px !important; /* Było 135px + 35px przesunięcia tytułu */
     width: 100% !important;
   }
 
