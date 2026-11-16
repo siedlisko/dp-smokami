@@ -1967,3 +1967,33 @@ html body .site-header .brand img.logo-mobile {
     box-sizing: border-box !important;
   }
 }
+
+/* ==========================================================================
+   DOPASOWANIE SLAJDERA APARTAMENTÓW NA TELEFONACH
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 1. Tytuł "APARTAMENTY" bliżej górnej krawędzi slajdu */
+  .slider-title-overlay {
+    top: 35px !important;
+  }
+
+  /* 2. Zwiększenie wysokości slajdu i zsunięcie tekstu w dół (bliżej kropek) */
+  .apartment-slide {
+    height: auto !important;
+    min-height: 560px !important; /* Daje więcej miejsca w pionie dla dłuższych opisów */
+    padding-top: 130px !important; /* Gwarantuje bezpieczny odstęp od tytułu sekcji u góry */
+    padding-bottom: 42px !important; /* Zmniejsza odstęp od dolnej krawędzi i kropek (było 2rem/32px, ale treść była wyżej) */
+    justify-content: flex-end !important; /* Dopycha treść na sam dół slajdu */
+  }
+
+  /* 3. Lekkie zmniejszenie dolnego marginesu przy przycisku "Zobacz więcej" */
+  .slide-content p {
+    margin-bottom: 1rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* 4. Kropki paginacji delikatnie niżej, przy samej krawędzi */
+  .apartments-section .swiper-pagination {
+    bottom: 12px !important;
+  }
+}
