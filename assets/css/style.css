@@ -266,6 +266,24 @@ a {
 .hamburger::before { top: -8px !important; left: 0 !important; }
 .hamburger::after { bottom: -8px !important; left: 0 !important; }
 
+.site-nav .lang-switch {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center;
+  gap: 8px; /* odstęp między flagą po lewej a tekstem po prawej */
+  white-space: nowrap; /* zapobiega łamaniu tekstu do nowej linii */
+}
+
+.site-nav .lang-switch .flag-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0; /* zapobiega ściskaniu flagi */
+  margin: 0;
+}
+
 /* ==========================================================================
    4. SEKCJA GŁÓWNA (Hero Section)
    ========================================================================== */
