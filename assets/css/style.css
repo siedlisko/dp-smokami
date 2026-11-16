@@ -181,7 +181,27 @@ a {
 .brand img.logo {
   height: 70px !important;
   width: auto !important;
+}
+
+/* Na komputerach (powyżej 768px): pokaż logo z napisem, ukryj mobilne */
+.brand img.logo-desktop {
   display: block !important;
+}
+
+.brand img.logo-mobile {
+  display: none !important;
+}
+
+/* Na telefonach (768px i mniej): ukryj logo z napisem, pokaż mobilne */
+@media (max-width: 768px) {
+  .brand img.logo-desktop {
+    display: none !important;
+  }
+
+  .brand img.logo-mobile {
+    display: block !important;
+    height: 45px !important; /* opcjonalnie dopasuj wysokość logo mobilnego */
+  }
 }
 
 /* Wyłączenie wpływu skrolowania na klasę .brand */
