@@ -352,31 +352,18 @@ a {
 @media (max-width: 768px) {
   .hero {
     height: auto !important;
-    min-height: calc(100vh - 60px) !important;
-    align-items: flex-start !important; /* Treść zaczyna się wyżej, zamiast na środku ekranu */
-    padding-top: 85px !important; /* Bezpieczny odstęp od górnego paska */
-    padding-bottom: 85px !important; /* Zapas na dole, by tekst nie chował się za dolnymi guzikami */
+    min-height: 100vh !important;
+    align-items: flex-start !important; /* Wyłącza centrowanie w pionie, dzięki czemu treść idzie do góry */
+    padding-top: 35px !important; /* Mały górny odstęp — jeśli nadal będzie za nisko, zmniejsz np. do 15px */
+    padding-bottom: 85px !important; /* Ochrona przed chowaniem się tekstu pod dolnymi guzikami */
   }
 
   .hero-logo-wrapper {
-    padding-top: 0 !important; /* Usunięcie zbędnego górnego odstępu */
-    margin-bottom: 1rem !important;
-  }
-
-  .hero-logo {
-    height: 85px !important; /* Lekko mniejsze logo na mobile, by zwolnić miejsce dla tekstu */
-  }
-
-  .hero-content h1 {
-    font-size: 2rem !important;
-    line-height: 1.25 !important;
-    margin-bottom: 0.75rem !important;
+    padding-top: 0 !important; /* Usuwa dodatkowe 40px marginesu nad logo */
   }
 
   .hero-lead {
-    max-width: 100% !important;
-    font-size: 0.95rem !important;
-    line-height: 1.5 !important;
+    max-width: 100%;
   }
 }
 
