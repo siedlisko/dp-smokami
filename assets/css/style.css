@@ -1709,7 +1709,7 @@ iframe {
     padding: 0 !important;
   }
 
-  /* ------------------------------------------------------------------------
+/* ------------------------------------------------------------------------
      2. GUZIKI NA DOLE - DOKŁADNY STYL STICKY HEADER (PO SKROLOWANIU)
      ------------------------------------------------------------------------ */
   html body nav#siteNav {
@@ -1721,12 +1721,12 @@ iframe {
     left: 0 !important;
     right: 0 !important;
     top: auto !important;
-    width: 100vw !important;
-    padding: 10px 14px !important;
-    background: rgba(18, 22, 29, 0.95) !important; /* Tło nagłówka przy skrolowaniu */
+    width: 100% !important; /* Bezpieczniejsze niż 100vw na mobile */
+    padding: 8px 8px !important; /* Mniejsze boczne marginesy paska (było 10px 14px) */
+    background: rgba(18, 22, 29, 0.95) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-    border-top: 1px solid rgba(197, 160, 89, 0.3) !important; /* Subtelna złota linia */
+    border-top: 1px solid rgba(197, 160, 89, 0.3) !important;
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4) !important;
     z-index: 9999999 !important;
     box-sizing: border-box !important;
@@ -1736,7 +1736,9 @@ iframe {
   html body nav#siteNav ul {
     display: flex !important;
     flex-direction: row !important;
-    gap: 10px !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 5px !important; /* Mniejszy odstęp między guzikami (było 10px) */
     margin: 0 !important;
     padding: 0 !important;
     list-style: none !important;
@@ -1744,7 +1746,8 @@ iframe {
   }
 
   html body nav#siteNav ul li {
-    flex: 1 !important;
+    flex: 1 1 auto !important; /* Dopasowuje szerokość do długości tekstu zamiast sztywnego podziału */
+    min-width: 0 !important; /* Pozwala elementom flex zwęzić się w razie potrzeby */
     margin: 0 !important;
     padding: 0 !important;
     display: block !important;
@@ -1756,15 +1759,16 @@ iframe {
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    height: 44px !important;
-    padding: 0 6px !important;
+    height: 40px !important; /* Nieco niższe (było 44px) */
+    padding: 0 5px !important;
     font-family: inherit !important;
-    font-size: 0.78rem !important;
+    font-size: 0.68rem !important; /* Mniejsza czcionka (było 0.78rem) */
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.8px !important;
+    letter-spacing: 0.3px !important; /* Ciaśniejszy odstęp między literami (było 0.8px) */
+    white-space: nowrap !important;
     box-sizing: border-box !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     text-decoration: none !important;
     transition: all 0.2s ease !important;
     
@@ -1774,8 +1778,14 @@ iframe {
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
   }
 
-  /* Guzik prawy / wyróżniony (Styl nagłówka skrolowanego - złota ramka i akcent) */
+  /* Guzik prawy / wyróżniony (przełącznik języka ze złotą ramką) */
+  html body nav#siteNav ul li:last-child {
+    flex: 0 0 auto !important; /* Przycisk flagi zajmuje dokładnie tyle miejsca, ile potrzebuje */
+  }
+
   html body nav#siteNav ul li:last-child a {
+    padding: 0 8px !important;
+    gap: 5px !important;
     background: rgba(197, 160, 89, 0.15) !important;
     color: #c5a059 !important;
     border: 1px solid #c5a059 !important;
@@ -1783,8 +1793,13 @@ iframe {
     box-shadow: 0 2px 10px rgba(197, 160, 89, 0.2) !important;
   }
 
+  html body nav#siteNav ul li:last-child a .flag-icon {
+    width: 16px !important;
+    height: 11px !important;
+  }
+
   body {
-    padding-bottom: 70px !important;
+    padding-bottom: 62px !important;
   }
 
   /* ------------------------------------------------------------------------
