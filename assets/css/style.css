@@ -348,22 +348,31 @@ a {
   text-align: center;   /* Wyśrodkowanie samego tekstu wewnątrz bloku */
 }
 
-/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% i podciągnie treść wyżej */
+/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100%, mniejszy górny margines i lekko pomniejszona czcionka */
 @media (max-width: 768px) {
   .hero {
     height: auto !important;
     min-height: 100vh !important;
-    align-items: flex-start !important; /* Wyłącza centrowanie w pionie, dzięki czemu treść idzie do góry */
-    padding-top: 35px !important; /* Mały górny odstęp — jeśli nadal będzie za nisko, zmniejsz np. do 15px */
-    padding-bottom: 85px !important; /* Ochrona przed chowaniem się tekstu pod dolnymi guzikami */
+    align-items: flex-start !important;
+    padding-top: 25px !important; /* Jeszcze mniejszy górny odstęp (było 35px) */
+    padding-bottom: 85px !important; /* Bezpieczny bufor nad dolnymi guzikami */
   }
 
   .hero-logo-wrapper {
-    padding-top: 0 !important; /* Usuwa dodatkowe 40px marginesu nad logo */
+    padding-top: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-content h1 {
+    font-size: 2rem !important; /* Troszkę mniejszy nagłówek (oryginalnie na mobile było 2.25rem) */
+    line-height: 1.35 !important;
+    margin-bottom: 0.9rem !important;
   }
 
   .hero-lead {
-    max-width: 100%;
+    max-width: 100% !important;
+    font-size: 1rem !important; /* Troszkę mniejszy opis (oryginalnie było 1.15rem) */
+    line-height: 1.6 !important;
   }
 }
 
