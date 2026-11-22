@@ -348,10 +348,35 @@ a {
   text-align: center;   /* Wyśrodkowanie samego tekstu wewnątrz bloku */
 }
 
-/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% */
+/* Na mniejszych ekranach (telefonach) tekst rozciągnie się do 100% i podciągnie treść wyżej */
 @media (max-width: 768px) {
+  .hero {
+    height: auto !important;
+    min-height: calc(100vh - 60px) !important;
+    align-items: flex-start !important; /* Treść zaczyna się wyżej, zamiast na środku ekranu */
+    padding-top: 85px !important; /* Bezpieczny odstęp od górnego paska */
+    padding-bottom: 85px !important; /* Zapas na dole, by tekst nie chował się za dolnymi guzikami */
+  }
+
+  .hero-logo-wrapper {
+    padding-top: 0 !important; /* Usunięcie zbędnego górnego odstępu */
+    margin-bottom: 1rem !important;
+  }
+
+  .hero-logo {
+    height: 85px !important; /* Lekko mniejsze logo na mobile, by zwolnić miejsce dla tekstu */
+  }
+
+  .hero-content h1 {
+    font-size: 2rem !important;
+    line-height: 1.25 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
   .hero-lead {
-    max-width: 100%;
+    max-width: 100% !important;
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
   }
 }
 
